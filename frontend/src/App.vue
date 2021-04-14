@@ -1,9 +1,9 @@
+<!--
+Primary Color: #EBF1DE
+Text Color: #C45891
+ -->
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/camels">Camels</router-link>
-    </div>
     <router-view/>
   </div>
 </template>
@@ -14,18 +14,27 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-#nav {
+  color: #C45891;
+  background-color: #EBF1DE;
   padding: 30px;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
+/*
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+*/
+
+.btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
 }
 </style>
