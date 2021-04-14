@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Header title='Planner Application' subTitle="Team 7"/>
+    <NavigationMenu title="Planner's App" subtitle="Team 7" >
+    </NavigationMenu>
+    <Header title='Schedule'/>
+    <ScheduleFilter/>
     <Schedule/>
   </div>
 </template>
@@ -10,12 +13,18 @@
 import { Api } from '@/Api'
 import Header from '../components/Header.vue'
 import Schedule from '../components/Schedule.vue'
+import NavigationMenu from '../components/NavigationMenu.vue'
+import NavigationButton from '../components/NavigationButton.vue'
+import ScheduleFilter from '../components/ScheduleFilter.vue'
 
 export default {
   name: 'home',
   components: {
     Header,
-    Schedule
+    Schedule,
+    NavigationMenu,
+    NavigationButton,
+    ScheduleFilter
   },
   data() {
     return {

@@ -20,9 +20,12 @@ export default {
 <style scoped>
   header{
     display: flex;
-    justify-content: space-between;
+    justify-content:space-around;
     align-items: center;
-    margin-bottom: 20px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 10%;
+    background: EBF1DE;
+    min-width: auto;
+
   }
 </style>

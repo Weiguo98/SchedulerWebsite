@@ -16,7 +16,6 @@ Text Color: #C45891
   text-align: center;
   color: #C45891;
   background-color: #EBF1DE;
-  padding: 30px;
 }
 /*
 #nav a.router-link-exact-active {

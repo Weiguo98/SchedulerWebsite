@@ -1,6 +1,6 @@
 <template>
-  <div class='calendar-container'>
-      <div class='calendar'>
+  <div>
+      <div class='schedule'>
         <div class='empty'></div>
         <div class="times">
           <b-col>
@@ -36,51 +36,10 @@
           <div id="5">Personell 5</div>
         </div>
         <div class="content">
-          <button id="1" onclick="myFunction()"> </button>
-          <button id="2"> </button>
-          <button id="3"> </button>
-          <button id="4"> </button>
-          <button id="5"> </button>
-          <button id="6"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="7"> </button>
-          <button id="10"> </button>
         </div>
       </div>
     </div>
 </template>
-
 
 <style>
 *{
@@ -90,15 +49,16 @@
   box-sizing: border-box;
 }
 
-.calendar {
+.schedule {
   display: grid;
   grid-template-areas: "empty planes" "time contents";
   grid-template-columns: 100px;
   grid-template-rows: 90px;
-  width: 95vw;
-  height: 70vh;
+  width: 90%;
+  height: 90vh;
   margin: 0 auto;
   box-shadow: 0 2px 10px;
+  margin-left: 10%;
 }
 
 .empty {
