@@ -1,44 +1,62 @@
 <template>
-  <div>
-      <div class='schedule'>
-        <div class='empty'></div>
-        <div class="times">
-          <b-col>
-            <div> 5 AM </div>
-          </b-col>
-          <b-col>
-            <div> 6 AM </div>
-          </b-col>
-          <b-col>
-            <div> 7 AM </div>
-          </b-col>
-          <b-col>
-            <div> 8 AM </div>
-          </b-col>
-          <b-col>
-            <div> 9 AM </div>
-          </b-col>
-          <b-col>
-            <div> 10 AM </div>
-          </b-col>
-          <b-col>
-            <div> 11 AM </div>
-          </b-col>
-          <b-col>
-            <div> 12 AM </div>
-          </b-col>
-        </div>
-        <div class="personell">
-          <div id="1">Personell 1</div>
-          <div id="2">Personell 2</div>
-          <div id="3">Personell 3</div>
-          <div id="4">Personell 4</div>
-          <div id="5">Personell 5</div>
-        </div>
-        <div class="content">
-        </div>
-      </div>
-    </div>
+  <b-container class="bv-example-row">
+  <b-row>
+    <b-col></b-col>
+    <b-col>6AM</b-col>
+    <b-col>7AM</b-col>
+    <b-col>8AM</b-col>
+    <b-col>9AM</b-col>
+    <b-col>10AM</b-col>
+    <b-col>11AM</b-col>
+    <b-col>12AM</b-col>
+    <b-col>1PM</b-col>
+    <b-col>2PM</b-col>
+    <b-col>3PM</b-col>
+    <b-col>4PM</b-col>
+    <b-col>5PM</b-col>
+    <b-col>6PM</b-col>
+    <b-col>7PM</b-col>
+    <b-col>8PM</b-col>
+  </b-row>
+  <b-row>
+    <b-col>Personell 1</b-col>
+    <b-col></b-col>
+    <b-col style="background-color: #e3e3e3"></b-col>
+    <b-col style="background-color: #e3e3e3"></b-col>
+    <b-col style="background-color: #e3e3e3"></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+  </b-row>
+  <b-row>
+    <b-col>Personell 2</b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col style="background-color: #e3e3e3"></b-col>
+    <b-col style="background-color: #e3e3e3"></b-col>
+    <b-col style="background-color: #e3e3e3"></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+    <b-col></b-col>
+  </b-row>
+</b-container>
 </template>
 
 <style>
