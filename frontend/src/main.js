@@ -11,7 +11,7 @@ Vue.use(BootstrapVue)
 
 Vue.use(FunctionalCalendar, {
   dayNames: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-});
+})
 
 Vue.config.productionTip = false
 
