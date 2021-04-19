@@ -15,13 +15,20 @@
         <b-col class="example-col" cols="12" md="8">{{ message }}</b-col>
       </b-row>
     </b-container>
-    <b-button @click="show=true" variant="primary">Show Modal</b-button>
-
+    <b-container fluid>
+      <div class ="mt-3">
+      Assigned startime:{{subtimeEndVariants}}
+      </div>
+    </b-container>
+    <b-button @click="show=true" variant="primary">Assign employee</b-button>
     <b-modal
       v-model="show"
       title="Assign employees"
       id="modal-xl"
       size="xl"
+       @show="resetSelect"
+       @hidden ="resetSelect"
+       @ok ="handleOK"
     >
   <!--
       :header-bg-variant="headerBgVariant"
@@ -58,18 +65,6 @@
         <b-row>
           <div class = "space"></div>
         </b-row>
-         <!-- div class ="mt-3"> Selected:<strong> {{ timeStartVariants }}{{timeEndVariants}}</strong></div-->
-          <!--
-          <b-col>
-            <b-form-select
-              v-model="headerTextVariant"
-              :options="variants"
-            ></b-form-select>
-          </b-col>
-        </b-row>
-        <b-row>
-        </b-row>
-        -->
         <b-row class="mb-1">
           <b-col cols="3">Department Name</b-col>
           <b-col>
@@ -101,17 +96,17 @@
           <div class = "space"></div>
         </b-row>
       </b-container>
-
       <template #modal-footer>
         <div class="w-100">
           <p class="float-left">Modal Footer Content</p>
-          <b-button variant = "success" class = "float-right" @click = "show = false">
+          <b-button variant = "success" class = "float-right" @click = handleOK()>
           Confirm </b-button>
           <b-button variant="danger" class="float-right" @click="show = false">
           Cancel </b-button>
         </div>
       </template>
     </b-modal>
+
   </div>
 </template>
 
@@ -133,13 +128,15 @@ export default {
       timeEnVariants: [{ value: null, text: '--select end time--', disabled: true }, '8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
         '11:00', '11:15', '11:30', '11:45', '12:00'],
       timeStartVariants: null,
+      subtimeStarttVariants: null,
       timeEndVariants: null,
+      subtimeEndVariants: null,
       deVariants: [{ value: null, text: '--select department--', disabled: true }, 'cleaner', 'operator', 'security', 'maintainer'],
-      departmentDefaultVariants: null,
+      departmentVariant: null,
       emVariants: [{ value: null, text: '--select employee--', disabled: true }, 'Alice', 'Tom', 'Henry', 'Jerry', 'Anna'],
-      employeeDefaultVariants: null,
+      employeeVariant: null,
       zoVariants: [{ value: null, text: '--select zone--', disabled: true }, 'AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix'],
-      ZoneDefaultVariants: null
+      zoneVariant: null
     }
   },
   mounted() {
@@ -154,6 +151,31 @@ export default {
         .catch(error => {
           this.message = error
         })
+    },
+    checkSelectValidty() {
+      var valid = true
+      if (this.timeStartVariants == null) {
+        valid = false
+      }
+      return valid
+    },
+    resetSelect() {
+      this.timeEndVariants = null
+      this.timeStartVariants = null
+    },
+    handleOK(bvModalEvt) {
+      // bvModalEvt.preventDefault()
+      this.handleSubmit()
+    },
+    handleSubmit() {
+      if (!this.checkSelectValidty()) {
+        return
+      }
+      this.subtimeStarttVariants = this.timeStartVariants
+      this.subtimeEndVariants = this.timeEndVariants
+      this.$nextTick(() => {
+        this.$bvModal.hide('modal-prevent-closing')
+      })
     }
   }
 }
