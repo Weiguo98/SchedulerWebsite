@@ -17,7 +17,7 @@
     </b-container>
     <b-container fluid>
       <div class ="mt-3">
-      Assigned startime:{{subtimeEndVariants}}
+      Assigned Endtime:{{subtimeEndVariants}}
       </div>
     </b-container>
     <b-button @click="show=true" variant="primary">Assign employee</b-button>
@@ -30,21 +30,7 @@
        @hidden ="resetSelect"
        @ok ="handleOK"
     >
-  <!--
-      :header-bg-variant="headerBgVariant"
-      :header-text-variant="headerTextVariant"
-      :body-bg-variant="bodyBgVariant"
-      :body-text-variant="bodyTextVariant"
-      :footer-bg-variant="footerBgVariant"
-      :footer-text-variant="footerTextVariant" -->
       <b-container fluid>
-        <!--
-        <b-row class="mb-1 text-center">
-          <b-col cols="3">pending hours</b-col>
-          <b-col>Background</b-col>
-          <b-col>Text</b-col>
-        </b-row>
-        -->
         <b-row>
           <div class = "space"></div>
         </b-row>
@@ -118,6 +104,7 @@ export default {
   name: 'home',
   // TODO: time start variants need to be smaller than time end variants
   // TODO: time variants limit to six line.
+  // TODO: Six options must have values, other wise a warning will pop up.
   data() {
     return {
       message: '',
@@ -165,6 +152,7 @@ export default {
     },
     handleOK(bvModalEvt) {
       // bvModalEvt.preventDefault()
+      this.show = false
       this.handleSubmit()
     },
     handleSubmit() {
@@ -173,9 +161,6 @@ export default {
       }
       this.subtimeStarttVariants = this.timeStartVariants
       this.subtimeEndVariants = this.timeEndVariants
-      this.$nextTick(() => {
-        this.$bvModal.hide('modal-prevent-closing')
-      })
     }
   }
 }
