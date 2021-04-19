@@ -40,7 +40,7 @@
         -->
         <b-row class="mb-1">
           <!-- TODO: try with time select or this is okay whatever -->
-          <b-col cols="3">pending hours</b-col>
+          <b-col cols="3">Planning work hours</b-col>
           <b-col>
             <b-form-select
               v-model="timeStartVariants"
@@ -69,7 +69,7 @@
         </b-row>
         -->
         <b-row class="mb-1">
-          <b-col cols="3">Department name</b-col>
+          <b-col cols="3">Department Name</b-col>
           <b-col>
             <b-form-select
               v-model="departmentVariant"
@@ -84,7 +84,7 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col cols="3">zone</b-col>
+          <b-col cols="3">Zone</b-col>
           <b-col>
             <b-form-select
               v-model="zoneVariant"
@@ -124,12 +124,16 @@ export default {
       message: '',
       show: false,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
-      timeVariants: ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00'],
-      timeStartVariants: '8:00',
-      timeEndVariants: '9:00',
+      timeVariants: ['8:00', '8:15', '8:30', '8:45', '9:00','9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
+                      '11:00', '11:15', '11:30', '11:45', '12:00'],
+      timeStartVariants: 'starting time',
+      timeEndVariants: 'ending time',
       deVariants: ['cleaner', 'operator', 'security', 'maintainer'],
+      departmentDefaultVariants: "Role"
       emVariants: ['Alice', 'Tom', 'Henry', 'Jerry', 'Anna'],
-      zoVariants: ['AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix']
+      employeeDefaultVariants: "Name",
+      zoVariants: ['AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix'],
+      ZoneDefaultVariants: "Rides"
     }
   },
   mounted() {
