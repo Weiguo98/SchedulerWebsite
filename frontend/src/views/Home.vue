@@ -45,21 +45,13 @@
           <!-- TODO: try with time select or this is okay whatever -->
           <b-col cols="3">Planning work hours</b-col>
           <b-col>
-            <b-form-select
-              v-model="timeStartVariants"
-              :options="timeVariants"
-              class="mb-3"
-            >
-            <!--
-            <template #first>
-              <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
-            </template>-->
+            <b-form-select  v-model="timeStartVariants" :options="timeStVariants">
             </b-form-select>
           </b-col>
           <b-col>
             <b-form-select
               v-model="timeEndVariants"
-              :options="timeVariants"
+              :options="timeEnVariants"
             ></b-form-select>
           </b-col>
         </b-row>
@@ -97,7 +89,7 @@
           <div class = "space"></div>
         </b-row>
         <b-row>
-          <b-col cols="3">zone</b-col>
+          <b-col cols="3">Zone</b-col>
           <b-col>
             <b-form-select
               v-model="zoneVariant"
@@ -136,16 +128,18 @@ export default {
       message: '',
       show: false,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
-      timeVariants: ['8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
+      timeStVariants: [{ value: null, text: '--select start time--', disabled: true }, '8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
         '11:00', '11:15', '11:30', '11:45', '12:00'],
-      timeStartVariants: '8:30',
-      timeEndVariants: '11:30',
-      deVariants: ['cleaner', 'operator', 'security', 'maintainer'],
-      departmentDefaultVariants: 'Role',
-      emVariants: ['Alice', 'Tom', 'Henry', 'Jerry', 'Anna'],
-      employeeDefaultVariants: 'Name',
-      zoVariants: ['AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix'],
-      ZoneDefaultVariants: 'Rides'
+      timeEnVariants: [{ value: null, text: '--select end time--', disabled: true }, '8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
+        '11:00', '11:15', '11:30', '11:45', '12:00'],
+      timeStartVariants: null,
+      timeEndVariants: null,
+      deVariants: [{ value: null, text: '--select department--', disabled: true }, 'cleaner', 'operator', 'security', 'maintainer'],
+      departmentDefaultVariants: null,
+      emVariants: [{ value: null, text: '--select employee--', disabled: true }, 'Alice', 'Tom', 'Henry', 'Jerry', 'Anna'],
+      employeeDefaultVariants: null,
+      zoVariants: [{ value: null, text: '--select zone--', disabled: true }, 'AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix'],
+      ZoneDefaultVariants: null
     }
   },
   mounted() {
@@ -177,5 +171,8 @@ export default {
   margin:0;
   padding:0;
   height:30px;
+}
+.float-right {
+  margin-left:5pt;
 }
 </style>
