@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row">
+  <b-container>
   <b-row>
     <b-col></b-col>
     <b-col>6AM</b-col>
@@ -18,46 +18,21 @@
     <b-col>7PM</b-col>
     <b-col>8PM</b-col>
   </b-row>
-  <b-row>
-    <b-col>Personell 1</b-col>
-    <b-col></b-col>
-    <b-col style="background-color: #e3e3e3"></b-col>
-    <b-col style="background-color: #e3e3e3"></b-col>
-    <b-col style="background-color: #e3e3e3"></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-  </b-row>
-  <b-row>
-    <b-col>Personell 2</b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col style="background-color: #e3e3e3"></b-col>
-    <b-col style="background-color: #e3e3e3"></b-col>
-    <b-col style="background-color: #e3e3e3"></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-    <b-col></b-col>
-  </b-row>
+  <Personell personellName="Emmassssss"/>
+  <Personell personellName="Selma"/>
+  <Personell personellName="Henrik"/>
 </b-container>
 </template>
+
+<script>
+import Personell from '../components/Personell.vue'
+
+export default {
+  components: {
+    Personell
+  }
+}
+</script>
 
 <style>
 *{
