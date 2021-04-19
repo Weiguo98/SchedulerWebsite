@@ -48,7 +48,13 @@
             <b-form-select
               v-model="timeStartVariants"
               :options="timeVariants"
-            ></b-form-select>
+              class="mb-3"
+            >
+            <!--
+            <template #first>
+              <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
+            </template>-->
+            </b-form-select>
           </b-col>
           <b-col>
             <b-form-select
@@ -107,14 +113,10 @@
       <template #modal-footer>
         <div class="w-100">
           <p class="float-left">Modal Footer Content</p>
-          <b-button
-            variant="primary"
-            size="sm"
-            class="float-right"
-            @click="show=false"
-          >
-            Close
-          </b-button>
+          <b-button variant = "success" class = "float-right" @click = "show = false">
+          Confirm </b-button>
+          <b-button variant="danger" class="float-right" @click="show = false">
+          Cancel </b-button>
         </div>
       </template>
     </b-modal>
@@ -136,8 +138,8 @@ export default {
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       timeVariants: ['8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
         '11:00', '11:15', '11:30', '11:45', '12:00'],
-      timeStartVariants: 'starting time',
-      timeEndVariants: 'ending time',
+      timeStartVariants: '8:30',
+      timeEndVariants: '11:30',
       deVariants: ['cleaner', 'operator', 'security', 'maintainer'],
       departmentDefaultVariants: 'Role',
       emVariants: ['Alice', 'Tom', 'Henry', 'Jerry', 'Anna'],
