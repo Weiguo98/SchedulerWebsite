@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "FilterButton",
+  name: 'FilterButton',
   props: {
 
     text: String,

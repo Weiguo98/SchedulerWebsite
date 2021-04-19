@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { FunctionalCalendar } from 'vue-functional-calendar';
+import { FunctionalCalendar } from 'vue-functional-calendar'
 import ScheduleFilterButton from './ScheduleFilterButton.vue'
 
 export default {
@@ -28,7 +28,6 @@ export default {
   }
 }
 </script>
-
 
 <style>
 .filterBar{
@@ -45,7 +44,6 @@ export default {
   border-left: 0px;
   margin-bottom: 20px;
 }
-
 
 .assignbtn{
   margin-left: 70px;

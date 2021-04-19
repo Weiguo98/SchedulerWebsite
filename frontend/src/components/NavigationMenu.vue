@@ -45,7 +45,6 @@ export default {
   min-width: 110px;
 }
 
-
 .planner_app{
   display: flex;
   justify-content: center;
@@ -55,7 +54,6 @@ export default {
   min-height: 8%;
   font-weight: bold;
 }
-
 
 .page_buttons{
   margin-top: 10px;
