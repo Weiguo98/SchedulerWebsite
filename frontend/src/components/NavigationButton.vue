@@ -1,15 +1,13 @@
 <template>
-  <button>
-    {{page}}
-  </button>
+  <router-link :to="toPage" tag="b-button"> {{page}}</router-link>
 </template>
 
 <script>
 export default {
   props: {
-    page: String
+    page: String,
+    toPage: String
   }
-
 }
 </script>
 

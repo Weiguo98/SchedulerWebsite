@@ -7,13 +7,13 @@
       {{subtitle}}
     </div>
     <div class='page_buttons'>
-      <NavigationButton page="Schedule"/>
+      <NavigationButton page="Schedule" toPage="/camels"/>
     </div>
     <div class='page_buttons'>
-      <NavigationButton page="Calendar"/>
+      <NavigationButton page="Calendar" toPage="/camels"/>
     </div>
     <div class='page_buttons'>
-      <NavigationButton page="Staff"/>
+      <NavigationButton page="Staff" toPage="/camels"/>
     </div>
   </div>
 </template>
@@ -61,7 +61,5 @@ export default {
   margin-top: 10px;
   display: flex;
   justify-content: center;
-  height: 40px;
-  background: hotpink;
 }
 </style>
