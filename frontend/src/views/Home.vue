@@ -19,29 +19,41 @@
 
     <b-modal
       v-model="show"
-      title="Modal Variants"
+      title="Assign employees"
+      id="modal-xl"
+      size="xl"
+    >
+  <!--
       :header-bg-variant="headerBgVariant"
       :header-text-variant="headerTextVariant"
       :body-bg-variant="bodyBgVariant"
       :body-text-variant="bodyTextVariant"
       :footer-bg-variant="footerBgVariant"
-      :footer-text-variant="footerTextVariant"
-    >
+      :footer-text-variant="footerTextVariant" -->
       <b-container fluid>
+        <!--
         <b-row class="mb-1 text-center">
-          <b-col cols="3"></b-col>
+          <b-col cols="3">pending hours</b-col>
           <b-col>Background</b-col>
           <b-col>Text</b-col>
         </b-row>
-
+        -->
         <b-row class="mb-1">
-          <b-col cols="3">Header</b-col>
+          <b-col cols="3">pending hours</b-col>
           <b-col>
             <b-form-select
-              v-model="headerBgVariant"
-              :options="variants"
+              v-model="timeStartVariants"
+              :options="timeVariants"
             ></b-form-select>
           </b-col>
+          <b-col>
+            <b-form-select
+              v-model="timeEndVariants"
+              :options="timeVariants"
+            ></b-form-select>
+          </b-col>
+        </b-row>
+          <!--
           <b-col>
             <b-form-select
               v-model="headerTextVariant"
@@ -49,7 +61,9 @@
             ></b-form-select>
           </b-col>
         </b-row>
-
+        <b-row>
+        </b-row>
+        -->
         <b-row class="mb-1">
           <b-col cols="3">Body</b-col>
           <b-col>
@@ -65,7 +79,6 @@
             ></b-form-select>
           </b-col>
         </b-row>
-
         <b-row>
           <b-col cols="3">Footer</b-col>
           <b-col>
@@ -106,11 +119,14 @@ import { Api } from '@/Api'
 
 export default {
   name: 'home',
+  // TODO: time start variants need to be smaller than time end variants
+  // TODO: time variants limit to six line.
   data() {
     return {
       message: '',
       show: false,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+      timeVariants: ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00'],
       headerBgVariant: 'dark',
       headerTextVariant: 'light',
       bodyBgVariant: 'light',
