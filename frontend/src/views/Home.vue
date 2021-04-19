@@ -39,6 +39,7 @@
         </b-row>
         -->
         <b-row class="mb-1">
+          <!-- TODO: try with time select or this is okay whatever -->
           <b-col cols="3">pending hours</b-col>
           <b-col>
             <b-form-select
@@ -53,6 +54,9 @@
             ></b-form-select>
           </b-col>
         </b-row>
+        <b-row>
+          <!-- div class ="mt-3"> Selected:<strong> {{ timeStartVariants }}{{timeEndVariants}}</strong></div-->
+        </b-row>
           <!--
           <b-col>
             <b-form-select
@@ -65,32 +69,26 @@
         </b-row>
         -->
         <b-row class="mb-1">
-          <b-col cols="3">Body</b-col>
+          <b-col cols="3">Department name</b-col>
           <b-col>
             <b-form-select
-              v-model="bodyBgVariant"
-              :options="variants"
+              v-model="departmentVariant"
+              :options="deVariants"
             ></b-form-select>
           </b-col>
           <b-col>
             <b-form-select
-              v-model="bodyTextVariant"
-              :options="variants"
+              v-model="employeeVariant"
+              :options="emVariants"
             ></b-form-select>
           </b-col>
         </b-row>
         <b-row>
-          <b-col cols="3">Footer</b-col>
+          <b-col cols="3">zone</b-col>
           <b-col>
             <b-form-select
-              v-model="footerBgVariant"
-              :options="variants"
-            ></b-form-select>
-          </b-col>
-          <b-col>
-            <b-form-select
-              v-model="footerTextVariant"
-              :options="variants"
+              v-model="zoneVariant"
+              :options="zoVariants"
             ></b-form-select>
           </b-col>
         </b-row>
@@ -127,12 +125,11 @@ export default {
       show: false,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       timeVariants: ['8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00'],
-      headerBgVariant: 'dark',
-      headerTextVariant: 'light',
-      bodyBgVariant: 'light',
-      bodyTextVariant: 'dark',
-      footerBgVariant: 'warning',
-      footerTextVariant: 'dark'
+      timeStartVariants: '8:00',
+      timeEndVariants: '9:00',
+      deVariants: ['cleaner', 'operator', 'security', 'maintainer'],
+      emVariants: ['Alice', 'Tom', 'Henry', 'Jerry', 'Anna'],
+      zoVariants: ['AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix']
     }
   },
   mounted() {
