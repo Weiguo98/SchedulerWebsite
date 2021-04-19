@@ -38,6 +38,9 @@
           <b-col>Text</b-col>
         </b-row>
         -->
+        <b-row>
+          <div class = "space"></div>
+        </b-row>
         <b-row class="mb-1">
           <!-- TODO: try with time select or this is okay whatever -->
           <b-col cols="3">pending hours</b-col>
@@ -55,8 +58,9 @@
           </b-col>
         </b-row>
         <b-row>
-          <!-- div class ="mt-3"> Selected:<strong> {{ timeStartVariants }}{{timeEndVariants}}</strong></div-->
+          <div class = "space"></div>
         </b-row>
+         <!-- div class ="mt-3"> Selected:<strong> {{ timeStartVariants }}{{timeEndVariants}}</strong></div-->
           <!--
           <b-col>
             <b-form-select
@@ -84,6 +88,9 @@
           </b-col>
         </b-row>
         <b-row>
+          <div class = "space"></div>
+        </b-row>
+        <b-row>
           <b-col cols="3">zone</b-col>
           <b-col>
             <b-form-select
@@ -91,6 +98,9 @@
               :options="zoVariants"
             ></b-form-select>
           </b-col>
+        </b-row>
+        <b-row>
+          <div class = "space"></div>
         </b-row>
       </b-container>
 
@@ -155,5 +165,11 @@ export default {
   padding-bottom: .75rem;
   background-color: whitesmoke;
   border: 2px solid lightgray;
+}
+
+.space {
+  margin:0;
+  padding:0;
+  height:30px;
 }
 </style>
