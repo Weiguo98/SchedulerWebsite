@@ -18,18 +18,16 @@
     <b-col>7PM</b-col>
     <b-col>8PM</b-col>
   </b-row>
-  <Personell personellName="Emmassssss"/>
-  <Personell personellName="Selma"/>
-  <Personell personellName="Henrik"/>
+  <Personnel> </Personnel>
 </b-container>
 </template>
 
 <script>
-import Personell from '../components/Personell.vue'
+import Personnel from './Personnel.vue'
 
 export default {
   components: {
-    Personell
+    Personnel
   }
 }
 </script>
@@ -78,13 +76,13 @@ export default {
 
 }
 
-.personell {
+.Personnel {
   grid-area: time;
   display: grid;
 
 }
 
-.personell > div {
+.Personnel > div {
   display: grid;
   border-bottom: 1px solid;
   align-items: center;

@@ -12,7 +12,7 @@ export default {
   props: {
     title: String,
     subTitle: String
-  },
+  }
 }
 
 </script>

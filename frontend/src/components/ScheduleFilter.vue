@@ -8,7 +8,7 @@
     <ScheduleFilterButton text="Rollercoaster/Game/Area" option_a="Helix" option_b="The Cannon" option_c="Atmosphere"/>
     <ScheduleFilterButton text="Roles" option_a="Operator" option_b="Maintainer" option_c="Cleaner"/>
     <ScheduleFilterButton text="Daily" option_a="Daily" option_b="Weekly" option_c="Monthly"/>
-    <b-button class="assignbtn" pill variant="success"> Assign </b-button>
+    <b-button id='assignbtn' class="assignbtn" pill variant="success" v-on:click="addRow()"> Assign </b-button>
   </div>
 </template>
 

@@ -14,7 +14,6 @@ import { Api } from '@/Api'
 import Header from '../components/Header.vue'
 import Schedule from '../components/Schedule.vue'
 import NavigationMenu from '../components/NavigationMenu.vue'
-import NavigationButton from '../components/NavigationButton.vue'
 import ScheduleFilter from '../components/ScheduleFilter.vue'
 
 export default {
@@ -23,7 +22,6 @@ export default {
     Header,
     Schedule,
     NavigationMenu,
-    NavigationButton,
     ScheduleFilter
   },
   data() {
