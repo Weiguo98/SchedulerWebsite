@@ -53,6 +53,7 @@ export default {
         const col = document.getElementById('col' + x)
         col.style = 'background-color: #e3e3e3'
       }
+      /*
       var numberOfSiblings = document.getElementById('row').parentElement.childElementCount
 
       var base = "document.getElementById('row').parentElement"
@@ -62,7 +63,7 @@ export default {
       base = base.concat('.firstChild')
       base = base.children[5]
       base.style = 'background-color: #e3e3e3'
-
+      */
       /*
       var test = document.getElementById('row').parentElement.nextElementSibling.firstChild
       console.log(test)
