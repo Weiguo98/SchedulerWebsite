@@ -1,6 +1,6 @@
 o<template>
 <div>
-  <b-button v-on:click="addRow(); fillInTime()"> hej </b-button>
+  <b-button v-on:click="addRow(); fillInTime()"> New row </b-button>
   <div v-for="personnel in personnelList" :key="personnel">
     <b-row :id="personnel.id" >
       <b-col id='name' class='names'>{{personnel.personnelName}} </b-col>
@@ -49,34 +49,20 @@ export default {
   },
   methods: {
     fillInTime: function () {
-      for (var x = this.personnelList[i].startTime; x < this.personnelList[i].endTime; x++) {
-        const col = document.getElementById('col' + x)
-        col.style = 'background-color: #e3e3e3'
+      for (i = 0; i < this.personnelList.length; i++) {
+        var row = document.getElementById(this.personnelList[i].id)
+        for (var x = this.personnelList[i].startTime; x < this.personnelList[i].endTime; x++) {
+          const col = row.children[x]
+          col.style = 'background-color: #e3e3e3'
+        }
       }
-      /*
-      var numberOfSiblings = document.getElementById('row').parentElement.childElementCount
-
-      var base = "document.getElementById('row').parentElement"
-      for (var y = 0; y < numberOfSiblings; y++) {
-        base = base.concat('.nextElementSibling')
-      }
-      base = base.concat('.firstChild')
-      base = base.children[5]
-      base.style = 'background-color: #e3e3e3'
-      */
-      /*
-      var test = document.getElementById('row').parentElement.nextElementSibling.firstChild
-      console.log(test)
-      var test1 = test.children[15]
-      test1.style = 'background-color: #e3e3e3'
-      */
     },
     addRow: function () {
       var object = {
         id: j,
         personnelName: 'NAME',
-        startTime: '1',
-        endTime: '3'
+        startTime: '2',
+        endTime: '7'
       }
       j++
       this.personnelList.push(object)
