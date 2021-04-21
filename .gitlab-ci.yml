@@ -5,10 +5,12 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - backend/node_modules/
+    - frontend/src/
 
 stages:
   - build
   - test
+  - lint
 
 build:
   stage: build
@@ -25,3 +27,12 @@ test:
   script:
     - cd backend
     - npm run ci-test
+
+eslint:
+  stage: lint
+  tags:
+    - docker
+  script:
+    - cd frontend
+    - npm install eslint
+    - npm run lint
