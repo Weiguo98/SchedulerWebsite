@@ -1,7 +1,7 @@
 <template>
   <b-container>
   <b-row>
-    <b-col></b-col>
+    <b-col md="1"></b-col>
     <b-col>6AM</b-col>
     <b-col>7AM</b-col>
     <b-col>8AM</b-col>

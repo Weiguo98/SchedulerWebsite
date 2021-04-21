@@ -25,6 +25,11 @@ export default {
   props: {
     title: String,
     subtitle: String
+  },
+  methods: {
+    addRow: function () {
+      this.$root.$refs.personnel.addRow()
+    }
   }
 }
 </script>
