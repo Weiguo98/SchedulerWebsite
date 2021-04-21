@@ -1,25 +1,25 @@
 <template>
-  <b-container>
-  <b-row>
-    <b-col md="1"></b-col>
-    <b-col>6AM</b-col>
-    <b-col>7AM</b-col>
-    <b-col>8AM</b-col>
-    <b-col>9AM</b-col>
-    <b-col>10AM</b-col>
-    <b-col>11AM</b-col>
-    <b-col>12AM</b-col>
-    <b-col>1PM</b-col>
-    <b-col>2PM</b-col>
-    <b-col>3PM</b-col>
-    <b-col>4PM</b-col>
-    <b-col>5PM</b-col>
-    <b-col>6PM</b-col>
-    <b-col>7PM</b-col>
-    <b-col>8PM</b-col>
-  </b-row>
-  <Personnel> </Personnel>
-</b-container>
+  <table class="scheduleTable">
+    <thead>
+      <th> </th>
+      <th colspan="2">7:00</th>
+      <th colspan="2">8:00</th>
+      <th colspan="2">9:00</th>
+      <th colspan="2">10:00</th>
+      <th colspan="2">11:00</th>
+      <th colspan="2">12:00</th>
+      <th colspan="2">13:00</th>
+      <th colspan="2">14:00</th>
+      <th colspan="2">15:00</th>
+      <th colspan="2">16:00</th>
+      <th colspan="2">17:00</th>
+      <th colspan="2">18:00</th>
+      <th colspan="2">19:00</th>
+      <th colspan="2">20:00</th>
+      <th colspan="2">21:00</th>
+    </thead>
+    <Personnel> </Personnel>
+  </table>
 </template>
 
 <script>
@@ -38,6 +38,10 @@ export default {
   padding:0;
   font-family: sans-serif;
   box-sizing: border-box;
+}
+
+.col {
+  width: 55px
 }
 
 .schedule {
@@ -100,6 +104,11 @@ export default {
 
 .content > div {
   border-right: 1px solid;
+}
+
+.scheduleTable{
+  margin-left:150px;
+  width:80%;
 }
 
 </style>

@@ -1,27 +1,24 @@
-o<template>
-<div>
-  <div v-for="personnel in personnelList" :key="personnel">
-    <b-row :id="personnel.id" >
-      <b-col id='name' class='columns' md='1'>{{personnel.personnelName}} </b-col>
-      <b-col id='col1' class='columns'></b-col>
-      <b-col id='col2' class='columns'></b-col>
-      <b-col id='col3' class='columns'></b-col>
-      <b-col id='col4' class='columns'></b-col>
-      <b-col id='col5' class='columns'></b-col>
-      <b-col id='col6' class='columns'></b-col>
-      <b-col id='col7' class='columns'></b-col>
-      <b-col id='col8' class='columns'></b-col>
-      <b-col id='col9' class='columns'></b-col>
-      <b-col id='col10' class='columns'></b-col>
-      <b-col id='col11' class='columns'></b-col>
-      <b-col id='col12' class='columns'></b-col>
-      <b-col id='col13' class='columns'></b-col>
-      <b-col id='col14' class='columns'></b-col>
-      <b-col id='col15' class='columns'></b-col>
-      <b-col id='col16' class='columns'></b-col>
-    </b-row>
-  </div>
-</div>
+<template>
+  <tbody>
+      <tr :id="personnel.id" v-for="personnel in personnelList" :key="personnel">
+        <td id='name' md='1'>{{personnel.personnelName}}</td>
+        <td id='col1' class='columns'></td><td id='col2'></td>
+        <td id='col3' class='columns'></td><td id='col4'></td>
+        <td id='col5' class='columns'></td><td id='col6'></td>
+        <td id='col7' class='columns'></td><td id='col8'></td>
+        <td id='col9' class='columns'></td><td id='col10'></td>
+        <td id='col11' class='columns'></td><td id='col12'></td>
+        <td id='col13' class='columns'></td><td id='col14'></td>
+        <td id='col15' class='columns'></td><td id='col16'></td>
+        <td id='col17' class='columns'></td><td id='col18'></td>
+        <td id='col19' class='columns'></td><td id='col20'></td>
+        <td id='col21' class='columns'></td><td id='col22'></td>
+        <td id='col23' class='columns'></td><td id='col24'></td>
+        <td id='col25' class='columns'></td><td id='col26'></td>
+        <td id='col27' class='columns'></td><td id='col28'></td>
+        <td id='col29' class='columns'></td><td id='col30'></td>
+      </tr>
+  </tbody>
 </template>
 
 <script>
@@ -35,13 +32,13 @@ export default {
       personnelList: [{
         id: '1',
         personnelName: 'Henrik.T',
-        startTime: '3',
-        endTime: '9'
+        startTime: '7',
+        endTime: '11'
       }, {
         id: '2',
         personnelName: 'Henrik.L',
-        startTime: '5',
-        endTime: '8'
+        startTime: '9',
+        endTime: '13'
       }]
     }
   },
@@ -52,7 +49,7 @@ export default {
     fillInTime: function () {
       for (i = 0; i < this.personnelList.length; i++) {
         var row = document.getElementById(this.personnelList[i].id)
-        for (var x = this.personnelList[i].startTime; x < this.personnelList[i].endTime; x++) {
+        for (var x = (this.personnelList[i].startTime - 6) * 2; x < (this.personnelList[i].endTime - 6) * 2; x++) {
           const col = row.children[x]
           col.style = 'background-color: #C45891'
         }
@@ -62,8 +59,8 @@ export default {
       var object = {
         id: j,
         personnelName: 'NAME',
-        startTime: '2',
-        endTime: '7'
+        startTime: '14',
+        endTime: '17'
       }
       j++
       this.personnelList.push(object)
@@ -87,6 +84,7 @@ export default {
 </script>
 
 <style>
+
 .columns {
   border-right: 1px solid black;
 }
