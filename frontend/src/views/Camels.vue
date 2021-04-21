@@ -1,9 +1,16 @@
 <template>
   <div class="camels">
     <h1>List of {{ camels.length }} camels</h1>
-    <b-button type="button" class="createButton" @click="createCamel()">Create Camel</b-button>
+    <b-button type="button" class="createButton" @click="createCamel()"
+      >Create Camel</b-button
+    >
     <b-list-group>
-      <camel-item v-for="camel in camels" :key="camel._id" :camel="camel" @delete-camel="deleteCamel"></camel-item>
+      <camel-item
+        v-for="camel in camels"
+        :key="camel._id"
+        :camel="camel"
+        @delete-camel="deleteCamel"
+      ></camel-item>
     </b-list-group>
   </div>
 </template>
@@ -28,9 +35,8 @@ export default {
         .then(reponse => {
           this.camels = reponse.data.camels
         })
-        .catch(error => {
+        .catch(() => {
           this.camels = []
-          console.log(error)
         })
         .then(() => {
           // This code is always executed (after success or error).
@@ -38,14 +44,11 @@ export default {
     },
     deleteCamel(id) {
       Api.delete(`/camels/${id}`)
-        .then(response => {
-          console.log(response.data.message)
+        .then(() => {
           var index = this.camels.findIndex(camel => camel._id === id)
           this.camels.splice(index, 1)
         })
-        .catch(error => {
-          console.log(error)
-        })
+        .catch(() => {})
     },
     createCamel() {
       var randomCamel = {
@@ -56,9 +59,7 @@ export default {
         .then(response => {
           this.camels.push(response.data)
         })
-        .catch(error => {
-          console.log(error)
-        })
+        .catch(() => {})
     },
     getRandomInt(max) {
       return Math.floor(Math.random() * max)
