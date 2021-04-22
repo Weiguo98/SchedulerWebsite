@@ -24,7 +24,7 @@ const dbclient = new Client({
     user: 'postgres',
     host: 'database-2.c6ztee9rpkco.us-east-2.rds.amazonaws.com',
     database: '',
-    password: '',
+    password: '',//add the password provided
     port: 5432,
 });
 
@@ -43,8 +43,9 @@ app.get('/allStaff', (req,response) => {
             console.log(row);
         } */
     });
-
+    
 });
+
 // Define routes
 app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to the EDA397/DIT192 backend ExpressJS project!'});
