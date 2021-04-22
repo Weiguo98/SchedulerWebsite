@@ -2,6 +2,7 @@
   <table class="scheduleTable">
     <thead>
       <th> </th>
+      <th> </th>
       <th colspan="2">7:00</th>
       <th colspan="2">8:00</th>
       <th colspan="2">9:00</th>

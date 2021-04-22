@@ -2,6 +2,7 @@
   <tbody>
       <tr :id="personnel.id" v-for="personnel in personnelList" :key="personnel">
         <td id='name' md='1'>{{personnel.personnelName}}</td>
+        <td id='name' md='1'>{{personnel.role}}</td>
         <td id='col1' class='columns'></td><td id='col2'></td>
         <td id='col3' class='columns'></td><td id='col4'></td>
         <td id='col5' class='columns'></td><td id='col6'></td>
@@ -32,13 +33,15 @@ export default {
       personnelList: [{
         id: '1',
         personnelName: 'Henrik.T',
-        startTime: '7',
-        endTime: '11'
+        startTime: '8',
+        endTime: '9',
+        role: 'Operator'
       }, {
         id: '2',
         personnelName: 'Henrik.L',
         startTime: '9',
-        endTime: '13'
+        endTime: '13',
+        role: 'Cleaner'
       }]
     }
   },
@@ -49,7 +52,7 @@ export default {
     fillInTime: function () {
       for (i = 0; i < this.personnelList.length; i++) {
         var row = document.getElementById(this.personnelList[i].id)
-        for (var x = (this.personnelList[i].startTime - 6) * 2; x < (this.personnelList[i].endTime - 6) * 2; x++) {
+        for (var x = (this.personnelList[i].startTime - 5.5) * 2; x < (this.personnelList[i].endTime - 5.5) * 2; x++) {
           const col = row.children[x]
           col.style = 'background-color: #C45891'
         }
@@ -60,7 +63,8 @@ export default {
         id: j,
         personnelName: 'NAME',
         startTime: '14',
-        endTime: '17'
+        endTime: '17',
+        role: 'Maintainer'
       }
       j++
       this.personnelList.push(object)
