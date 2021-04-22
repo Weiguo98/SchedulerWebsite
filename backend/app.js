@@ -14,13 +14,42 @@ var app = express();
 app.use(bodyParser.json());
 // HTTP request logger
 app.use(morgan('dev'));
-// Enable cross-origin resource sharing for frontend must be registered before api
+//cd Enable cross-origin resource sharing for frontend must be registered before api
 app.options('*', cors());
 app.use(cors());
+
+const { Client } = require('pg');
+
+const dbclient = new Client({
+    user: 'postgres',
+    host: 'database-2.c6ztee9rpkco.us-east-2.rds.amazonaws.com',
+    database: '',
+    password: 'Qwerty123',//add the password provided
+    port: 5432,
+});
+
+dbclient.connect();
+
+const query = 'select * from staff1;';
+app.get('/allStaff', (req,response) => {
+    dbclient.query(query, (err, res) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+    
+        response.status(200).json(res.rows)
+        /* for (let row of res.rows) {
+            console.log(row);
+        } */
+    });
+    
+});
 
 // Define routes
 app.get('/api', function(req, res) {
     res.json({'message': 'Welcome to the EDA397/DIT192 backend ExpressJS project!'});
+    //res.json({'message': 'Welcome to hello world application'});
 });
 app.use('/api/camels', camelsController);
 

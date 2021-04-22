@@ -5,11 +5,13 @@
     <Header title='Schedule'/>
     <ScheduleFilter/>
     <Schedule/>
+    <button>
+      {{ employees.data[5].role }}
+    </button>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
+<script> // @ is an alias to /src
 import { Api } from '@/Api'
 import Header from '../components/Header.vue'
 import Schedule from '../components/Schedule.vue'
@@ -24,13 +26,19 @@ export default {
     NavigationMenu,
     ScheduleFilter
   },
-  data() {
-    return {
-      message: ''
-    }
-  },
+  data: () => ({
+    employees: [{
+      data: {
+        employee_id: '',
+        employee_name: '',
+        role: ''
+      }
+    }],
+    message: '',
+    errMessage: ''
+  }),
   mounted() {
-    this.getMessage()
+    this.getAllStaff()
   },
   methods: {
     getMessage() {
@@ -40,6 +48,16 @@ export default {
         })
         .catch(error => {
           this.message = error
+        })
+    },
+    getAllStaff() {
+      Api.get('/')
+        .then(response => {
+          this.employees.data = response.data
+          console.log(this.employees.data)
+        })
+        .catch(error => {
+          this.errMessage = error
         })
     }
   }
