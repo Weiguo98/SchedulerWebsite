@@ -12,8 +12,7 @@
 
         <div class="col-12">
           <card class="strpied-tabled-with-hover"
-                body-classes="table-full-width table-responsive"
-          >
+                body-classes="table-full-width table-responsive">
             <template slot="header">
               <h4 class="card-title">Staff List</h4>
             </template>
@@ -31,41 +30,42 @@
 <script>
   import LTable from '../../src/components/Table.vue'
   import Card from '../../src/components/Cards/Card.vue'
-  const tableColumns = ['Id', 'Name', 'Position', 'Worked', 'Remaining']
+  const tableColumns = ['Id', 'Name', 'Position', 'Email', 'Phone', 'Working_hour', 'Remaining_hours']
+  
   const tableData = [{
     id: 1,
     name: 'Amir',
     position: 'Operator',
-    worked: "20",
-    remaining: '20'
+    email: "abc@gmail.com",
+    phone: '123456789'
   },
   {
     id: 2,
     name: 'Kuba',
     position: 'Maintanance',
-    worked: "5",
-    remaining: '25'
+    email: "abc@gmail.com",
+    phone: '123456789'
   },
   {
     id: 3,
     name: 'Samin',
     position: 'Operator',
-    worked: "25",
-    remaining: '15'
+    email: "abc@gmail.com",
+    phone: '123456789'
   },
   {
     id: 4,
     name: 'David',
     position: 'Cleaner',
-    worked: "35",
-    remaining: '5'
+    email: "abc@gmail.com",
+    phone: '123456789'
   },
   {
     id: 5,
     name: 'James',
     position: 'Operator',
-    worked: "40",
-    remaining: '0'
+    email: "abc@gmail.com",
+    phone: '123456789'
   }]
   export default {
     components: {

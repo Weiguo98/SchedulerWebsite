@@ -3,9 +3,7 @@
     <div id="nav">
         <h1 id = "Logo">Planner's App</h1>
         <li><router-link to="/">Schedule</router-link></li>
-        <li> | </li>
-        <li><router-link to="/camels">Staff</router-link></li>
-        <li> | </li>
+        <li><router-link to="/TableList">Staff</router-link></li>
         <li><router-link to="/Staff">Calendar</router-link> </li>
     </div>
     <div id="hiddenmenu">
@@ -26,7 +24,7 @@
 }
 #nav {
   width: 100%;
-  background-color: #83C760 ;
+  background-color: #9ee27c ;
   z-index:99;
   position: fixed;
   padding: 20px 0;
@@ -45,17 +43,19 @@
 
 #nav a {
   font-weight: bold;
-  color:#ecb5ba ;
+  color:#e59198 ;
   
 }
 
 #nav a.router-link-exact-active {
-  color: #ee3333;
+  padding: 30px 50px;
+  color: #ffffff;
+  background-color: #e59198 ;
 }
 li {
 
     display: inline;
-    margin-right: 50px;
+    padding-right: 50px;
     font-size: 15px;
 }
 
@@ -64,7 +64,7 @@ li {
     float: left;
     position: relative;
     padding-left: 10px;
-    color: #048804;
+    color: #e59198;
 
 }
 
