@@ -1,7 +1,7 @@
 <template>
   <tbody>
-      <tr :id="personnel.id" v-for="personnel in personnelList" :key="personnel">
-        <td id='name' md='1'>{{personnel.personnelName}}</td>
+      <tr :id="personnel.employee_id" v-for="personnel in personnelList" :key="personnel">
+        <td id='name' md='1'>{{personnel.employee_name}}</td>
         <td id='name' md='1'>{{personnel.role}}</td>
         <td id='col1' class='columns'></td><td id='col2'></td>
         <td id='col3' class='columns'></td><td id='col4'></td>
@@ -25,7 +25,6 @@
 <script>
 import { Api } from '@/Api'
 var i = 0
-var j = 3
 
 export default {
   name: 'personnel',
@@ -37,6 +36,7 @@ export default {
         start_time: '',
         end_time: '',
         schedule_date: '',
+        role: '',
         area: ''
       }
     }],
@@ -50,18 +50,18 @@ export default {
     getPersonnelByDate() {
       Api.get('/schedule')
         .then(response => {
-          this.personnel_schedule.data = response.data
-          console.log(this.personnel_schedule.data)
-          for (i = 0; i < this.personnelList.length; i++) {
-            this.personnelList.push(i)
+          for (i = 0; i < response.data.length; i++) {
+            this.personnelList.push(response.data[i])
           }
+          this.fillInTime()
         })
         .catch(error => {
           this.errMessage = error
         })
     },
     fillInTime: function () {
-      for (i = 0; i < this.personnelList.length; i++) {
+      for (i = 1; i < this.personnelList.length; i++) {
+        console.log(this.personnelList[i].employee_name)
         var row = document.getElementById(this.personnelList[i].employee_id)
         for (var x = (this.personnelList[i].start_time - 5.5) * 2; x < (this.personnelList[i].end_time - 5.5) * 2; x++) {
           const col = row.children[x]
@@ -71,7 +71,7 @@ export default {
     },
     addRow: function () {
       var object = {
-        employee_id: j,
+        employee_id: this.personnelList.length,
         employee_name: 'NAME',
         start_time: '14',
         end_time: '17',
@@ -79,11 +79,7 @@ export default {
         schedule_date: '2021-04-23',
         area: 'Helix'
       }
-      j++
       this.personnelList.push(object)
-      this.employee_name = ''
-      this.start_time = ''
-      this.end_time = ''
     }
   },
   mounted() {

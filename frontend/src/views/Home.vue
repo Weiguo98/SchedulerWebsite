@@ -42,7 +42,6 @@ export default {
       Api.get('/allstaff')
         .then(response => {
           this.employees.data = response.data
-          console.log(this.employees.data)
         })
         .catch(error => {
           this.errMessage = error
