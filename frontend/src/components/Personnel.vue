@@ -30,8 +30,9 @@ var j = 3
 export default {
   name: 'personnel',
   data: () => ({
-    personnel_schedule: [{
+    personnelList: [{
       data: {
+        employee_name: '',
         employee_id: '',
         start_time: '',
         end_time: '',
@@ -47,10 +48,13 @@ export default {
   },
   methods: {
     getPersonnelByDate() {
-      Api.get('/')
+      Api.get('/schedule')
         .then(response => {
-          this.employees.data = response.data
-          console.log(this.employees.data)
+          this.personnel_schedule.data = response.data
+          console.log(this.personnel_schedule.data)
+          for (i = 0; i < this.personnelList.length; i++) {
+            this.personnelList.push(i)
+          }
         })
         .catch(error => {
           this.errMessage = error
@@ -58,8 +62,8 @@ export default {
     },
     fillInTime: function () {
       for (i = 0; i < this.personnelList.length; i++) {
-        var row = document.getElementById(this.personnelList[i].id)
-        for (var x = (this.personnelList[i].startTime - 5.5) * 2; x < (this.personnelList[i].endTime - 5.5) * 2; x++) {
+        var row = document.getElementById(this.personnelList[i].employee_id)
+        for (var x = (this.personnelList[i].start_time - 5.5) * 2; x < (this.personnelList[i].end_time - 5.5) * 2; x++) {
           const col = row.children[x]
           col.style = 'background-color: #C45891'
         }
@@ -67,17 +71,19 @@ export default {
     },
     addRow: function () {
       var object = {
-        id: j,
-        personnelName: 'NAME',
-        startTime: '14',
-        endTime: '17',
-        role: 'Maintainer'
+        employee_id: j,
+        employee_name: 'NAME',
+        start_time: '14',
+        end_time: '17',
+        role: 'Maintainer',
+        schedule_date: '2021-04-23',
+        area: 'Helix'
       }
       j++
       this.personnelList.push(object)
-      this.personnelName = ''
-      this.startTime = ''
-      this.endTime = ''
+      this.employee_name = ''
+      this.start_time = ''
+      this.end_time = ''
     }
   },
   mounted() {

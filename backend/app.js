@@ -37,18 +37,32 @@ app.get('/allStaff', (req,response) => {
             console.error(err);
             return;
         }
-    
+
         response.status(200).json(res.rows)
         /* for (let row of res.rows) {
             console.log(row);
         } */
     });
-    
+});
+
+const scheduleQuery = "SELECT schedule.start_time, schedule.end_time, schedule.area, schedule.schedule_date, schedule.employee_id, staff.employee_name FROM schedule FULL OUTER JOIN staff ON schedule.employee_id=staff.employee_id WHERE schedule.schedule_date = '2021-04-23'";
+app.get('/schedule', (req, response) => {
+    dbclient.query(scheduleQuery, (err, res) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        response.status(200).json(res.rows)
+        /* for (let row of res.rows) {
+            console.log(row);
+        } */
+    });
 });
 
 // Define routes
-app.get('/api', function(req, res) {
-    res.json({'message': 'Welcome to the EDA397/DIT192 backend ExpressJS project!'});
+app.get('/api', function (req, res) {
+    res.json({ 'message': 'Welcome to the EDA397/DIT192 backend ExpressJS project!' });
     //res.json({'message': 'Welcome to hello world application'});
 });
 app.use('/api/camels', camelsController);
@@ -69,7 +83,7 @@ app.use(express.static(client));
 // Error handler (i.e., when exception is thrown) must be registered last
 var env = app.get('env');
 // eslint-disable-next-line no-unused-vars
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     console.error(err.stack);
     var err_res = {
         'message': err.message,
@@ -82,7 +96,7 @@ app.use(function(err, req, res, next) {
     res.json(err_res);
 });
 
-app.listen(port, function(err) {
+app.listen(port, function (err) {
     if (err) throw err;
     console.log(`Express server listening on port ${port}, in ${env} mode`);
     console.log(`Backend: http://localhost:${port}/api/`);

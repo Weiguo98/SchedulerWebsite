@@ -5,9 +5,6 @@
     <Header title='Schedule'/>
     <ScheduleFilter/>
     <Schedule/>
-    <button>
-        {{ employees.data[0].employee_name }}
-    </button>
   </div>
 </template>
 
@@ -42,7 +39,7 @@ export default {
   },
   methods: {
     getAllStaff() {
-      Api.get('/')
+      Api.get('/allstaff')
         .then(response => {
           this.employees.data = response.data
           console.log(this.employees.data)
