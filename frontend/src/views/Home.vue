@@ -6,7 +6,7 @@
     <ScheduleFilter/>
     <Schedule/>
     <button>
-      {{ employees.data[5].role }}
+        {{ employees.data[0].employee_name }}
     </button>
   </div>
 </template>
@@ -41,15 +41,6 @@ export default {
     this.getAllStaff()
   },
   methods: {
-    getMessage() {
-      Api.get('/')
-        .then(response => {
-          this.message = response.data.message
-        })
-        .catch(error => {
-          this.message = error
-        })
-    },
     getAllStaff() {
       Api.get('/')
         .then(response => {

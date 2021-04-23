@@ -30,7 +30,7 @@ const dbclient = new Client({
 
 dbclient.connect();
 
-const query = 'select * from staff1;';
+const query = 'select * from staff;';
 app.get('/allStaff', (req,response) => {
     dbclient.query(query, (err, res) => {
         if (err) {

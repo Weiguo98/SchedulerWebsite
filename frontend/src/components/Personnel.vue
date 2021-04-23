@@ -23,32 +23,39 @@
 </template>
 
 <script>
+import { Api } from '@/Api'
 var i = 0
 var j = 3
 
 export default {
   name: 'personnel',
-  data: function () {
-    return {
-      personnelList: [{
-        id: '1',
-        personnelName: 'Henrik.T',
-        startTime: '8',
-        endTime: '9',
-        role: 'Operator'
-      }, {
-        id: '2',
-        personnelName: 'Henrik.L',
-        startTime: '9',
-        endTime: '13',
-        role: 'Cleaner'
-      }]
-    }
-  },
+  data: () => ({
+    personnel_schedule: [{
+      data: {
+        employee_id: '',
+        start_time: '',
+        end_time: '',
+        schedule_date: '',
+        area: ''
+      }
+    }],
+    message: '',
+    errMessage: ''
+  }),
   created() {
     this.$root.$refs.personnel = this
   },
   methods: {
+    getPersonnelByDate() {
+      Api.get('/')
+        .then(response => {
+          this.employees.data = response.data
+          console.log(this.employees.data)
+        })
+        .catch(error => {
+          this.errMessage = error
+        })
+    },
     fillInTime: function () {
       for (i = 0; i < this.personnelList.length; i++) {
         var row = document.getElementById(this.personnelList[i].id)
@@ -77,6 +84,7 @@ export default {
     this.$nextTick(function () {
       this.fillInTime()
     })
+    this.getPersonnelByDate()
   },
   updated() {
     this.$nextTick(function () {
