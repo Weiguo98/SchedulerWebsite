@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Camels from './views/Camels.vue'
-import Staff from './views/TableList.vue'
+import Staff from './views/Staff.vue'
+import Calendar from './views/Calendar.vue'
+
 
 Vue.use(Router)
 
@@ -21,8 +23,13 @@ export default new Router({
       component: Camels
     },
     {
-      path: '/TableList',
-      name: 'Staff List',
+      path: '/Calendar',
+      name: 'Calendar',
+      component: Calendar
+    }, 
+    {
+      path: '/Staff',
+      name: 'Staff',
       component: Staff
     }
   ]

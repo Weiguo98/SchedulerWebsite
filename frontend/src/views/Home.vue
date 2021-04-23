@@ -4,6 +4,7 @@
       <p>Message from the server: {{ message }}</p>
       <b-button variant="primary" href="/camels">List Camelssss</b-button>
       <b-button variant="primary" href="/TableList">List Staff</b-button>
+      <b-button variant="primary" href="/TableList">List Staff</b-button>
     </b-jumbotron>
     <b-container>
       <b-row>

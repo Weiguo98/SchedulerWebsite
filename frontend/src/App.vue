@@ -2,9 +2,9 @@
   <div id="app">
     <div id="nav">
         <h1 id = "Logo">Planner's App</h1>
-        <li><router-link to="/">Schedule</router-link></li>
-        <li><router-link to="/TableList">Staff</router-link></li>
-        <li><router-link to="/Staff">Calendar</router-link> </li>
+        <li><router-link to="./Home">Schedule</router-link></li>
+        <li><router-link to="/Staff">Staff</router-link></li>
+        <li><router-link to="/Calendar">Calendar</router-link> </li>
     </div>
     <div id="hiddenmenu">
     </div>
