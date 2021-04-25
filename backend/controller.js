@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const uuidv4 = require('uuid/v4');
+var cenct = require('./connection');
 var camels = [];
 
-// Return a list of all camels
 router.get('/', function(req, res, next) {
     res.json({'camels': camels});
 });

@@ -4,9 +4,11 @@ var morgan = require('morgan');
 var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
-
+var connectPgPool = require('./connection');
 var camelsController = require('./controller');
 var port = process.env.PORT || 3000;
+var employeeController = require('./emcontroller')
+
 
 // Create Express app
 var app = express();
@@ -20,9 +22,11 @@ app.use(cors());
 
 // Define routes
 app.get('/api', function(req, res) {
-    res.json({'message': 'Welcome to the EDA397/DIT192 backend ExpressJS project!'});
+    res.json({'message': 'welcome'});
 });
 app.use('/api/camels', camelsController);
+// register to show the datapage
+app.use('/api/employees',employeeController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {

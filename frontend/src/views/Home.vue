@@ -12,7 +12,7 @@
            Desktop (>= 768px): keep both columns in same row in 4:8 ratio -->
       <b-row>
         <b-col class="example-col" cols="6" md="4">Message from the server</b-col>
-        <b-col class="example-col" cols="12" md="8">{{ message }}</b-col>
+        <b-col class="example-col" cols="12" md="8">{{ employees}}</b-col>
       </b-row>
     </b-container>
     <b-container fluid>
@@ -108,6 +108,7 @@ export default {
   data() {
     return {
       message: '',
+      employees: [],
       show: false,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       timeStVariants: [{ value: null, text: '--select start time--', disabled: true }, '8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
@@ -128,6 +129,7 @@ export default {
   },
   mounted() {
     this.getMessage()
+    this.getEmployees()
   },
   methods: {
     getMessage() {
@@ -138,6 +140,13 @@ export default {
         .catch(error => {
           this.message = error
         })
+    },
+    getEmployees() {
+      Api.get('/employees').then(response => {
+        this.employees = response.data.employees
+      }).catch(error => {
+        this.employees = error
+      })
     },
     checkSelectValidty() {
       var valid = true
