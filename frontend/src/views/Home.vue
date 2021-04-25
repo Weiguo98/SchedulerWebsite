@@ -18,6 +18,10 @@
     <b-container fluid>
       <div class ="mt-3">
       Assigned Endtime:{{subtimeEndVariants}}
+      Assigned Starttime:{{subtimeStarttVariants}}
+      Department:{{subdepartmentVariant}}
+      Employee: {{subemployeeVariant}}
+      Zone:{{subzoneVariant}}
       </div>
     </b-container>
     <b-button @click="show=true" variant="primary">Assign employee</b-button>
@@ -108,23 +112,27 @@ export default {
   data() {
     return {
       message: '',
-      employees: [],
+      employees: '',
       show: false,
       variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
-      timeStVariants: [{ value: null, text: '--select start time--', disabled: true }, '8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
-        '11:00', '11:15', '11:30', '11:45', '12:00'],
-      timeEnVariants: [{ value: null, text: '--select end time--', disabled: true }, '8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
-        '11:00', '11:15', '11:30', '11:45', '12:00'],
+      timeStVariants: [{ value: null, text: '--select start time--', disabled: true }, '8.00', '9.00', '10.00', '10.15', '10.30', '10.45',
+        '11.00', '11.15', '11.30', '11.45', '12.00'],
+      timeEnVariants: [{ value: null, text: '--select end time--', disabled: true }, '8.00', '9.00', '10.00', '10.15', '10.30', '10.45',
+        '11.00', '11.15', '11.30', '11.45', '12.00'],
       timeStartVariants: null,
       subtimeStarttVariants: null,
       timeEndVariants: null,
       subtimeEndVariants: null,
       deVariants: [{ value: null, text: '--select department--', disabled: true }, 'Cleaner', 'Operator', 'Security', 'Maintainance'],
       departmentVariant: null,
+      subdepartmentVariant: null,
       emVariants: [],
       employeeVariant: null,
+      subemployeeVariant: null,
       zoVariants: [{ value: null, text: '--select zone--', disabled: true }, 'AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix'],
-      zoneVariant: null
+      zoneVariant: null,
+      subzoneVariant: null,
+      temp: []
     }
   },
   mounted() {
@@ -151,9 +159,9 @@ export default {
     selectEmployees() {
       var temp = this.departmentVariant
       var selem = []
-      console.log('first')
-      console.log(temp)
-      console.log(this.employees.rowCount)
+      // console.log('first')
+      // console.log(temp)
+      // console.log(this.employees.rowCount)
       for (var i = 0; i < this.employees.rowCount; i++) {
         if (this.employees.rows[i].employee_role === temp) {
           selem.push(this.employees.rows[i].employee_name)
@@ -172,6 +180,8 @@ export default {
     resetSelect() {
       this.timeEndVariants = null
       this.timeStartVariants = null
+      this.departmentVariant = null
+      this.zoneVariant = null
     },
     handleOK(bvModalEvt) {
       // bvModalEvt.preventDefault()
@@ -184,6 +194,22 @@ export default {
       }
       this.subtimeStarttVariants = this.timeStartVariants
       this.subtimeEndVariants = this.timeEndVariants
+      this.subdepartmentVariant = this.departmentVariant
+      this.subemployeeVariant = this.employeeVariant
+      this.subzoneVariant = this.zoneVariant
+      var employee = {
+        name: this.subemployeeVariant,
+        starttime: this.subtimeStarttVariants,
+        endtime: this.subtimeEndVariants,
+        zone: this.zoneVariant
+      }
+      Api.post('/employees/id', employee)
+        .then(response => {
+          this.temp.push(response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
