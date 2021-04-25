@@ -1,8 +1,8 @@
 <template>
   <tbody>
       <tr :id="personnel.employee_id" v-for="personnel in personnelList" :key="personnel">
-        <td id='name' md='1'>{{personnel.employee_name}}</td>
-        <td id='name' md='1'>{{personnel.role}}</td>
+        <td id='name' md='1'>{{personnel.emp_name}}</td>
+        <td id='name' md='1'>{{personnel.emp_position}}</td>
         <td id='col1' class='columns'></td><td id='col2'></td>
         <td id='col3' class='columns'></td><td id='col4'></td>
         <td id='col5' class='columns'></td><td id='col6'></td>
@@ -31,12 +31,12 @@ export default {
   data: () => ({
     personnelList: [{
       data: {
-        employee_name: '',
+        emp_name: '',
         employee_id: '',
         start_time: '',
         end_time: '',
         schedule_date: '',
-        role: '',
+        emp_position: '',
         area: ''
       }
     }],
