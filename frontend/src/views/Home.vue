@@ -62,7 +62,7 @@
           <b-col>
             <b-form-select
               v-model="employeeVariant"
-              :options="emVariants"
+              :options="selectEmployees()"
             ></b-form-select>
           </b-col>
         </b-row>
@@ -119,9 +119,9 @@ export default {
       subtimeStarttVariants: null,
       timeEndVariants: null,
       subtimeEndVariants: null,
-      deVariants: [{ value: null, text: '--select department--', disabled: true }, 'cleaner', 'operator', 'security', 'maintainer'],
+      deVariants: [{ value: null, text: '--select department--', disabled: true }, 'Cleaner', 'Operator', 'Security', 'Maintainance'],
       departmentVariant: null,
-      emVariants: [{ value: null, text: '--select employee--', disabled: true }, 'Alice', 'Tom', 'Henry', 'Jerry', 'Anna'],
+      emVariants: [],
       employeeVariant: null,
       zoVariants: [{ value: null, text: '--select zone--', disabled: true }, 'AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix'],
       zoneVariant: null
@@ -147,6 +147,20 @@ export default {
       }).catch(error => {
         this.employees = error
       })
+    },
+    selectEmployees() {
+      var temp = this.departmentVariant
+      var selem = []
+      console.log('first')
+      console.log(temp)
+      console.log(this.employees.rowCount)
+      for (var i = 0; i < this.employees.rowCount; i++) {
+        if (this.employees.rows[i].employee_role === temp) {
+          selem.push(this.employees.rows[i].employee_name)
+          // console.log(this.employees.rows[i].employee_name)
+        }
+      }
+      return selem
     },
     checkSelectValidty() {
       var valid = true
