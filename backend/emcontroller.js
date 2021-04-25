@@ -4,7 +4,7 @@ var cenct = require('./connection');
 
 router.get('/', function(req, res, next) {
     //res.json({'camels': camels});
-    cenct.connectPgPool('SELECT * from employee', function(isErr,rst){
+    cenct.connectPgPool('SELECT * from employee1', function(isErr,rst){
         if(isErr){
             res.json({'employees':[]});
         } else {
