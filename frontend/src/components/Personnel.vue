@@ -58,8 +58,6 @@ export default {
   }),
   created() {
     this.$root.$refs.personnel = this
-    console.log('HEJEHGJ')
-    // console.log(this.getSelectedDate())
     serverBus.$on('dateSelected', (data) => {
       this.dateSelected = data
       console.log(this.dateSelected)
@@ -80,19 +78,20 @@ export default {
         })
     },
     getFilteredPersonnelList() {
+      console.log('HEJGETFILTERED')
       this.filteredPersonnelList.splice(0, this.filteredPersonnelList.length)
       for (i = 0; i < this.personnelList.length; i++) {
-        console.log(this.personnelList.data[i].schedule_date)
+        console.log('INSIDE for loop')
+        console.log(this.personnelList[i].data.schedule_date)
         console.log(this.dateSelected)
-        if (this.personnelList.data[i].schedule_date === this.dateSelected) {
-          console.log('INSIDE')
+        if (this.personnelList[i].schedule_date.localeCompare(this.dateSelected.toString())) {
+          console.log('INSIDE if state')
           this.filteredPersonnelList.push(this.personnelList.data[i])
         }
       }
     },
     fillInTime: function () {
       for (i = 1; i < this.personnelList.length; i++) {
-        console.log(this.personnelList[i].employee_name)
         var row = document.getElementById(this.personnelList[i].employee_id)
         for (var x = (this.personnelList[i].start_time - 5.5) * 2; x < (this.personnelList[i].end_time - 5.5) * 2; x++) {
           const col = row.children[x]
