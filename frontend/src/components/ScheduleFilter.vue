@@ -1,20 +1,28 @@
 <template>
   <div class="filterBar">
     <functional-calendar
-      :placeholder="'Date'"
-      :is-date-picker="true"
-      :isModal="true"
+      v-model="calendarData"
+      v-on:changedMonth="changedMonth"
+      :configs="calendarConfigs"
     ></functional-calendar>
     <ScheduleFilterButton text="Rollercoaster/Game/Area" option_a="Helix" option_b="The Cannon" option_c="Atmosphere"/>
     <ScheduleFilterButton text="Roles" option_a="Operator" option_b="Maintainer" option_c="Cleaner"/>
     <ScheduleFilterButton text="Daily" option_a="Daily" option_b="Weekly" option_c="Monthly"/>
-    <b-button id='assignbtn' class="assignbtn" pill variant="success" v-on:click="addRow()"> Assign </b-button>
+    <b-button id='assignbtn' class="assignbtn" pill variant="success" v-on:click="addRow()" @click="dateSelected()"> Assign </b-button>
+    <span> Selected: {{ calendarData.selectedDate }}</span>
   </div>
 </template>
 
 <script>
 import { FunctionalCalendar } from 'vue-functional-calendar'
 import ScheduleFilterButton from './ScheduleFilterButton.vue'
+import { serverBus } from '../main'
+
+var today = new Date()
+var dd = String(today.getDate()).padStart(2, '')
+var mm = String(today.getMonth() + 1).padStart(2, '')
+var yyyy = today.getFullYear()
+today = dd + '/' + mm + '/' + yyyy
 
 export default {
   name: 'ScheduleFilter',
@@ -22,6 +30,21 @@ export default {
     FunctionalCalendar,
     ScheduleFilterButton
   },
+  created() {
+    this.$root.$refs.ScheduleFilter = this
+  },
+  data: () => ({
+    calendarData: {
+    },
+    calendarConfigs: {
+      isAutoCloseable: 'true',
+      dateFormat: 'dd/mm/yyyy',
+      placeholder: today,
+      isDatePicker: 'true',
+      isModal: 'true',
+      ref: 'Calendar'
+    }
+  }),
   props: {
     title: String,
     subtitle: String
@@ -29,6 +52,12 @@ export default {
   methods: {
     addRow: function () {
       this.$root.$refs.personnel.addRow()
+    },
+    getSelectedDate: function () {
+      return this.data.calendarData.selectedDate
+    },
+    dateSelected: function () {
+      serverBus.$emit('dateSelected', this.ScheduleFilter)
     }
   }
 }

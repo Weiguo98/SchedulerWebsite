@@ -19,11 +19,13 @@
         <td id='col27' class='columns'></td><td id='col28'></td>
         <td id='col29' class='columns'></td><td id='col30'></td>
       </tr>
+      <button>{{ this.dateSelected }}</button>
   </tbody>
 </template>
 
 <script>
 import { Api } from '@/Api'
+import { serverBus } from '../main'
 var i = 0
 
 export default {
@@ -41,10 +43,14 @@ export default {
       }
     }],
     message: '',
-    errMessage: ''
+    errMessage: '',
+    dateSelected: null
   }),
   created() {
     this.$root.$refs.personnel = this
+    serverBus.$on('dateSelected', (ScheduleFilter) => {
+      this.dateSelected = ScheduleFilter
+    })
   },
   methods: {
     getPersonnelByDate() {
@@ -72,14 +78,17 @@ export default {
     addRow: function () {
       var object = {
         employee_id: this.personnelList.length,
-        employee_name: 'NAME',
+        emp_name: 'NAME',
         start_time: '14',
         end_time: '17',
-        role: 'Maintainer',
+        emp_position: 'Maintainer',
         schedule_date: '2021-04-23',
         area: 'Helix'
       }
       this.personnelList.push(object)
+    },
+    getSelectedDate: function () {
+      this.$root.$refs.ScheduleFilter.getSelectedDate()
     }
   },
   mounted() {
