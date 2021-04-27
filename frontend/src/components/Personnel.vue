@@ -1,6 +1,6 @@
 <template>
   <tbody>
-      <tr :id="personnel.employee_id" v-for="personnel in personnelList" :key="personnel">
+      <tr :id="personnel.employee_id" v-for="personnel in filteredPersonnelList" :key="personnel">
         <td id='name' md='1'>{{personnel.emp_name}}</td>
         <td id='name' md='1'>{{personnel.emp_position}}</td>
         <td id='col1' class='columns'></td><td id='col2'></td>
@@ -19,7 +19,6 @@
         <td id='col27' class='columns'></td><td id='col28'></td>
         <td id='col29' class='columns'></td><td id='col30'></td>
       </tr>
-      <button>{{ this.dateSelected }}</button>
   </tbody>
 </template>
 
@@ -42,28 +41,54 @@ export default {
         area: ''
       }
     }],
+    filteredPersonnelList: [{
+      data: {
+        emp_name: '',
+        employee_id: '',
+        start_time: '',
+        end_time: '',
+        schedule_date: '',
+        emp_position: '',
+        area: ''
+      }
+    }],
     message: '',
     errMessage: '',
-    dateSelected: null
+    dateSelected: ''
   }),
   created() {
     this.$root.$refs.personnel = this
-    serverBus.$on('dateSelected', (ScheduleFilter) => {
-      this.dateSelected = ScheduleFilter
+    console.log('HEJEHGJ')
+    // console.log(this.getSelectedDate())
+    serverBus.$on('dateSelected', (data) => {
+      this.dateSelected = data
+      console.log(this.dateSelected)
+      this.getFilteredPersonnelList()
     })
+    this.getAllPersonnel()
   },
   methods: {
-    getPersonnelByDate() {
+    getAllPersonnel() {
       Api.get('/schedule')
         .then(response => {
           for (i = 0; i < response.data.length; i++) {
             this.personnelList.push(response.data[i])
           }
-          this.fillInTime()
         })
         .catch(error => {
           this.errMessage = error
         })
+    },
+    getFilteredPersonnelList() {
+      this.filteredPersonnelList.splice(0, this.filteredPersonnelList.length)
+      for (i = 0; i < this.personnelList.length; i++) {
+        console.log(this.personnelList.data[i].schedule_date)
+        console.log(this.dateSelected)
+        if (this.personnelList.data[i].schedule_date === this.dateSelected) {
+          console.log('INSIDE')
+          this.filteredPersonnelList.push(this.personnelList.data[i])
+        }
+      }
     },
     fillInTime: function () {
       for (i = 1; i < this.personnelList.length; i++) {
@@ -92,10 +117,6 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(function () {
-      this.fillInTime()
-    })
-    this.getPersonnelByDate()
   },
   updated() {
     this.$nextTick(function () {

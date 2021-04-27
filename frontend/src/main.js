@@ -15,6 +15,8 @@ Vue.use(FunctionalCalendar, {
 
 Vue.config.productionTip = false
 
+export const serverBus = new Vue()
+
 new Vue({
   router,
   render: function (h) { return h(App) }

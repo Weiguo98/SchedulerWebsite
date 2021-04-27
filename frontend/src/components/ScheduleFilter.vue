@@ -1,14 +1,14 @@
 <template>
   <div class="filterBar">
     <functional-calendar
+      v-on:choseDay="dateSelected()"
       v-model="calendarData"
-      v-on:changedMonth="changedMonth"
       :configs="calendarConfigs"
     ></functional-calendar>
     <ScheduleFilterButton text="Rollercoaster/Game/Area" option_a="Helix" option_b="The Cannon" option_c="Atmosphere"/>
     <ScheduleFilterButton text="Roles" option_a="Operator" option_b="Maintainer" option_c="Cleaner"/>
     <ScheduleFilterButton text="Daily" option_a="Daily" option_b="Weekly" option_c="Monthly"/>
-    <b-button id='assignbtn' class="assignbtn" pill variant="success" v-on:click="addRow()" @click="dateSelected()"> Assign </b-button>
+    <b-button id='assignbtn' class="assignbtn" pill variant="success" v-on:click="addRow()"> Assign </b-button>
     <span> Selected: {{ calendarData.selectedDate }}</span>
   </div>
 </template>
@@ -57,7 +57,7 @@ export default {
       return this.data.calendarData.selectedDate
     },
     dateSelected: function () {
-      serverBus.$emit('dateSelected', this.ScheduleFilter)
+      serverBus.$emit('dateSelected', this.calendarData.selectedDate)
     }
   }
 }
