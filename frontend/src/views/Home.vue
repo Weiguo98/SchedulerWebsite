@@ -17,7 +17,7 @@
     </b-container>
     <b-container>
      <tbody>
-      <tr class = 'table' @click="update=true">
+      <tr class = 'table' @click="delete_emp=true">
         <td id='name' md='1'>{{person_name}}</td>
         <td id='name' md='1'>{{person_area}}</td>
         <td id='col1' class='columns'></td><td id='col2'></td>
@@ -93,6 +93,21 @@
             ></b-form-select>
           </b-col>
         </b-row>
+        <b-row class="mb-1">
+          <b-col cols="3">Contact Info</b-col>
+          <b-col>
+            <b-form-select
+              v-model="departmentVariant"
+              :options="deVariants"
+            ></b-form-select>
+          </b-col>
+          <b-col>
+            <b-form-select
+              v-model="employeeVariant"
+              :options="selectEmployees()"
+            ></b-form-select>
+          </b-col>
+        </b-row>
         <b-row>
           <div class = "space"></div>
         </b-row>
@@ -111,7 +126,7 @@
       </b-container>
       <template #modal-footer>
         <div class="w-100">
-          <p class="float-left">Modal Footer Content</p>
+          <!-- <p class="float-left">Modal Footer Content</p> -->
           <b-button variant = "success" class = "float-right" @click = handleOK()>
           Confirm </b-button>
           <b-button variant="danger" class="float-right" @click="show = false">
@@ -119,7 +134,17 @@
         </div>
       </template>
     </b-modal>
-
+    <!-- delete employee/s modal -->
+    <b-modal
+       v-model="delete_emp"
+       id="modal-1"
+       title="Delete schedule"
+       ok-variant ='danger'
+       ok-title = 'Delete'
+       @ok ="handle_deleteOK">
+      <p class = "my-4"> Do you want to delete {{person_name}} schedule?</p>
+     </b-modal>
+<!--
     <b-modal
       v-model="update"
       title="Update employees"
@@ -134,8 +159,8 @@
           <div class = "space"></div>
         </b-row>
         <b-row class="mb-1">
-          <!-- TODO: try with time select or this is okay whatever -->
-          <b-col cols="3">Planning work hours</b-col>
+          <TODO: try with time select or this is okay whatever -->
+          <!-- <b-col cols="3">Planning work hours</b-col>
           <b-col>
             <b-form-select  v-model="timeStartVariants" :options="timeStVariants">
             </b-form-select>
@@ -154,9 +179,12 @@
           <b-col cols="3">Department Name</b-col>
           <b-col>
             <b-form-select
-              v-model="departmentVariant"
-              :options="deVariants"
-            ></b-form-select>
+              class="default_class"
+              v-model="updepartment_"
+              :options = "updepartment"
+              disabled
+            >
+            </b-form-select>
           </b-col>
           <b-col>
             <b-form-select
@@ -190,7 +218,7 @@
           Cancel </b-button>
         </div>
       </template>
-    </b-modal>
+    </b-modal> -->
   </div>
 </template>
 
@@ -211,7 +239,8 @@ export default {
       employees: '',
       show: false,
       update: false,
-      person_name: 'jakub',
+      delete_emp: false,
+      person_name: 'Jakub',
       person_area: 'Helix',
       // variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       // assign medal variants
@@ -234,7 +263,8 @@ export default {
       subzoneVariant: null,
       temp: [],
       // update medal variants
-      up_departmentVariant: null
+      updepartment_: null,
+      updepartment: [{ value: null, text: 'selected', disabled: true }]
     }
   },
   mounted() {
@@ -279,13 +309,14 @@ export default {
       }
       return valid
     },
+    // reset the model to the default value
     resetSelect() {
       this.timeEndVariants = null
       this.timeStartVariants = null
       this.departmentVariant = null
       this.zoneVariant = null
     },
-    handleOK(bvModalEvt) {
+    handleOK() {
       // bvModalEvt.preventDefault()
       this.show = false
       this.handleSubmit()
@@ -313,8 +344,18 @@ export default {
           console.log(error)
         })
     },
-    handle_updateOK(bvModalEvt) {
-      this.update = false
+    handle_deleteOK() {
+      this.delete_emp = false
+      var employee = {
+        name: this.person_name
+      }
+      Api.post('/employees/del', employee)
+        .then(response => {
+          this.temp.push(response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
@@ -348,5 +389,7 @@ export default {
 .table {
   background-color: pink;
 }
-
+.default_class{
+  background-color: lightgrey;
+}
 </style>
