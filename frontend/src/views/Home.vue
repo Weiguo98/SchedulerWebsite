@@ -54,7 +54,7 @@
       id="modal-xl"
       size="xl"
       ref="my-modal"
-      @show = "show_modal"
+      @show = "resetSelect"
        @hidden ="resetSelect"
        @ok ="handleOK"
        >
@@ -99,13 +99,9 @@
           <b-col cols="3">Contact Info</b-col>
           <b-col>
             {{select_mail()}}
-            {{selemail}}
           </b-col>
           <b-col>
-            <b-form-select
-              v-model="teleVariant"
-              :options="zoVariants"
-            ></b-form-select>
+            {{select_tel()}}
           </b-col>
         </b-row>
         <b-row>
@@ -261,10 +257,7 @@ export default {
       temp: [],
       // update medal variants
       updepartment_: null,
-      updepartment: [{ value: null, text: 'selected', disabled: true }],
-      mailVariant: null,
-      teleVariant: null,
-      selemail: null
+      updepartment: [{ value: null, text: 'selected', disabled: true }]
     }
   },
   mounted() {
@@ -322,7 +315,6 @@ export default {
     },
     handleOK() {
       // bvModalEvt.preventDefault()
-      this.resetSelect()
       this.show = false
       this.handleSubmit()
     },
@@ -364,16 +356,33 @@ export default {
     },
     select_mail() {
       var temp = this.employeeVariant
+      var selemail = null
       // console.log('first')
       // var selemail = [{ text: null, disabled: true }]
       // console.log(this.employees.rowCount)
       for (var i = 0; i < this.employees.rowCount; i++) {
         if (this.employees.rows[i].emp_name === temp) {
-          this.selemail = this.employees.rows[i].emp_email
+          selemail = this.employees.rows[i].emp_email
           // console.log(this.employees.rows[i].employee_name)
           break
         }
       }
+      return selemail
+    },
+    select_tel() {
+      var temp = this.employeeVariant
+      var seletel = null
+      // console.log('first')
+      // var selemail = [{ text: null, disabled: true }]
+      // console.log(this.employees.rowCount)
+      for (var i = 0; i < this.employees.rowCount; i++) {
+        if (this.employees.rows[i].emp_name === temp) {
+          seletel = this.employees.rows[i].emp_phone
+          // console.log(this.employees.rows[i].employee_name)
+          break
+        }
+      }
+      return seletel
     }
   }
 }
