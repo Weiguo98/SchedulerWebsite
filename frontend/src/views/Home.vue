@@ -1,14 +1,14 @@
 <template>
   <div>
-    <NavigationMenu title="Planner's App" subtitle="Team 7" >
-    </NavigationMenu>
-    <Header title='Schedule'/>
-    <ScheduleFilter/>
-    <Schedule/>
+    <NavigationMenu title="Planner's App" subtitle="Team 7"> </NavigationMenu>
+    <Header title="Schedule" />
+    <ScheduleFilter />
+    <Schedule />
   </div>
 </template>
 
-<script> // @ is an alias to /src
+<script>
+// @ is an alias to /src
 import { Api } from '@/Api'
 import Header from '../components/Header.vue'
 import Schedule from '../components/Schedule.vue'
@@ -24,13 +24,15 @@ export default {
     ScheduleFilter
   },
   data: () => ({
-    employees: [{
-      data: {
-        employee_id: '',
-        employee_name: '',
-        role: ''
+    employees: [
+      {
+        data: {
+          employee_id: '',
+          employee_name: '',
+          role: ''
+        }
       }
-    }],
+    ],
     message: '',
     errMessage: ''
   }),
@@ -53,7 +55,7 @@ export default {
 
 <style>
 .container2 {
-  background-color:  green;
-  float:left
+  background-color: green;
+  float: left;
 }
 </style>

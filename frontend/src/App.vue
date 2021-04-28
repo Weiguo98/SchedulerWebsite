@@ -4,7 +4,7 @@ Text Color: #C45891
  -->
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -14,8 +14,8 @@ Text Color: #C45891
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #C45891;
-  background-color: #EBF1DE;
+  color: #c45891;
+  background-color: #ebf1de;
 }
 /*
 #nav a.router-link-exact-active {

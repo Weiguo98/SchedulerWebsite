@@ -1,19 +1,17 @@
 <template>
-  <div class='navigationMenu'>
-    <div class='planner_app'>
-      {{title}} <br>
-    </div>
+  <div class="navigationMenu">
+    <div class="planner_app">{{ title }} <br /></div>
     <div style="font-size: 20px">
-      {{subtitle}}
+      {{ subtitle }}
     </div>
-    <div class='page_buttons'>
-      <NavigationButton page="Schedule" toPage="/camels"/>
+    <div class="page_buttons">
+      <NavigationButton page="Schedule" toPage="/camels" />
     </div>
-    <div class='page_buttons'>
-      <NavigationButton page="Calendar" toPage="/camels"/>
+    <div class="page_buttons">
+      <NavigationButton page="Calendar" toPage="/camels" />
     </div>
-    <div class='page_buttons'>
-      <NavigationButton page="Staff" toPage="/camels"/>
+    <div class="page_buttons">
+      <NavigationButton page="Staff" toPage="/camels" />
     </div>
   </div>
 </template>
@@ -34,7 +32,6 @@ export default {
 </script>
 
 <style>
-
 .navigationMenu {
   display: flex;
   flex-direction: column;
@@ -45,17 +42,17 @@ export default {
   min-width: 110px;
 }
 
-.planner_app{
+.planner_app {
   display: flex;
   justify-content: center;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 34px;
   background-color: EBF1DE;
   min-height: 8%;
   font-weight: bold;
 }
 
-.page_buttons{
+.page_buttons {
   margin-top: 10px;
   display: flex;
   justify-content: center;

@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="toPage" tag="b-button"> {{page}}</router-link>
+  <router-link :to="toPage" tag="b-button"> {{ page }}</router-link>
 </template>
 
 <script>

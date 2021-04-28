@@ -5,10 +5,33 @@
       v-model="calendarData"
       :configs="calendarConfigs"
     ></functional-calendar>
-    <ScheduleFilterButton text="Rollercoaster/Game/Area" option_a="Helix" option_b="The Cannon" option_c="Atmosphere"/>
-    <ScheduleFilterButton text="Roles" option_a="Operator" option_b="Maintainer" option_c="Cleaner"/>
-    <ScheduleFilterButton text="Daily" option_a="Daily" option_b="Weekly" option_c="Monthly"/>
-    <b-button id='assignbtn' class="assignbtn" pill variant="success" v-on:click="addRow()"> Assign </b-button>
+    <ScheduleFilterButton
+      text="Rollercoaster/Game/Area"
+      option_a="Helix"
+      option_b="The Cannon"
+      option_c="Atmosphere"
+    />
+    <ScheduleFilterButton
+      text="Roles"
+      option_a="Operator"
+      option_b="Maintainer"
+      option_c="Cleaner"
+    />
+    <ScheduleFilterButton
+      text="Daily"
+      option_a="Daily"
+      option_b="Weekly"
+      option_c="Monthly"
+    />
+    <b-button
+      id="assignbtn"
+      class="assignbtn"
+      pill
+      variant="success"
+      v-on:click="addRow()"
+    >
+      Assign
+    </b-button>
     <span> Selected: {{ calendarData.selectedDate }}</span>
   </div>
 </template>
@@ -34,8 +57,7 @@ export default {
     this.$root.$refs.ScheduleFilter = this
   },
   data: () => ({
-    calendarData: {
-    },
+    calendarData: {},
     calendarConfigs: {
       isAutoCloseable: 'true',
       dateFormat: 'dd/mm/yyyy',
@@ -50,13 +72,13 @@ export default {
     subtitle: String
   },
   methods: {
-    addRow: function () {
+    addRow: function() {
       this.$root.$refs.personnel.addRow()
     },
-    getSelectedDate: function () {
+    getSelectedDate: function() {
       return this.data.calendarData.selectedDate
     },
-    dateSelected: function () {
+    dateSelected: function() {
       serverBus.$emit('dateSelected', this.calendarData.selectedDate)
     }
   }
@@ -64,7 +86,7 @@ export default {
 </script>
 
 <style>
-.filterBar{
+.filterBar {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -79,7 +101,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.assignbtn{
+.assignbtn {
   margin-left: 70px;
 }
 </style>

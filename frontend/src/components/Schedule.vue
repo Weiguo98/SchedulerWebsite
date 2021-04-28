@@ -1,8 +1,8 @@
 <template>
   <table class="scheduleTable">
     <thead>
-      <th> </th>
-      <th> </th>
+      <th></th>
+      <th></th>
       <th colspan="2">7:00</th>
       <th colspan="2">8:00</th>
       <th colspan="2">9:00</th>
@@ -34,20 +34,20 @@ export default {
 </script>
 
 <style>
-*{
-  margin:0;
-  padding:0;
+* {
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
   box-sizing: border-box;
 }
 
 .col {
-  width: 55px
+  width: 55px;
 }
 
 .schedule {
   display: grid;
-  grid-template-areas: "empty planes" "time contents";
+  grid-template-areas: 'empty planes' 'time contents';
   grid-template-columns: 100px;
   grid-template-rows: 90px;
   width: 90%;
@@ -69,8 +69,8 @@ export default {
   text-transform: uppercase;
   grid-area: planes;
   font-size: 12px;
-  background-color: #EBF1DE;
-  grid-template-columns: repeat(8,1fr);
+  background-color: #ebf1de;
+  grid-template-columns: repeat(8, 1fr);
   border-bottom: 1px solid;
 }
 
@@ -78,13 +78,11 @@ export default {
   display: grid;
   align-items: center;
   border-right: 1px solid;
-
 }
 
 .Personnel {
   grid-area: time;
   display: grid;
-
 }
 
 .Personnel > div {
@@ -98,7 +96,7 @@ export default {
   grid-area: contents;
   display: grid;
   grid-template-rows: repeat(5, 1fr);
-  grid-template-columns: repeat(8,1fr);
+  grid-template-columns: repeat(8, 1fr);
   border-right: 1px solid;
   grid-auto-flow: row;
 }
@@ -107,9 +105,8 @@ export default {
   border-right: 1px solid;
 }
 
-.scheduleTable{
-  margin-left:150px;
-  width:80%;
+.scheduleTable {
+  margin-left: 150px;
+  width: 80%;
 }
-
 </style>
