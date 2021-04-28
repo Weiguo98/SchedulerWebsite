@@ -1,6 +1,6 @@
 <template>
   <tbody>
-      <tr :id="personnel.employee_id" v-for="personnel in filteredPersonnelList" :key="personnel">
+      <tr :id="personnel.employee_id" v-for="personnel in filteredPersonnelList" :key="personnel.page">
         <td id='name' md='1'>{{personnel.emp_name}}</td>
         <td id='name' md='1'>{{personnel.emp_position}}</td>
         <td id='col1' class='columns'></td><td id='col2'></td>
@@ -26,6 +26,12 @@
 import { Api } from '@/Api'
 import { serverBus } from '../main'
 var i = 0
+
+var today = new Date()
+var dd = String(today.getDate()).padStart(2, '')
+var mm = String(today.getMonth() + 1).padStart(2, '')
+var yyyy = today.getFullYear()
+today = dd + '/' + mm + '/' + yyyy
 
 export default {
   name: 'personnel',
@@ -54,16 +60,15 @@ export default {
     }],
     message: '',
     errMessage: '',
-    dateSelected: ''
+    dateSelected: today
   }),
   created() {
     this.$root.$refs.personnel = this
+    this.getAllPersonnel()
     serverBus.$on('dateSelected', (data) => {
       this.dateSelected = data
-      console.log(this.dateSelected)
       this.getFilteredPersonnelList()
     })
-    this.getAllPersonnel()
   },
   methods: {
     getAllPersonnel() {
@@ -72,28 +77,24 @@ export default {
           for (i = 0; i < response.data.length; i++) {
             this.personnelList.push(response.data[i])
           }
+          this.getFilteredPersonnelList()
         })
         .catch(error => {
           this.errMessage = error
         })
     },
     getFilteredPersonnelList() {
-      console.log('HEJGETFILTERED')
       this.filteredPersonnelList.splice(0, this.filteredPersonnelList.length)
-      for (i = 0; i < this.personnelList.length; i++) {
-        console.log('INSIDE for loop')
-        console.log(this.personnelList[i].data.schedule_date)
-        console.log(this.dateSelected)
-        if (this.personnelList[i].schedule_date.localeCompare(this.dateSelected.toString())) {
-          console.log('INSIDE if state')
-          this.filteredPersonnelList.push(this.personnelList.data[i])
+      for (i = 1; i < this.personnelList.length; i++) {
+        if (this.personnelList[i].schedule_date.toString() === (this.dateSelected.toString())) {
+          this.filteredPersonnelList.push(this.personnelList[i])
         }
       }
     },
     fillInTime: function () {
-      for (i = 1; i < this.personnelList.length; i++) {
-        var row = document.getElementById(this.personnelList[i].employee_id)
-        for (var x = (this.personnelList[i].start_time - 5.5) * 2; x < (this.personnelList[i].end_time - 5.5) * 2; x++) {
+      for (i = 0; i < this.filteredPersonnelList.length; i++) {
+        var row = document.getElementById(this.filteredPersonnelList[i].employee_id)
+        for (var x = (this.filteredPersonnelList[i].start_time - 5.5) * 2; x < (this.filteredPersonnelList[i].end_time - 5.5) * 2; x++) {
           const col = row.children[x]
           col.style = 'background-color: #C45891'
         }
