@@ -15,6 +15,29 @@
         <b-col class="example-col" cols="12" md="8">{{ employees}}</b-col>
       </b-row>
     </b-container>
+    <b-container>
+     <tbody>
+      <tr class = 'table' @click="update=true">
+        <td id='name' md='1'>{{person_name}}</td>
+        <td id='name' md='1'>{{person_area}}</td>
+        <td id='col1' class='columns'></td><td id='col2'></td>
+        <td id='col3' class='columns'></td><td id='col4'></td>
+        <td id='col5' class='columns'></td><td id='col6'></td>
+        <td id='col7' class='columns'></td><td id='col8'></td>
+        <td id='col9' class='columns'></td><td id='col10'></td>
+        <td id='col11' class='columns'></td><td id='col12'></td>
+        <td id='col13' class='columns'></td><td id='col14'></td>
+        <td id='col15' class='columns'></td><td id='col16'></td>
+        <td id='col17' class='columns'></td><td id='col18'></td>
+        <td id='col19' class='columns'></td><td id='col20'></td>
+        <td id='col21' class='columns'></td><td id='col22'></td>
+        <td id='col23' class='columns'></td><td id='col24'></td>
+        <td id='col25' class='columns'></td><td id='col26'></td>
+        <td id='col27' class='columns'></td><td id='col28'></td>
+        <td id='col29' class='columns'></td><td id='col30'></td>
+      </tr>
+  </tbody>
+    </b-container>
     <b-container fluid>
       <div class ="mt-3">
       Assigned Endtime:{{subtimeEndVariants}}
@@ -97,6 +120,77 @@
       </template>
     </b-modal>
 
+    <b-modal
+      v-model="update"
+      title="Update employees"
+      id="modal-xl"
+      size="xl"
+       @show="resetSelect"
+       @hidden ="resetSelect"
+       @ok ="handle_updateOK"
+    >
+      <b-container fluid>
+        <b-row>
+          <div class = "space"></div>
+        </b-row>
+        <b-row class="mb-1">
+          <!-- TODO: try with time select or this is okay whatever -->
+          <b-col cols="3">Planning work hours</b-col>
+          <b-col>
+            <b-form-select  v-model="timeStartVariants" :options="timeStVariants">
+            </b-form-select>
+          </b-col>
+          <b-col>
+            <b-form-select
+              v-model="timeEndVariants"
+              :options="timeEnVariants"
+            ></b-form-select>
+          </b-col>
+        </b-row>
+        <b-row>
+          <div class = "space"></div>
+        </b-row>
+        <b-row class="mb-1">
+          <b-col cols="3">Department Name</b-col>
+          <b-col>
+            <b-form-select
+              v-model="departmentVariant"
+              :options="deVariants"
+            ></b-form-select>
+          </b-col>
+          <b-col>
+            <b-form-select
+              v-model="employeeVariant"
+              :options="selectEmployees()"
+            ></b-form-select>
+          </b-col>
+        </b-row>
+        <b-row>
+          <div class = "space"></div>
+        </b-row>
+        <b-row>
+          <b-col cols="3">Zone</b-col>
+          <b-col>
+            <b-form-select
+              v-model="zoneVariant"
+              :options="zoVariants"
+            ></b-form-select>
+          </b-col>
+        </b-row>
+        <b-row>
+          <div class = "space"></div>
+        </b-row>
+      </b-container>
+      <template #modal-footer>
+        <div class="w-100">
+          <p class="float-left">Modal Footer Content</p>
+          <b-button variant = "success" class = "float-right" @click = handle_updateOK()>
+          Confirm </b-button>
+          <b-button variant="danger" class="float-right" @click="update = false">
+          Cancel </b-button>
+        </div>
+      </template>
+    </b-modal>
   </div>
 </template>
 
@@ -107,14 +201,20 @@ import { Api } from '@/Api'
 export default {
   name: 'home',
   // TODO: time start variants need to be smaller than time end variants
-  // TODO: time variants limit to six line.
   // TODO: Six options must have values, other wise a warning will pop up.
+  // TODO: Change the database.
+  // TODO: add a component.
+  // TODO: add a model in the component.
   data() {
     return {
       message: '',
       employees: '',
       show: false,
-      variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+      update: false,
+      person_name: 'jakub',
+      person_area: 'Helix',
+      // variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
+      // assign medal variants
       timeStVariants: [{ value: null, text: '--select start time--', disabled: true }, '8.00', '9.00', '10.00', '10.15', '10.30', '10.45',
         '11.00', '11.15', '11.30', '11.45', '12.00'],
       timeEnVariants: [{ value: null, text: '--select end time--', disabled: true }, '8.00', '9.00', '10.00', '10.15', '10.30', '10.45',
@@ -123,7 +223,7 @@ export default {
       subtimeStarttVariants: null,
       timeEndVariants: null,
       subtimeEndVariants: null,
-      deVariants: [{ value: null, text: '--select department--', disabled: true }, 'Cleaner', 'Operator', 'Security', 'Maintainance'],
+      deVariants: [{ value: null, text: '--select department--', disabled: true }, 'Cleaner', 'Operator', 'Security', 'Maintainer'],
       departmentVariant: null,
       subdepartmentVariant: null,
       emVariants: [],
@@ -132,7 +232,9 @@ export default {
       zoVariants: [{ value: null, text: '--select zone--', disabled: true }, 'AeroSpin', 'Balder', 'Cyklonen', 'Flygis', 'Helix'],
       zoneVariant: null,
       subzoneVariant: null,
-      temp: []
+      temp: [],
+      // update medal variants
+      up_departmentVariant: null
     }
   },
   mounted() {
@@ -163,8 +265,8 @@ export default {
       // console.log(temp)
       // console.log(this.employees.rowCount)
       for (var i = 0; i < this.employees.rowCount; i++) {
-        if (this.employees.rows[i].employee_role === temp) {
-          selem.push(this.employees.rows[i].employee_name)
+        if (this.employees.rows[i].emp_position === temp) {
+          selem.push(this.employees.rows[i].emp_name)
           // console.log(this.employees.rows[i].employee_name)
         }
       }
@@ -210,6 +312,9 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    handle_updateOK(bvModalEvt) {
+      this.update = false
     }
   }
 }
@@ -231,4 +336,17 @@ export default {
 .float-right {
   margin-left:5pt;
 }
+
+.columns {
+  border-right: 1px solid black;
+}
+
+#name {
+  column-width: 60px;
+  overflow: hidden;
+}
+.table {
+  background-color: pink;
+}
+
 </style>
