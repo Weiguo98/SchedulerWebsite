@@ -19,5 +19,7 @@ export const serverBus = new Vue()
 
 new Vue({
   router,
-  render: function (h) { return h(App) }
+  render: function(h) {
+    return h(App)
+  }
 }).$mount('#app')
