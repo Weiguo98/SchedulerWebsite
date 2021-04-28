@@ -12,6 +12,7 @@
       option_c="Atmosphere"
     />
     <ScheduleFilterButton
+      @clicked="onClickRoleButton, roleSelected()"
       text="Roles"
       option_a="Operator"
       option_b="Maintainer"
@@ -65,7 +66,8 @@ export default {
       isDatePicker: 'true',
       isModal: 'true',
       ref: 'Calendar'
-    }
+    },
+    roleSelected_var: ''
   }),
   props: {
     title: String,
@@ -75,11 +77,14 @@ export default {
     addRow: function() {
       this.$root.$refs.personnel.addRow()
     },
-    getSelectedDate: function() {
-      return this.data.calendarData.selectedDate
-    },
     dateSelected: function() {
       serverBus.$emit('dateSelected', this.calendarData.selectedDate)
+    },
+    roleSelected: function() {
+      serverBus.$emit('roleSelected', this.roleSelected_var)
+    },
+    onClickRoleButton (value) {
+      this.roleSelected_var = value
     }
   }
 }

@@ -1,9 +1,21 @@
 <template>
   <div>
-    <b-dropdown :text="text">
-      <b-dropdown-item @click="text = option_a">{{ option_a }}</b-dropdown-item>
-      <b-dropdown-item @click="text = option_b">{{ option_b }}</b-dropdown-item>
-      <b-dropdown-item @click="text = option_c">{{ option_c }}</b-dropdown-item>
+    <b-dropdown :text="myText">
+      <b-dropdown-item
+        @click="myText = option_a"
+        v-on:click="onClickButton()"
+        >{{ option_a }}</b-dropdown-item
+      >
+      <b-dropdown-item
+        @click="myText = option_b"
+        v-on:click="onClickButton()"
+        >{{ option_b }}</b-dropdown-item
+      >
+      <b-dropdown-item
+        @click="myText = option_c"
+        v-on:click="onClickButton()"
+        >{{ option_c }}</b-dropdown-item
+      >
     </b-dropdown>
   </div>
 </template>
@@ -16,6 +28,16 @@ export default {
     option_a: String,
     option_b: String,
     option_c: String
+  },
+  data() {
+    return {
+      myText: this.text
+    }
+  },
+  methods: {
+    onClickButton() {
+      this.$emit('clicked', this.myText)
+    }
   }
 }
 </script>

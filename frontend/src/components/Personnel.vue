@@ -83,7 +83,8 @@ export default {
     ],
     message: '',
     errMessage: '',
-    dateSelected: today
+    dateSelected: today,
+    roleSelected: ''
   }),
   created() {
     this.$root.$refs.personnel = this
@@ -91,6 +92,10 @@ export default {
     serverBus.$on('dateSelected', data => {
       this.dateSelected = data
       this.getFilteredPersonnelList()
+    })
+    serverBus.$on('roleSelected', data => {
+      this.roleSelected = data
+      this.getFilteredPersonnelListByRole()
     })
   },
   methods: {
@@ -117,6 +122,16 @@ export default {
         }
       }
     },
+    getFilteredPersonnelListByRole() {
+      for (i = 0; i < this.filteredPersonnelList.length; i++) {
+        if (
+          this.filteredPersonnelList[i].emp_position.toString() !==
+          this.roleSelected.toString()
+        ) {
+          this.filteredPersonnelList.pop(this.filteredPersonnelList[i])
+        }
+      }
+    },
     fillInTime: function() {
       for (i = 0; i < this.filteredPersonnelList.length; i++) {
         var row = document.getElementById(
@@ -139,10 +154,10 @@ export default {
         start_time: '14',
         end_time: '17',
         emp_position: 'Maintainer',
-        schedule_date: '2021-04-23',
+        schedule_date: this.dateSelected,
         area: 'Helix'
       }
-      this.personnelList.push(object)
+      this.filteredPersonnelList.push(object)
     },
     getSelectedDate: function() {
       this.$root.$refs.ScheduleFilter.getSelectedDate()
