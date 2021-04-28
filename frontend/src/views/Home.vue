@@ -53,10 +53,11 @@
       title="Assign employees"
       id="modal-xl"
       size="xl"
-       @show="resetSelect"
+      ref="my-modal"
+      @show = "show_modal"
        @hidden ="resetSelect"
        @ok ="handleOK"
-    >
+       >
       <b-container fluid>
         <b-row>
           <div class = "space"></div>
@@ -93,18 +94,17 @@
             ></b-form-select>
           </b-col>
         </b-row>
+        <div class = "space"></div>
         <b-row class="mb-1">
           <b-col cols="3">Contact Info</b-col>
           <b-col>
-            <b-form-select
-              v-model="departmentVariant"
-              :options="deVariants"
-            ></b-form-select>
+            {{select_mail()}}
+            {{selemail}}
           </b-col>
           <b-col>
             <b-form-select
-              v-model="employeeVariant"
-              :options="selectEmployees()"
+              v-model="teleVariant"
+              :options="zoVariants"
             ></b-form-select>
           </b-col>
         </b-row>
@@ -230,9 +230,6 @@ export default {
   name: 'home',
   // TODO: time start variants need to be smaller than time end variants
   // TODO: Six options must have values, other wise a warning will pop up.
-  // TODO: Change the database.
-  // TODO: add a component.
-  // TODO: add a model in the component.
   data() {
     return {
       message: '',
@@ -264,7 +261,10 @@ export default {
       temp: [],
       // update medal variants
       updepartment_: null,
-      updepartment: [{ value: null, text: 'selected', disabled: true }]
+      updepartment: [{ value: null, text: 'selected', disabled: true }],
+      mailVariant: null,
+      teleVariant: null,
+      selemail: null
     }
   },
   mounted() {
@@ -309,15 +309,20 @@ export default {
       }
       return valid
     },
+    show_modal() {
+    },
     // reset the model to the default value
     resetSelect() {
       this.timeEndVariants = null
       this.timeStartVariants = null
       this.departmentVariant = null
       this.zoneVariant = null
+      this.employeeVariant = null
+      this.selemail = null
     },
     handleOK() {
       // bvModalEvt.preventDefault()
+      this.resetSelect()
       this.show = false
       this.handleSubmit()
     },
@@ -356,6 +361,19 @@ export default {
         .catch(error => {
           console.log(error)
         })
+    },
+    select_mail() {
+      var temp = this.employeeVariant
+      // console.log('first')
+      // var selemail = [{ text: null, disabled: true }]
+      // console.log(this.employees.rowCount)
+      for (var i = 0; i < this.employees.rowCount; i++) {
+        if (this.employees.rows[i].emp_name === temp) {
+          this.selemail = this.employees.rows[i].emp_email
+          // console.log(this.employees.rows[i].employee_name)
+          break
+        }
+      }
     }
   }
 }
