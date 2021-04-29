@@ -38,6 +38,10 @@
       </tr>
   </tbody>
     </b-container>
+
+
+         
+        
     <b-container fluid>
       <div class ="mt-3">
       Assigned Endtime:{{subtimeEndVariants}}
@@ -59,6 +63,22 @@
        @ok ="handleOK"
        >
       <b-container fluid>
+          <b-row class="mb-1">
+          <!-- TODO: try with date select or this is okay whatever -->
+          
+          <b-col cols="3">Date</b-col>
+          <b-col>
+            <b-form-select  v-model="dateVariants" :options="dateDateVariants">
+            </b-form-select>
+          </b-col>
+          <b-col>
+ 
+          </b-col>
+
+          </b-row>
+
+
+
         <b-row>
           <div class = "space"></div>
         </b-row>
@@ -237,10 +257,14 @@ export default {
       person_area: 'Helix',
       // variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       // assign medal variants
+      dateDateVariants: [{ value: null, text: '--select date--', disabled: true }, '29/4/2021', '30/4/2021',], 
+        
       timeStVariants: [{ value: null, text: '--select start time--', disabled: true }, '8.00', '9.00', '10.00', '10.15', '10.30', '10.45',
         '11.00', '11.15', '11.30', '11.45', '12.00'],
       timeEnVariants: [{ value: null, text: '--select end time--', disabled: true }, '8.00', '9.00', '10.00', '10.15', '10.30', '10.45',
         '11.00', '11.15', '11.30', '11.45', '12.00'],
+      dateVariants: null,
+      subdateVariants: null,  
       timeStartVariants: null,
       subtimeStarttVariants: null,
       timeEndVariants: null,
@@ -306,6 +330,7 @@ export default {
     },
     // reset the model to the default value
     resetSelect() {
+      this.dateVariants = null
       this.timeEndVariants = null
       this.timeStartVariants = null
       this.departmentVariant = null
@@ -322,6 +347,8 @@ export default {
       if (!this.checkSelectValidty()) {
         return
       }
+
+      this.subdateVariants = this.dateVariants
       this.subtimeStarttVariants = this.timeStartVariants
       this.subtimeEndVariants = this.timeEndVariants
       this.subdepartmentVariant = this.departmentVariant
@@ -329,6 +356,7 @@ export default {
       this.subzoneVariant = this.zoneVariant
       var employee = {
         name: this.subemployeeVariant,
+        date: this.subdateVariants,
         starttime: this.subtimeStarttVariants,
         endtime: this.subtimeEndVariants,
         zone: this.zoneVariant

@@ -25,7 +25,7 @@ router.post('/id', function(req,res,next){
             console.log('database choose eid success');
             console.log(rst.rows[0].emp_id);
             var id = rst.rows[0].emp_id;
-            var sql2 =`INSERT INTO schedule (employee_id,start_time,end_time,area) values('${id}',${starttime},${endtime},'${req.body.zone}');`;
+            var sql2 =`INSERT INTO schedule (employee_id,start_time,end_time,schedule_date,area) values('${id}',${starttime},${endtime},'${req.body.date}','${req.body.zone}');`;
             cenct.connectPgPool(sql2,function(isErr,rst){
             if(isErr){
                  console.log('database insert eid fail');
