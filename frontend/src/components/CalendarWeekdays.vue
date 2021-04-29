@@ -5,17 +5,17 @@
 </template>
 
 <script>
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
 export default {
-  name: "CalendarWeekdays",
+  name: 'CalendarWeekdays',
 
   computed: {
     weekdays() {
-      return WEEKDAYS;
+      return WEEKDAYS
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import CalendarMonth from "../components/CalendarMonth";
+import CalendarMonth from '../components/CalendarMonth'
 
 export default {
-  name: "App",
+  name: 'App',
 
   components: {
     CalendarMonth
   }
-};
+}
 </script>
 
 <style>

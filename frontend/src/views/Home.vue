@@ -33,7 +33,7 @@ import { Api } from '@/Api'
 export default {
   name: 'home',
   data: () => ({
-    employees:'',
+    employees: '',
     // employees: [{
     //   data: {
     //     emp_id: '',
@@ -60,7 +60,7 @@ export default {
     getAllStaff() {
       Api.get('')
         .then(response => {
-          this.employees= response.data
+          this.employees = response.data
           console.log(this.employees)
         })
         .catch(error => {

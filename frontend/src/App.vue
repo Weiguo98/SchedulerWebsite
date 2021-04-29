@@ -20,7 +20,6 @@
   text-align: center;
   color: #2c3e50;
 
-
 }
 #nav1 {
   width: 100%;
@@ -30,7 +29,7 @@
   padding: 20px 0;
   text-align: center;
   padding-right: 60px;
-  
+
 }
 
 #hiddenmenu {
@@ -44,7 +43,7 @@
 #nav1 a {
   font-weight: bold;
   color:#e59198 ;
-  
+
 }
 
 #nav1 a.router-link-exact-active {

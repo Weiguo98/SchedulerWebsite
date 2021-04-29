@@ -5,7 +5,6 @@ import Camels from './views/Camels.vue'
 import Staff from './views/Staff.vue'
 import Calendar from './views/Calendar.vue'
 
-
 Vue.use(Router)
 
 export default new Router({
@@ -26,7 +25,7 @@ export default new Router({
       path: '/Calendar',
       name: 'Calendar',
       component: Calendar
-    }, 
+    },
     {
       path: '/Staff',
       name: 'Staff',

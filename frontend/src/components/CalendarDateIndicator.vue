@@ -13,10 +13,10 @@ export default {
 
   computed: {
     selectedMonth() {
-      return this.selectedDate.format("MMMM YYYY");
+      return this.selectedDate.format('MMMM YYYY')
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -26,4 +26,3 @@ export default {
   color: var(--grey-00);
 }
 </style>
-

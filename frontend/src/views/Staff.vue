@@ -41,42 +41,41 @@
         </div>
       </div>
 
-    
     </div>
   </div>
 </template>
 <script>
-  import { Api } from '@/Api'
+import { Api } from '@/Api'
 
-  export default {
-    data () {
-      return {
-        tableColumns: ['Id', 'Name', 'Position', 'Email', 'Phone', 'Working_hour', 'Remaining_hours'],
-        message: '' ,
+export default {
+  data() {
+    return {
+      tableColumns: ['Id', 'Name', 'Position', 'Email', 'Phone', 'Working_hour', 'Remaining_hours'],
+      message: '',
 
-        employees1:'',
-        sets:[1,2,3,4,5]
-      }
-    },
-    mounted(){
-      this.getAllStaff1()
-    },
-    methods: {
-      getAllStaff1() {
-        Api.get('')
-          .then(response => {
-            this.employees1= response.data
-            console.log("read employee ok")
-            console.log(this.employees1)
-            console.log(this.employees1.length)
-          })
-          .catch(error => {
-            this.errMessage = error
-          })
-        }
+      employees1: '',
+      sets: [1, 2, 3, 4, 5]
+    }
+  },
+  mounted() {
+    this.getAllStaff1()
+  },
+  methods: {
+    getAllStaff1() {
+      Api.get('')
+        .then(response => {
+          this.employees1 = response.data
+          console.log('read employee ok')
+          console.log(this.employees1)
+          console.log(this.employees1.length)
+        })
+        .catch(error => {
+          this.errMessage = error
+        })
+    }
 
   }
-  }
+}
 </script>
 <style>
 .search {
@@ -106,6 +105,5 @@
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #b4e79a !important;
 }
-
 
 </style>

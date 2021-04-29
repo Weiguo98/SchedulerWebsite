@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 
 export default {
-  name: "CalendarMonthDayItem",
+  name: 'CalendarMonthDayItem',
 
   props: {
     day: {
@@ -35,10 +35,10 @@ export default {
 
   computed: {
     label() {
-      return dayjs(this.day.date).format("D");
+      return dayjs(this.day.date).format('D')
     }
   }
-};
+}
 </script>
 
 <style scoped>
