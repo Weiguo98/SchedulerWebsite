@@ -6,23 +6,20 @@
       :configs="calendarConfigs"
     ></functional-calendar>
     <ScheduleFilterButton
-      text="Rollercoaster/Game/Area"
+      @clicked="onClickAreaButton"
+      text="All Rollercoaster/Game/Area"
+      option_default="All Rollercoaster/Game/Area"
       option_a="Helix"
       option_b="The Cannon"
       option_c="Atmosphere"
     />
     <ScheduleFilterButton
       @clicked="onClickRoleButton"
-      text="Roles"
+      text="All roles"
+      option_default="All roles"
       option_a="Operator"
       option_b="Maintainer"
       option_c="Cleaner"
-    />
-    <ScheduleFilterButton
-      text="Daily"
-      option_a="Daily"
-      option_b="Weekly"
-      option_c="Monthly"
     />
     <b-button
       id="assignbtn"
@@ -67,7 +64,8 @@ export default {
       isModal: 'true',
       ref: 'Calendar'
     },
-    roleSelected_var: ''
+    roleSelected_var: '',
+    areaSelected_var: ''
   }),
   props: {
     title: String,
@@ -86,6 +84,13 @@ export default {
     onClickRoleButton (value) {
       this.roleSelected_var = value
       this.roleSelected()
+    },
+    areaSelected: function() {
+      serverBus.$emit('areaSelected', this.areaSelected_var)
+    },
+    onClickAreaButton (value) {
+      this.areaSelected_var = value
+      this.areaSelected()
     }
   }
 }

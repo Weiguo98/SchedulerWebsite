@@ -84,7 +84,8 @@ export default {
     message: '',
     errMessage: '',
     dateSelected: today,
-    roleSelected: ''
+    roleSelected: 'All roles',
+    areaSelected: 'All Rollercoaster/Game/Area'
   }),
   created() {
     this.$root.$refs.personnel = this
@@ -96,6 +97,11 @@ export default {
     serverBus.$on('roleSelected', data => {
     
       this.roleSelected = data
+      this.getFilteredPersonnelList()
+    })
+    serverBus.$on('areaSelected', data => {
+    
+      this.areaSelected = data
       this.getFilteredPersonnelList()
     })
   },
@@ -117,8 +123,9 @@ export default {
       for (i = 1; i < this.personnelList.length; i++) {
         if (
           this.personnelList[i].schedule_date.toString() ===
-          this.dateSelected.toString() && this.personnelList[i].emp_position.toString() ===
-          this.roleSelected.toString()
+          this.dateSelected.toString() && (this.roleSelected.toString() == "All roles" || this.personnelList[i].emp_position.toString() ===
+          this.roleSelected.toString()) && (this.areaSelected.toString() == "All Rollercoaster/Game/Area" || this.personnelList[i].area.toString() ===
+          this.areaSelected.toString())
         ) {
           this.filteredPersonnelList.push(this.personnelList[i])
         }

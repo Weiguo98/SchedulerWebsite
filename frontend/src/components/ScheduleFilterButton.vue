@@ -1,6 +1,11 @@
 <template>
   <div>
     <b-dropdown :text="myText">
+    <b-dropdown-item
+        @click="myText = option_default"
+        v-on:click="onClickButton()"
+        >{{ option_default }}</b-dropdown-item
+      >
       <b-dropdown-item
         @click="myText = option_a"
         v-on:click="onClickButton()"
@@ -25,6 +30,7 @@ export default {
   name: 'FilterButton',
   props: {
     text: String,
+    option_default: String,
     option_a: String,
     option_b: String,
     option_c: String
