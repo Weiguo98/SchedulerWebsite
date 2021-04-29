@@ -94,8 +94,9 @@ export default {
       this.getFilteredPersonnelList()
     })
     serverBus.$on('roleSelected', data => {
+    
       this.roleSelected = data
-      this.getFilteredPersonnelListByRole()
+      this.getFilteredPersonnelList()
     })
   },
   methods: {
@@ -116,19 +117,10 @@ export default {
       for (i = 1; i < this.personnelList.length; i++) {
         if (
           this.personnelList[i].schedule_date.toString() ===
-          this.dateSelected.toString()
-        ) {
-          this.filteredPersonnelList.push(this.personnelList[i])
-        }
-      }
-    },
-    getFilteredPersonnelListByRole() {
-      for (i = 0; i < this.filteredPersonnelList.length; i++) {
-        if (
-          this.filteredPersonnelList[i].emp_position.toString() !==
+          this.dateSelected.toString() && this.personnelList[i].emp_position.toString() ===
           this.roleSelected.toString()
         ) {
-          this.filteredPersonnelList.pop(this.filteredPersonnelList[i])
+          this.filteredPersonnelList.push(this.personnelList[i])
         }
       }
     },

@@ -12,7 +12,7 @@
       option_c="Atmosphere"
     />
     <ScheduleFilterButton
-      @clicked="onClickRoleButton, roleSelected()"
+      @clicked="onClickRoleButton"
       text="Roles"
       option_a="Operator"
       option_b="Maintainer"
@@ -85,6 +85,7 @@ export default {
     },
     onClickRoleButton (value) {
       this.roleSelected_var = value
+      this.roleSelected()
     }
   }
 }
