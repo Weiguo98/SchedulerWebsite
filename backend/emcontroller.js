@@ -42,8 +42,6 @@ router.post('/id', function(req,res,next){
 router.post('/del', function(req,res,next){
     let name = req.body.name;
     var sql = `SELECT emp_id from staff1 where emp_name ='${name}'`;
-    let starttime = parseInt(req.body.starttime);
-    let endtime = parseInt(req.body.endtime);
     cenct.connectPgPool(sql,function(isErr,rst){
         if(isErr){
             console.log('database choose eid fail');
@@ -56,7 +54,7 @@ router.post('/del', function(req,res,next){
             if(isErr){
                  console.log('database delete fail');
             } else {
-            console.log('database delete eid success');
+            console.log('database delete success');
             // console.log(rst)
                     }
             });

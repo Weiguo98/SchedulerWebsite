@@ -214,7 +214,6 @@ export default {
       if (!this.checkSelectValidty()) {
         return
       }
-
       this.subdateVariants = this.dateVariants
       this.subtimeStarttVariants = this.timeStartVariants
       this.subtimeEndVariants = this.timeEndVariants
@@ -229,19 +228,6 @@ export default {
         zone: this.zoneVariant
       }
       Api.post('/employees/id', employee)
-        .then(response => {
-          this.temp.push(response.data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
-    handle_deleteOK() {
-      this.delete_emp = false
-      var employee = {
-        name: this.person_name
-      }
-      Api.post('/employees/del', employee)
         .then(response => {
           this.temp.push(response.data)
         })

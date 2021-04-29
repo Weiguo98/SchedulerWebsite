@@ -87,6 +87,19 @@ export default {
         .catch(error => {
           this.message = error
         })
+    },
+    handle_deleteOK() {
+      this.delete_emp = false
+      var employee = {
+        name: this.person_name
+      }
+      Api.post('/employees/del', employee)
+        .then(response => {
+          this.temp.push(response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 
