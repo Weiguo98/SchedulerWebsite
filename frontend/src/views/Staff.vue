@@ -7,7 +7,7 @@
         </div>
 
         <div class="col filter">
-          <b-button href="" class="filterbutton">Penis</b-button>
+          <b-button href="" class="filterbutton">Filter</b-button>
         </div>
 
         <div class="col-12 staffheader">
