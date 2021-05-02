@@ -284,6 +284,7 @@ export default {
         return
       }
       */
+
       this.subdateVariants = this.dateVariants
       this.subtimeStarttVariants = this.timeStartVariants
       this.subtimeEndVariants = this.timeEndVariants
@@ -300,6 +301,7 @@ export default {
         zone: this.zoneVariant
       }
       */
+     console.log(this.subzoneVariant)
       var employee = {
         id: this.getEmployeeId(),
         name: this.subemployeeVariant,

@@ -171,6 +171,9 @@ export default {
           this.errMessage = error
         })
     },
+    showDeleteModal: function() {
+      console.log('hej')
+    },
     handle_deleteOK() {
       console.log(this.delete_emp.content)
       console.log(this.today)
@@ -248,4 +251,8 @@ export default {
   column-width: 60px;
   overflow: hidden;
 }
+
+/* .unbreakable td {
+  width: 100% !important;
+} */
 </style>

@@ -5,6 +5,7 @@
     <Assign />
     <ScheduleFilter />
     <Schedule />
+    <DeleteModal />
   </div>
 </template>
 

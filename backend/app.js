@@ -7,7 +7,11 @@ var history = require('connect-history-api-fallback');
 var connectPgPool = require('./connection');
 var camelsController = require('./controller');
 var port = process.env.PORT || 3000;
+<<<<<<< HEAD
 var employeeController = require('./emcontroller');
+=======
+// var employeeController = require('./emcontroller');
+>>>>>>> efa6899d6601e89504dd181b1330ca6b0edeb942
 var cenct = require('./connection');
 
 
@@ -124,7 +128,7 @@ app.get('/api', function (req, res) {
 });
 app.use('/api/camels', camelsController);
 // register to show the datapage
-app.use('/api/employees', employeeController);
+// app.use('/api/employees', employeeController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
