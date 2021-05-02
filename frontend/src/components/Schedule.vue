@@ -1,6 +1,6 @@
 <template>
   <table class="scheduleTable">
-    <thead>
+    <!-- <thead>
       <th></th>
       <th></th>
       <th colspan="2">7:00</th>
@@ -18,8 +18,8 @@
       <th colspan="2">19:00</th>
       <th colspan="2">20:00</th>
       <th colspan="2">21:00</th>
-    </thead>
-    <Personnel> </Personnel>
+    </thead> -->
+  <Personnel> </Personnel>
   </table>
 </template>
 

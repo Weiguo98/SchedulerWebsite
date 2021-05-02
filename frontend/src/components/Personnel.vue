@@ -1,54 +1,69 @@
 <template>
-  <tbody>
-    <tr
-      :id="personnel.employee_id"
-      v-for="personnel in filteredPersonnelList"
-      :key="personnel.page"
-      @click="this.filteredPersonnelList.delete_emp = true"
-    >
-      <td id="name" md="1">{{ personnel.emp_name }}</td>
-      <td id="name" md="1">{{ personnel.emp_position }}</td>
-      <td id="col1" class="columns"></td>
-      <td id="col2"></td>
-      <td id="col3" class="columns"></td>
-      <td id="col4"></td>
-      <td id="col5" class="columns"></td>
-      <td id="col6"></td>
-      <td id="col7" class="columns"></td>
-      <td id="col8"></td>
-      <td id="col9" class="columns"></td>
-      <td id="col10"></td>
-      <td id="col11" class="columns"></td>
-      <td id="col12"></td>
-      <td id="col13" class="columns"></td>
-      <td id="col14"></td>
-      <td id="col15" class="columns"></td>
-      <td id="col16"></td>
-      <td id="col17" class="columns"></td>
-      <td id="col18"></td>
-      <td id="col19" class="columns"></td>
-      <td id="col20"></td>
-      <td id="col21" class="columns"></td>
-      <td id="col22"></td>
-      <td id="col23" class="columns"></td>
-      <td id="col24"></td>
-      <td id="col25" class="columns"></td>
-      <td id="col26"></td>
-      <td id="col27" class="columns"></td>
-      <td id="col28"></td>
-      <td id="col29" class="columns"></td>
-      <td id="col30"></td>
-    </tr>
-  </tbody>
-</template>
-
-
-
-<script>
-/*
+  <div>
+    <b-table-simple>
+      <thead>
+        <th></th>
+        <th></th>
+        <th colspan="2">7:00</th>
+        <th colspan="2">8:00</th>
+        <th colspan="2">9:00</th>
+        <th colspan="2">10:00</th>
+        <th colspan="2">11:00</th>
+        <th colspan="2">12:00</th>
+        <th colspan="2">13:00</th>
+        <th colspan="2">14:00</th>
+        <th colspan="2">15:00</th>
+        <th colspan="2">16:00</th>
+        <th colspan="2">17:00</th>
+        <th colspan="2">18:00</th>
+        <th colspan="2">19:00</th>
+        <th colspan="2">20:00</th>
+        <th colspan="2">21:00</th>
+      </thead>
+      <b-tbody>
+        <tr
+          :id="personnel.employee_id"
+          v-for="personnel in filteredPersonnelList"
+          :key="personnel.page"
+          @click="info(personnel.emp_name)"
+        >
+          <td id="name" md="1">{{ personnel.emp_name }}</td>
+          <td id="name" md="1">{{ personnel.emp_position }}</td>
+          <td id="col1" class="columns"></td>
+          <td id="col2"></td>
+          <td id="col3" class="columns"></td>
+          <td id="col4"></td>
+          <td id="col5" class="columns"></td>
+          <td id="col6"></td>
+          <td id="col7" class="columns"></td>
+          <td id="col8"></td>
+          <td id="col9" class="columns"></td>
+          <td id="col10"></td>
+          <td id="col11" class="columns"></td>
+          <td id="col12"></td>
+          <td id="col13" class="columns"></td>
+          <td id="col14"></td>
+          <td id="col15" class="columns"></td>
+          <td id="col16"></td>
+          <td id="col17" class="columns"></td>
+          <td id="col18"></td>
+          <td id="col19" class="columns"></td>
+          <td id="col20"></td>
+          <td id="col21" class="columns"></td>
+          <td id="col22"></td>
+          <td id="col23" class="columns"></td>
+          <td id="col24"></td>
+          <td id="col25" class="columns"></td>
+          <td id="col26"></td>
+          <td id="col27" class="columns"></td>
+          <td id="col28"></td>
+          <td id="col29" class="columns"></td>
+          <td id="col30"></td>
+        </tr>
+      </b-tbody>
+    </b-table-simple>
     <b-modal
-      v-model="this.filteredPersonnelList.delete_emp"
-      id="modal-1"
+      v-model="delete_e"
       title="Delete schedule"
       ok-variant="danger"
       ok-title="Delete"
@@ -56,9 +71,15 @@
     >
       <p class="my-4">
         Do you want to delete
-        {{ this.filteredPersonnelList.emp_name }} schedule?
+        {{ delete_emp.content }} schedule?
       </p>
     </b-modal>
+  </div>
+</template>
+
+<script>
+/*
+   
 */
 import { Api } from '@/Api'
 import { serverBus } from '../main'
@@ -93,7 +114,6 @@ export default {
           emp_name: '',
           employee_id: '',
           start_time: '',
-          delete_emp: false,
           end_time: '',
           schedule_date: '',
           emp_position: '',
@@ -106,24 +126,26 @@ export default {
     dateSelected: today,
     roleSelected: 'All roles',
     areaSelected: 'All Rollercoaster/Game/Area',
-    temp: []
+    temp: [],
+    delete_emp: { content: '' },
+    delete_e: false
   }),
   created() {
     this.$root.$refs.personnel = this
     this.getAllPersonnel()
-    serverBus.$on('dateSelected', (data) => {
+    serverBus.$on('dateSelected', data => {
       this.dateSelected = data
       this.getFilteredPersonnelList()
     })
-    serverBus.$on('roleSelected', (data) => {
+    serverBus.$on('roleSelected', data => {
       this.roleSelected = data
       this.getFilteredPersonnelList()
     })
-    serverBus.$on('areaSelected', (data) => {
+    serverBus.$on('areaSelected', data => {
       this.areaSelected = data
       this.getFilteredPersonnelList()
     })
-    serverBus.$on('employeeAssigned', (data) => {
+    serverBus.$on('employeeAssigned', data => {
       var object = {
         emp_name: data.name,
         employee_id: data.id,
@@ -139,28 +161,33 @@ export default {
   methods: {
     getAllPersonnel() {
       Api.get('/schedule')
-        .then((response) => {
+        .then(response => {
           for (i = 0; i < response.data.length; i++) {
             this.personnelList.push(response.data[i])
           }
           this.getFilteredPersonnelList()
         })
-        .catch((error) => {
+        .catch(error => {
           this.errMessage = error
         })
     },
     handle_deleteOK() {
-      this.filteredPersonnelList.delete_emp = false
+      console.log(this.delete_emp.content)
+      console.log(this.today)
       var employee = {
-        name: this.filteredPersonnelList.emp_name
+        name: this.delete_emp.content,
+        date: today
       }
-      Api.post('/employees/del', employee)
-        .then((response) => {
+      Api.post('/del', employee)
+        .then(response => {
           this.temp.push(response.data)
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
         })
+      this.delete_emp = false
+      // this.getFilteredPersonnelList()
+      // this.updated()
     },
     getFilteredPersonnelList() {
       this.filteredPersonnelList.splice(0, this.filteredPersonnelList.length)
@@ -179,7 +206,7 @@ export default {
         }
       }
     },
-    fillInTime: function () {
+    fillInTime: function() {
       for (i = 0; i < this.filteredPersonnelList.length; i++) {
         var row = document.getElementById(
           this.filteredPersonnelList[i].employee_id
@@ -194,13 +221,18 @@ export default {
         }
       }
     },
-    getSelectedDate: function () {
+    getSelectedDate: function() {
       this.$root.$refs.ScheduleFilter.getSelectedDate()
+    },
+    info(index) {
+      console.log(index)
+      this.delete_emp.content = index
+      this.delete_e = true
     }
   },
   mounted() {},
   updated() {
-    this.$nextTick(function () {
+    this.$nextTick(function() {
       this.fillInTime()
     })
   }

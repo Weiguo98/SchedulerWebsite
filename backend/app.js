@@ -7,7 +7,8 @@ var history = require('connect-history-api-fallback');
 var connectPgPool = require('./connection');
 var camelsController = require('./controller');
 var port = process.env.PORT || 3000;
-var employeeController = require('./emcontroller')
+var employeeController = require('./emcontroller');
+var cenct = require('./connection');
 
 
 // Create Express app
@@ -74,7 +75,7 @@ app.post('/schedule', function (req, res, next) {
             console.log('database choose eid success');
             console.log(rst.rows[0].emp_id);
             var id = rst.rows[0].emp_id;
-            var sql2 = `INSERT INTO schedule (employee_id,start_time,end_time,schedule_date,area) values('${id}',${starttime},${endtime},'${req.body.date}','${req.body.zone}');`;
+            var sql2 = `INSERT INTO schedule (employee_id,start_time,end_time,schedule_date,area) values('${id}',${starttime},${endtime},'${req.body.date}','${req.body.area}');`;
             cenct.connectPgPool(sql2, function (isErr, rst) {
                 if (isErr) {
                     console.log('database insert eid fail');
@@ -96,9 +97,10 @@ app.post('/del', function (req, res, next) {
             console.log('database choose eid fail');
         } else {
             console.log('database choose eid success');
-            console.log(rst.rows[0].emp_id);
+            // console.log(rst);
             var id = rst.rows[0].emp_id;
-            var sql2 = `delete from schedule where employee_id = '${id}'`;
+            console.log(req.body.date)
+            var sql2 = `delete from schedule where employee_id = '${id} 'and schedule_date ='${req.body.date}'`;
             cenct.connectPgPool(sql2, function (isErr, rst) {
                 if (isErr) {
                     console.log('database delete fail');

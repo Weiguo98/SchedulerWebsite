@@ -66,8 +66,7 @@ export default {
         .catch((error) => {
           this.errMessage = error
         })
-    },
-    getAllemo
+    }
   }
 }
 </script>
