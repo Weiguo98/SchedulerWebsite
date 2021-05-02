@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col search">
-          <input v-model="search" placeholder="Search ..." />
+          <input v-model="search" placeholder="Search for a name..." />
         </div>
 
         <div class="col filter">
@@ -64,7 +64,7 @@ export default {
       ],
       search: '',
 
-      employees1: '',
+      employees1: [],
       sets: [1, 2, 3, 4, 5]
     }
   },
