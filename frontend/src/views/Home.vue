@@ -5,6 +5,7 @@
     <Assign />
     <ScheduleFilter />
     <Schedule />
+    <DeleteModal />
   </div>
 </template>
 
@@ -66,8 +67,7 @@ export default {
         .catch((error) => {
           this.errMessage = error
         })
-    },
-    getAllemo
+    }
   }
 }
 </script>

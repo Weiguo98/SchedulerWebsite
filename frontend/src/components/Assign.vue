@@ -284,6 +284,7 @@ export default {
         return
       }
       */
+
       this.subdateVariants = this.dateVariants
       this.subtimeStarttVariants = this.timeStartVariants
       this.subtimeEndVariants = this.timeEndVariants
@@ -300,6 +301,7 @@ export default {
         zone: this.zoneVariant
       }
       */
+     console.log(this.subzoneVariant)
       var employee = {
         id: this.getEmployeeId(),
         name: this.subemployeeVariant,
@@ -307,7 +309,7 @@ export default {
         endtime: this.subtimeEndVariants,
         emp_position: this.subdepartmentVariant,
         date: today,
-        area: this.subzoneVariant
+        area: this.zoneVariant
       }
 
       serverBus.$emit('employeeAssigned', employee)

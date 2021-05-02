@@ -4,7 +4,7 @@
       :id="personnel.employee_id"
       v-for="personnel in filteredPersonnelList"
       :key="personnel.page"
-      @click="this.filteredPersonnelList.delete_emp = true"
+      @click="showDeleteModal()"
     >
       <td id="name" md="1">{{ personnel.emp_name }}</td>
       <td id="name" md="1">{{ personnel.emp_position }}</td>
@@ -40,26 +40,13 @@
       <td id="col30"></td>
     </tr>
   </tbody>
+
 </template>
 
 
 
 <script>
-/*
-    <b-modal
-      v-model="this.filteredPersonnelList.delete_emp"
-      id="modal-1"
-      title="Delete schedule"
-      ok-variant="danger"
-      ok-title="Delete"
-      @ok="handle_deleteOK"
-    >
-      <p class="my-4">
-        Do you want to delete
-        {{ this.filteredPersonnelList.emp_name }} schedule?
-      </p>
-    </b-modal>
-*/
+
 import { Api } from '@/Api'
 import { serverBus } from '../main'
 var i = 0
@@ -149,12 +136,15 @@ export default {
           this.errMessage = error
         })
     },
+    showDeleteModal: function() {
+      console.log('hej')
+    },
     handle_deleteOK() {
       this.filteredPersonnelList.delete_emp = false
       var employee = {
         name: this.filteredPersonnelList.emp_name
       }
-      Api.post('/employees/del', employee)
+      Api.post('/del', employee)
         .then((response) => {
           this.temp.push(response.data)
         })
@@ -216,4 +206,9 @@ export default {
   column-width: 60px;
   overflow: hidden;
 }
+
+.unbreakable td{
+    width: 100% !important;
+}
+
 </style>
