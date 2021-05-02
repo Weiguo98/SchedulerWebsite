@@ -3,8 +3,8 @@
     <b-jumbotron header="Hello Development Processes Frontend" lead="Welcome to Your Frontend Vue.js App">
       <p>Message from the server: {{ message }}</p>
       <b-button variant="primary" href="/camels">List Camelssss</b-button>
-      <b-button variant="primary" href="/TableList">List Staff</b-button>
-      <b-button variant="primary" href="/TableList">List Staff</b-button>
+      <b-button variant="primary" href="/staff">List Staff</b-button>
+      <b-button variant="primary" href="/staff">List Staff</b-button>
     </b-jumbotron>
     <b-container>
       <b-row>
@@ -35,17 +35,17 @@ export default {
   data: () => ({
     employees: [{
       data: {
-        employee_id: '',
-        employee_name: '',
-        role: ''
+        emp_id: '',
+        emp_name: '',
+        emp_position: '',
+        emp_email: '',
+        emp_phone: '',
+        emp_working_hours: ''
       }
     }],
     message: '',
     errMessage: ''
   }),
-  mounted() {
-    this.getAllStaff()
-  },
   methods: {
     getMessage() {
       Api.get('/')
@@ -66,6 +66,9 @@ export default {
           this.errMessage = error
         })
     }
+  },
+  mounted() {
+    this.getAllStaff()
   }
 }
 </script>

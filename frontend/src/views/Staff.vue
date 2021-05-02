@@ -23,17 +23,42 @@
           </card>
 
         </div>
+        <div class="col-12">
+          <table>
+            <thead>
+              <th> id </th>
+              <th> name1 </th>
+              <th> position </th>
+            </thead>
+            
+            <tbody>
+
+
+            </tbody>
+          </table>
+
+          <ul id="example-1">
+             <li v-for="item in items" :key="item.message">
+               {{ item.message }}
+               </li>
+          </ul>
+
+        </div>
       </div>
+
+    
     </div>
   </div>
 </template>
 <script>
   import LTable from '../components/Table.vue'
   import Card from '../components/Cards/Card.vue'
+
   const tableColumns = ['Id', 'Name', 'Position', 'Email', 'Phone', 'Working_hour', 'Remaining_hours']
-  
-  const tableData = [{
-    id: 1,
+
+  const tableData = [
+    {
+    id: "123",
     name: 'Amir',
     position: 'Operator',
     email: "abc@gmail.com",
@@ -66,7 +91,9 @@
     position: 'Operator',
     email: "abc@gmail.com",
     phone: '123456789'
-  }]
+  }
+  ]
+
   export default {
     components: {
       LTable,
@@ -78,10 +105,7 @@
           columns: [...tableColumns],
           data: [...tableData]
         },
-        table2: {
-          columns: [...tableColumns],
-          data: [...tableData]
-        }
+        
       }
     }
   }
