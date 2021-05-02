@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav1">
         <h1 id = "Logo">Planner's App</h1>
-        <li><router-link to="./Home">Schedule</router-link></li>
-        <li><router-link to="/Staff">Staff</router-link></li>
-        <li><router-link to="/Calendar">Calendar</router-link> </li>
+        <li id = "listitens"><router-link to="./Home">Schedule</router-link></li>
+        <li id = "listitens"><router-link to="/Staff">Staff</router-link></li>
+        <li id = "listitens"><router-link to="/Calendar">Calendar</router-link> </li>
     </div>
     <div id="hiddenmenu">
     </div>
@@ -22,7 +22,7 @@
 
 
 }
-#nav {
+#nav1 {
   width: 100%;
   background-color: #9ee27c ;
   z-index:99;
@@ -36,23 +36,23 @@
 #hiddenmenu {
 
   width: 100%;
-  padding: 20px;
-  background-color: #FADADD ;
+  padding: 35px;
+  background-color: #9ee27c ;
   z-index:99;
 }
 
-#nav a {
+#nav1 a {
   font-weight: bold;
   color:#e59198 ;
   
 }
 
-#nav a.router-link-exact-active {
+#nav1 a.router-link-exact-active {
   padding: 30px 50px;
   color: #ffffff;
   background-color: #e59198 ;
 }
-li {
+#listitens {
 
     display: inline;
     padding-right: 50px;

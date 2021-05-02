@@ -7,7 +7,7 @@
         </div>
 
         <div class = "col filter">
-          <b-button variant="primary" href="">Filter</b-button>
+          <b-button href="" class = "filterbutton">Filter</b-button>
         </div>
 
         <div class="col-12">
@@ -95,4 +95,11 @@
   margin-bottom: 5px;
 }
 
+.row{
+  margin-top: 10px;
+}
+
+.filterbutton{
+  background: #e59198 !important;
+}
 </style>
