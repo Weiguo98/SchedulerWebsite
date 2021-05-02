@@ -4,6 +4,7 @@
       :id="personnel.employee_id"
       v-for="personnel in filteredPersonnelList"
       :key="personnel.page"
+      @click="this.filteredPersonnelList.delete_emp = true"
     >
       <td id="name" md="1">{{ personnel.emp_name }}</td>
       <td id="name" md="1">{{ personnel.emp_position }}</td>
@@ -41,7 +42,24 @@
   </tbody>
 </template>
 
+
+
 <script>
+/*
+    <b-modal
+      v-model="this.filteredPersonnelList.delete_emp"
+      id="modal-1"
+      title="Delete schedule"
+      ok-variant="danger"
+      ok-title="Delete"
+      @ok="handle_deleteOK"
+    >
+      <p class="my-4">
+        Do you want to delete
+        {{ this.filteredPersonnelList.emp_name }} schedule?
+      </p>
+    </b-modal>
+*/
 import { Api } from '@/Api'
 import { serverBus } from '../main'
 var i = 0
@@ -60,6 +78,7 @@ export default {
         data: {
           emp_name: '',
           employee_id: '',
+          delete_emp: false,
           start_time: '',
           end_time: '',
           schedule_date: '',
@@ -74,6 +93,7 @@ export default {
           emp_name: '',
           employee_id: '',
           start_time: '',
+          delete_emp: false,
           end_time: '',
           schedule_date: '',
           emp_position: '',
@@ -85,37 +105,61 @@ export default {
     errMessage: '',
     dateSelected: today,
     roleSelected: 'All roles',
-    areaSelected: 'All Rollercoaster/Game/Area'
+    areaSelected: 'All Rollercoaster/Game/Area',
+    temp: []
   }),
   created() {
     this.$root.$refs.personnel = this
     this.getAllPersonnel()
-    serverBus.$on('dateSelected', data => {
+    serverBus.$on('dateSelected', (data) => {
       this.dateSelected = data
       this.getFilteredPersonnelList()
     })
-    serverBus.$on('roleSelected', data => {
-    
+    serverBus.$on('roleSelected', (data) => {
       this.roleSelected = data
       this.getFilteredPersonnelList()
     })
-    serverBus.$on('areaSelected', data => {
-    
+    serverBus.$on('areaSelected', (data) => {
       this.areaSelected = data
       this.getFilteredPersonnelList()
+    })
+    serverBus.$on('employeeAssigned', (data) => {
+      var object = {
+        emp_name: data.name,
+        employee_id: data.id,
+        emp_position: data.emp_position,
+        schedule_date: data.date,
+        start_time: data.starttime,
+        end_time: data.endtime,
+        area: data.area
+      }
+      this.filteredPersonnelList.push(object)
     })
   },
   methods: {
     getAllPersonnel() {
       Api.get('/schedule')
-        .then(response => {
+        .then((response) => {
           for (i = 0; i < response.data.length; i++) {
             this.personnelList.push(response.data[i])
           }
           this.getFilteredPersonnelList()
         })
-        .catch(error => {
+        .catch((error) => {
           this.errMessage = error
+        })
+    },
+    handle_deleteOK() {
+      this.filteredPersonnelList.delete_emp = false
+      var employee = {
+        name: this.filteredPersonnelList.emp_name
+      }
+      Api.post('/employees/del', employee)
+        .then((response) => {
+          this.temp.push(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
         })
     },
     getFilteredPersonnelList() {
@@ -123,15 +167,19 @@ export default {
       for (i = 1; i < this.personnelList.length; i++) {
         if (
           this.personnelList[i].schedule_date.toString() ===
-          this.dateSelected.toString() && (this.roleSelected.toString() == "All roles" || this.personnelList[i].emp_position.toString() ===
-          this.roleSelected.toString()) && (this.areaSelected.toString() == "All Rollercoaster/Game/Area" || this.personnelList[i].area.toString() ===
-          this.areaSelected.toString())
+            this.dateSelected.toString() &&
+          (this.roleSelected.toString() == 'All roles' ||
+            this.personnelList[i].emp_position.toString() ===
+              this.roleSelected.toString()) &&
+          (this.areaSelected.toString() == 'All Rollercoaster/Game/Area' ||
+            this.personnelList[i].area.toString() ===
+              this.areaSelected.toString())
         ) {
           this.filteredPersonnelList.push(this.personnelList[i])
         }
       }
     },
-    fillInTime: function() {
+    fillInTime: function () {
       for (i = 0; i < this.filteredPersonnelList.length; i++) {
         var row = document.getElementById(
           this.filteredPersonnelList[i].employee_id
@@ -146,25 +194,13 @@ export default {
         }
       }
     },
-    addRow: function() {
-      var object = {
-        employee_id: this.personnelList.length,
-        emp_name: 'NAME',
-        start_time: '14',
-        end_time: '17',
-        emp_position: 'Maintainer',
-        schedule_date: this.dateSelected,
-        area: 'Helix'
-      }
-      this.filteredPersonnelList.push(object)
-    },
-    getSelectedDate: function() {
+    getSelectedDate: function () {
       this.$root.$refs.ScheduleFilter.getSelectedDate()
     }
   },
   mounted() {},
   updated() {
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       this.fillInTime()
     })
   }

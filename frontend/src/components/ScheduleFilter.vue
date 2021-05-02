@@ -26,10 +26,11 @@
       class="assignbtn"
       pill
       variant="success"
-      v-on:click="addRow()"
+      v-on:click="showModal()"
     >
-      Assign
+      Assign Employee
     </b-button>
+
     <span> Selected: {{ calendarData.selectedDate }}</span>
   </div>
 </template>
@@ -72,23 +73,26 @@ export default {
     subtitle: String
   },
   methods: {
-    addRow: function() {
+    showModal: function () {
+      this.$root.$refs.assign.showModal()
+    },
+    addRow: function () {
       this.$root.$refs.personnel.addRow()
     },
-    dateSelected: function() {
+    dateSelected: function () {
       serverBus.$emit('dateSelected', this.calendarData.selectedDate)
     },
-    roleSelected: function() {
+    roleSelected: function () {
       serverBus.$emit('roleSelected', this.roleSelected_var)
     },
-    onClickRoleButton (value) {
+    onClickRoleButton(value) {
       this.roleSelected_var = value
       this.roleSelected()
     },
-    areaSelected: function() {
+    areaSelected: function () {
       serverBus.$emit('areaSelected', this.areaSelected_var)
     },
-    onClickAreaButton (value) {
+    onClickAreaButton(value) {
       this.areaSelected_var = value
       this.areaSelected()
     }
