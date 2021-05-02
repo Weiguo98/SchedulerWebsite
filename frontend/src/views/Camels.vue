@@ -1,9 +1,7 @@
 <template>
   <div class="camels">
-    <h1>List of {{ camels.length }} camels</h1>
-    <b-button type="button" class="createButton" @click="createCamel()"
-      >Create Camel</b-button
-    >
+    <h1>List of {{ camels.length }} camelssss</h1>
+    <b-button type="button" class="createButton" @click="createCamel()">Create Camel</b-button>
     <b-list-group>
       <camel-item
         v-for="camel in camels"
@@ -85,6 +83,7 @@ a {
   margin-bottom: 1em;
 }
 .camels {
+  margin-top: 5%;
   margin-left: 5%;
   margin-right: 5%;
   margin-bottom: 2em;

@@ -1,11 +1,9 @@
 <template>
   <div>
-    <b-jumbotron
-      header="Agile Development Processes Frontend"
-      lead="Welcome to Your Frontend Vue.js App"
-    >
+    <b-jumbotron header="Hello Development Processes Frontend" lead="Welcome to Your Frontend Vue.js App">
       <p>Message from the server: {{ message }}</p>
-      <b-button variant="primary" href="/camels">List Camels</b-button>
+      <b-button variant="primary" href="/camels">List Camelssss</b-button>
+      <b-button variant="primary" href="/TableList">List Staff</b-button>
     </b-jumbotron>
     <b-container>
       <b-row>
