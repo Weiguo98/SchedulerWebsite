@@ -20,7 +20,7 @@
       <!-- Mobile (< 768px): stack columns by making one half-width and one full-width
            Desktop (>= 768px): keep both columns in same row in 4:8 ratio -->
       <b-row>
-       <b-col class="example-col" cols="6" md="4">Message from the server</b-col>
+        <b-col class="example-col" cols="6" md="4">Message from the server</b-col>
         <b-col class="example-col" cols="12" md="8">{{employees[1]}}</b-col>
       </b-row>
     </b-container>
@@ -33,16 +33,17 @@ import { Api } from '@/Api'
 export default {
   name: 'home',
   data: () => ({
-    employees: [{
-      data: {
-        emp_id: '',
-        emp_name: '',
-        emp_position: '',
-        emp_email: '',
-        emp_phone: '',
-        emp_working_hours: ''
-      }
-    }],
+    employees:'',
+    // employees: [{
+    //   data: {
+    //     emp_id: '',
+    //     emp_name: '',
+    //     emp_position: '',
+    //     emp_email: '',
+    //     emp_phone: '',
+    //     emp_working_hours: ''
+    //   }
+    // }],
     message: '',
     errMessage: ''
   }),
@@ -57,10 +58,10 @@ export default {
         })
     },
     getAllStaff() {
-      Api.get('/')
+      Api.get('')
         .then(response => {
-          this.employees.data = response.data
-          console.log(this.employees.data)
+          this.employees= response.data
+          console.log(this.employees)
         })
         .catch(error => {
           this.errMessage = error
