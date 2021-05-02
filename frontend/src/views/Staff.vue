@@ -2,45 +2,48 @@
   <div class="Staff">
     <div class="container-fluid">
       <div class="row">
-        <div class = "col search">
-          <input v-model="message" placeholder="Search ..." class = "search">
+        <div class="col search">
+          <input v-model="message" placeholder="Search ..." class="search" />
         </div>
 
-        <div class = "col filter">
-          <b-button href="" class = "filterbutton">Filter</b-button>
+        <div class="col filter">
+          <b-button href="" class="filterbutton">Filter</b-button>
         </div>
 
-        <div class = "col-12 staffheader">
-          <h1> Staff List </h1>
+        <div class="col-12 staffheader">
+          <h1>Staff List</h1>
         </div>
 
         <div class="col-12">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Working Hours</th>
-                  </tr>
-                </thead>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Working Hours</th>
+              </tr>
+            </thead>
 
-                <tbody>
-                  <tr lass = "listid" v-for="employee in this.employees1" :key="employee">
-                    <th scope="row">{{employee.emp_id}}</th>
-                    <td>{{employee.emp_name}}</td>
-                    <td>{{employee.emp_position}}</td>
-                    <td>{{employee.emp_email}}</td>
-                    <td>{{employee.emp_phone}}</td>
-                    <td>{{employee.emp_working_hours}}</td>
-                  </tr>
-                </tbody>
-              </table>
+            <tbody>
+              <tr
+                lass="listid"
+                v-for="employee in this.employees1"
+                :key="employee"
+              >
+                <th scope="row">{{ employee.emp_id }}</th>
+                <td>{{ employee.emp_name }}</td>
+                <td>{{ employee.emp_position }}</td>
+                <td>{{ employee.emp_email }}</td>
+                <td>{{ employee.emp_phone }}</td>
+                <td>{{ employee.emp_working_hours }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -50,7 +53,15 @@ import { Api } from '@/Api'
 export default {
   data() {
     return {
-      tableColumns: ['Id', 'Name', 'Position', 'Email', 'Phone', 'Working_hour', 'Remaining_hours'],
+      tableColumns: [
+        'Id',
+        'Name',
+        'Position',
+        'Email',
+        'Phone',
+        'Working_hour',
+        'Remaining_hours'
+      ],
       message: '',
 
       employees1: '',
@@ -73,7 +84,6 @@ export default {
           this.errMessage = error
         })
     }
-
   }
 }
 </script>
@@ -86,24 +96,23 @@ export default {
   margin-bottom: 5px;
 }
 
-.row{
+.row {
   margin-top: 10px;
 }
 
-.filterbutton{
+.filterbutton {
   background: #e59198 !important;
 }
 
 .staffheader {
-   color:#e59198  !important;
-    display: inline-block;
+  color: #e59198 !important;
+  display: inline-block;
 }
-.table{
-  color:#e59198  !important;
+.table {
+  color: #e59198 !important;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #b4e79a !important;
+  background-color: #b4e79a !important;
 }
-
 </style>

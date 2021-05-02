@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-jumbotron header="Hello Development Processes Frontend" lead="Welcome to Your Frontend Vue.js App">
+    <b-jumbotron
+      header="Hello Development Processes Frontend"
+      lead="Welcome to Your Frontend Vue.js App"
+    >
       <p>Message from the server: {{ message }}</p>
       <b-button variant="primary" href="/camels">List Camelssss</b-button>
       <b-button variant="primary" href="/staff">List Staff</b-button>
@@ -20,14 +23,17 @@
       <!-- Mobile (< 768px): stack columns by making one half-width and one full-width
            Desktop (>= 768px): keep both columns in same row in 4:8 ratio -->
       <b-row>
-        <b-col class="example-col" cols="6" md="4">Message from the server</b-col>
-        <b-col class="example-col" cols="12" md="8">{{employees[1]}}</b-col>
+        <b-col class="example-col" cols="6" md="4"
+          >Message from the server</b-col
+        >
+        <b-col class="example-col" cols="12" md="8">{{ employees[1] }}</b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 
-<script> // @ is an alias to /src
+<script>
+// @ is an alias to /src
 import { Api } from '@/Api'
 
 export default {

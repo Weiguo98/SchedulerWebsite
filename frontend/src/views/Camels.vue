@@ -1,7 +1,9 @@
 <template>
   <div class="camels">
     <h1>List of {{ camels.length }} camelssss</h1>
-    <b-button type="button" class="createButton" @click="createCamel()">Create Camel</b-button>
+    <b-button type="button" class="createButton" @click="createCamel()"
+      >Create Camel</b-button
+    >
     <b-list-group>
       <camel-item
         v-for="camel in camels"
