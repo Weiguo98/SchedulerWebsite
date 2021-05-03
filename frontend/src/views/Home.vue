@@ -57,10 +57,10 @@ export default {
   methods: {
     getAllStaff() {
       Api.get('/allstaff')
-        .then((response) => {
+        .then(response => {
           this.employees.data = response.data
         })
-        .catch((error) => {
+        .catch(error => {
           this.errMessage = error
         })
     }

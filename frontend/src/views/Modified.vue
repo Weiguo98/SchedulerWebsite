@@ -14,7 +14,7 @@
         </b-row>
         <b-row class="mb-1">
           <TODO: try with time select or this is okay whatever -->
-          <!-- <b-col cols="3">Planning work hours</b-col>
+<!-- <b-col cols="3">Planning work hours</b-col>
           <b-col>
             <b-form-select  v-model="timeStartVariants" :options="timeStVariants">
             </b-form-select>

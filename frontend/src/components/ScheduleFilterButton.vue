@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-dropdown :text="myText">
-    <b-dropdown-item
+      <b-dropdown-item
         @click="myText = option_default"
         v-on:click="onClickButton()"
         >{{ option_default }}</b-dropdown-item

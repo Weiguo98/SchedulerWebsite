@@ -19,7 +19,7 @@
       <th colspan="2">20:00</th>
       <th colspan="2">21:00</th>
     </thead> -->
-  <Personnel> </Personnel>
+    <Personnel> </Personnel>
   </table>
 </template>
 
