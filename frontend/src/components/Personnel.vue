@@ -196,7 +196,7 @@ export default {
         .catch(error => {
           console.log(error)
         })
-      this.delete_emp = false
+      this.delete_e = false
       // this.getFilteredPersonnelList()
       // this.updated()
     },
