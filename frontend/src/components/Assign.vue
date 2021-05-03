@@ -215,7 +215,7 @@ export default {
   },
   created() {
     this.$root.$refs.assign = this
-    serverBus.$on('dateSelected', data => {
+    serverBus.$on('dateSelected', (data) => {
       this.dateDateVariants = data
     })
   },
@@ -225,13 +225,13 @@ export default {
   methods: {
     getEmployees() {
       Api.get('/allStaff')
-        .then(response => {
+        .then((response) => {
           var i
           for (i = 0; i < response.data.length; i++) {
             this.personnelList.push(response.data[i])
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.employees = error
         })
     },
@@ -301,7 +301,6 @@ export default {
         zone: this.zoneVariant
       }
       */
-     console.log(this.subzoneVariant)
       var employee = {
         id: this.getEmployeeId(),
         name: this.subemployeeVariant,
@@ -309,16 +308,16 @@ export default {
         endtime: this.subtimeEndVariants,
         emp_position: this.subdepartmentVariant,
         date: this.dateDateVariants,
-        area: this.subzoneVariant
+        area: this.zoneVariant
       }
 
       serverBus.$emit('employeeAssigned', employee)
 
       Api.post('/schedule', employee)
-        .then(response => {
+        .then((response) => {
           this.temp.push(response.data)
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
         })
     },

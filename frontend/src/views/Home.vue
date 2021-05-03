@@ -1,11 +1,9 @@
 <template>
   <div>
-    <NavigationMenu title="Planner's App" subtitle="Team 7"> </NavigationMenu>
     <Header title="Schedule" />
     <Assign />
     <ScheduleFilter />
     <Schedule />
-    <DeleteModal />
   </div>
 </template>
 
@@ -14,7 +12,6 @@
 import { Api } from '@/Api'
 import Header from '../components/Header.vue'
 import Schedule from '../components/Schedule.vue'
-import NavigationMenu from '../components/NavigationMenu.vue'
 import ScheduleFilter from '../components/ScheduleFilter.vue'
 import Assign from '../components/Assign.vue'
 
@@ -23,7 +20,6 @@ export default {
   components: {
     Header,
     Schedule,
-    NavigationMenu,
     ScheduleFilter,
     Assign
   },

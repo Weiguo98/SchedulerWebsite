@@ -79,7 +79,7 @@
 
 <script>
 /*
-   
+
 */
 import { Api } from '@/Api'
 import { serverBus } from '../main'
@@ -113,6 +113,7 @@ export default {
         data: {
           emp_name: '',
           employee_id: '',
+          delete_emp: false,
           start_time: '',
           end_time: '',
           schedule_date: '',
@@ -170,9 +171,6 @@ export default {
         .catch(error => {
           this.errMessage = error
         })
-    },
-    showDeleteModal: function() {
-      console.log('hej')
     },
     handle_deleteOK() {
       console.log(this.delete_emp.content)
