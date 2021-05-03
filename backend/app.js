@@ -7,7 +7,7 @@ var history = require('connect-history-api-fallback');
 var connectPgPool = require('./connection');
 var camelsController = require('./controller');
 var port = process.env.PORT || 3000;
-var employeeController = require('./emcontroller');
+// var employeeController = require('./emcontroller');
 var cenct = require('./connection');
 
 
