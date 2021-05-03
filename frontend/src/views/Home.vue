@@ -14,7 +14,7 @@ import ScheduleFilter from '../components/ScheduleFilter.vue'
 import Assign from '../components/Assign.vue'
 
 export default {
-  name: 'home',
+  name: 'schedule',
   components: {
     Schedule,
     ScheduleFilter,
