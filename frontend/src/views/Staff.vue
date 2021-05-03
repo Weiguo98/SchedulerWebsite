@@ -7,7 +7,12 @@
         </div>
 
         <div class="col filter">
-          <b-button href="" class="filterbutton">Filter</b-button>
+          <select v-on:change="filterMember">
+            <option value="all">All</option>
+            <option value="Cleaner">Cleaner</option>
+            <option value="Operator">Operator</option>
+            <option value="Maintainer">Maintainer</option>
+          </select>
         </div>
 
         <div class="col-12 staffheader">
@@ -83,6 +88,16 @@ export default {
         .catch(error => {
           this.errMessage = error
         })
+    },
+    filterMember: function(evt) {
+      var val = evt.target.value
+      if (val == 'all') {
+        this.getAllStaff1()
+      } else {
+        this.employees1 = this.employees1.filter(function(e) {
+          return e.emp_position == val
+        })
+      }
     }
   },
   computed: {
