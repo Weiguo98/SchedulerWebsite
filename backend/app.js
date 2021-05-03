@@ -5,7 +5,6 @@ var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var connectPgPool = require('./connection');
-var camelsController = require('./controller');
 var port = process.env.PORT || 3000;
 // var employeeController = require('./emcontroller');
 var cenct = require('./connection');
@@ -40,7 +39,6 @@ app.get('/allStaff', (req, response) => {
             console.error(err);
             return;
         }
-
         response.status(200).json(res.rows)
         /* for (let row of res.rows) {
             console.log(row);
@@ -122,7 +120,6 @@ app.get('/api', function (req, res) {
 app.get('/api', function (req, res) {
     res.json({ 'message': 'welcome' });
 });
-app.use('/api/camels', camelsController);
 // register to show the datapage
 // app.use('/api/employees', employeeController);
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header title="Schedule" />
     <Assign />
     <ScheduleFilter />
     <Schedule />
@@ -10,7 +9,6 @@
 <script>
 // @ is an alias to /src
 import { Api } from '@/Api'
-import Header from '../components/Header.vue'
 import Schedule from '../components/Schedule.vue'
 import ScheduleFilter from '../components/ScheduleFilter.vue'
 import Assign from '../components/Assign.vue'
@@ -18,7 +16,6 @@ import Assign from '../components/Assign.vue'
 export default {
   name: 'home',
   components: {
-    Header,
     Schedule,
     ScheduleFilter,
     Assign
