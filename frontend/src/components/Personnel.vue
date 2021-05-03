@@ -177,7 +177,7 @@ export default {
       console.log(this.today)
       var employee = {
         name: this.delete_emp.content,
-        date: today
+        date: this.dateSelected
       }
       Api.post('/del', employee)
         .then(response => {
