@@ -139,10 +139,7 @@ export default {
       message: '',
       employees: '',
       show: false,
-      update: false,
       delete_emp: false,
-      person_name: 'Jakub',
-      person_area: 'Helix',
       // variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
       // assign medal variants
       dateDateVariants: today,
@@ -207,10 +204,7 @@ export default {
       ],
       zoneVariant: null,
       subzoneVariant: null,
-      temp: [],
-      // update medal variants
-      updepartment_: null,
-      updepartment: [{ value: null, text: 'selected', disabled: true }]
+      temp: []
     }
   },
   created() {
