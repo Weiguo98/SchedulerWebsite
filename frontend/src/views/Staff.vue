@@ -3,11 +3,16 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col search">
-          <input v-model="message" placeholder="Search ..." class="search" />
+          <input v-model="search" placeholder="Search for a name..." />
         </div>
 
         <div class="col filter">
-          <b-button href="" class="filterbutton">Filter</b-button>
+          <select v-on:change="filterMember">
+            <option value="all">All</option>
+            <option value="Cleaner">Cleaner</option>
+            <option value="Operator">Operator</option>
+            <option value="Maintainer">Maintainer</option>
+          </select>
         </div>
 
         <div class="col-12 staffheader">
@@ -30,7 +35,7 @@
             <tbody>
               <tr
                 lass="listid"
-                v-for="employee in this.employees1"
+                v-for="employee in filteredList"
                 :key="employee"
               >
                 <th scope="row">{{ employee.emp_id }}</th>
@@ -62,9 +67,9 @@ export default {
         'Working_hour',
         'Remaining_hours'
       ],
-      message: '',
+      search: '',
 
-      employees1: '',
+      employees1: [],
       sets: [1, 2, 3, 4, 5]
     }
   },
@@ -83,6 +88,25 @@ export default {
         .catch(error => {
           this.errMessage = error
         })
+    },
+    filterMember: function(evt) {
+      var val = evt.target.value
+      if (val == 'all') {
+        this.getAllStaff1()
+      } else {
+        this.employees1 = this.employees1.filter(function(e) {
+          return e.emp_position == val
+        })
+      }
+    }
+  },
+  computed: {
+    filteredList() {
+      return this.employees1.filter(employee => {
+        return employee.emp_name
+          .toLowerCase()
+          .includes(this.search.toLowerCase())
+      })
     }
   }
 }
