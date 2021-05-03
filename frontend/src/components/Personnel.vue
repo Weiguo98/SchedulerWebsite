@@ -113,7 +113,6 @@ export default {
         data: {
           emp_name: '',
           employee_id: '',
-          delete_emp: false,
           start_time: '',
           end_time: '',
           schedule_date: '',
@@ -173,12 +172,23 @@ export default {
         })
     },
     handle_deleteOK() {
-      console.log(this.delete_emp.content)
-      console.log(this.today)
       var employee = {
         name: this.delete_emp.content,
         date: this.dateSelected
       }
+
+      var employeeToDelete
+      for (var i = 0; i < this.filteredPersonnelList.length; i++) {
+        if (
+          this.filteredPersonnelList[i].emp_name == employee.name &&
+          this.filteredPersonnelList[i].schedule_date == employee.date
+        ) {
+          employeeToDelete = i
+        }
+      }
+
+      this.filteredPersonnelList.splice(employeeToDelete, 1)
+
       Api.post('/del', employee)
         .then(response => {
           this.temp.push(response.data)
@@ -226,7 +236,6 @@ export default {
       this.$root.$refs.ScheduleFilter.getSelectedDate()
     },
     info(index) {
-      console.log(index)
       this.delete_emp.content = index
       this.delete_e = true
     }
