@@ -70,6 +70,7 @@ export default {
       search: '',
 
       employees1: [],
+      copyEmployee: [],
       sets: [1, 2, 3, 4, 5]
     }
   },
@@ -81,6 +82,7 @@ export default {
       Api.get('/allStaff')
         .then(response => {
           this.employees1 = response.data
+          this.copyEmployee = response.data
           console.log('read employee ok')
           console.log(this.employees1)
           console.log(this.employees1.length)
@@ -92,9 +94,9 @@ export default {
     filterMember: function(evt) {
       var val = evt.target.value
       if (val == 'all') {
-        this.getAllStaff1()
+        this.employees1 = this.copyEmployee
       } else {
-        this.employees1 = this.employees1.filter(function(e) {
+        this.employees1 = this.copyEmployee.filter(function(e) {
           return e.emp_position == val
         })
       }
