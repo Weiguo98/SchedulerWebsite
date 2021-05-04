@@ -155,6 +155,7 @@ export default {
         end_time: data.endtime,
         area: data.area
       }
+      this.personnelList.push(object)
       this.filteredPersonnelList.push(object)
     })
   },

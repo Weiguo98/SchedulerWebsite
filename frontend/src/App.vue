@@ -6,7 +6,7 @@ Text Color: #C45891
   <div id="app">
     <div id="nav1">
       <h1 id="Logo">Planner's App</h1>
-      <li id="listitens"><router-link to="./Home">Schedule</router-link></li>
+      <li id="listitens"><router-link to="./">Schedule</router-link></li>
       <li id="listitens"><router-link to="/Staff">Staff</router-link></li>
       <li id="listitens"><router-link to="/Calendar">Calendar</router-link></li>
     </div>

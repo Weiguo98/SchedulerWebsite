@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import DailySchedule from './views/DailySchedule.vue'
 import Staff from './views/Staff.vue'
 import Calendar from './views/Calendar.vue'
 
@@ -11,9 +11,9 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/home',
+      path: '/',
       name: 'home',
-      component: Home
+      component: DailySchedule
     },
     {
       path: '/Calendar',
