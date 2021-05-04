@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     getAllStaff1() {
-      Api.get('')
+      Api.get('/allStaff')
         .then(response => {
           this.employees1 = response.data
           console.log('read employee ok')
