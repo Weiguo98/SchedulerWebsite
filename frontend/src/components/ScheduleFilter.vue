@@ -73,23 +73,23 @@ export default {
     subtitle: String
   },
   methods: {
-    showModal: function() {
+    showModal: function () {
       this.$root.$refs.assign.showModal()
     },
-    addRow: function() {
+    addRow: function () {
       this.$root.$refs.personnel.addRow()
     },
-    dateSelected: function() {
+    dateSelected: function () {
       serverBus.$emit('dateSelected', this.calendarData.selectedDate)
     },
-    roleSelected: function() {
+    roleSelected: function () {
       serverBus.$emit('roleSelected', this.roleSelected_var)
     },
     onClickRoleButton(value) {
       this.roleSelected_var = value
       this.roleSelected()
     },
-    areaSelected: function() {
+    areaSelected: function () {
       serverBus.$emit('areaSelected', this.areaSelected_var)
     },
     onClickAreaButton(value) {

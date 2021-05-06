@@ -91,13 +91,13 @@ export default {
           this.errMessage = error
         })
     },
-    filterMember: function(evt) {
+    filterMember: function (evt) {
       var val = evt.target.value
-      if (val == 'all') {
+      if (val === 'all') {
         this.employees1 = this.copyEmployee
       } else {
-        this.employees1 = this.copyEmployee.filter(function(e) {
-          return e.emp_position == val
+        this.employees1 = this.copyEmployee.filter(function (e) {
+          return e.emp_position === val
         })
       }
     }

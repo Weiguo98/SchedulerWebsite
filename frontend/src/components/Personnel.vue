@@ -22,10 +22,10 @@
       </thead>
       <b-tbody>
         <tr
-          :id="personnel.employee_id"
+          :id="personnel.start_time + '-' + personnel.end_time + '-' + personnel.employee_id"
           v-for="personnel in filteredPersonnelList"
           :key="personnel.page"
-          @click="info(personnel.emp_name)"
+          @click="info(personnel)"
         >
           <td id="name" md="1">{{ personnel.emp_name }}</td>
           <td id="name" md="1">{{ personnel.emp_position }}</td>
@@ -71,7 +71,7 @@
     >
       <p class="my-4">
         Do you want to delete
-        {{ delete_emp.content }} schedule?
+        {{ delete_emp.content.emp_name }} schedule?
       </p>
     </b-modal>
   </div>
@@ -174,15 +174,19 @@ export default {
     },
     handle_deleteOK() {
       var employee = {
-        name: this.delete_emp.content,
-        date: this.dateSelected
+        name: this.delete_emp.content.emp_name,
+        date: this.dateSelected,
+        start_time: this.delete_emp.content.start_time,
+        end_time: this.delete_emp.content.end_time
       }
 
       var employeeToDelete
       for (var i = 0; i < this.filteredPersonnelList.length; i++) {
         if (
-          this.filteredPersonnelList[i].emp_name == employee.name &&
-          this.filteredPersonnelList[i].schedule_date == employee.date
+          this.filteredPersonnelList[i].emp_name === employee.name &&
+          this.filteredPersonnelList[i].schedule_date === employee.date &&
+          this.filteredPersonnelList[i].start_time === employee.start_time &&
+          this.filteredPersonnelList[i].end_time === employee.end_time
         ) {
           employeeToDelete = i
         }
@@ -207,10 +211,10 @@ export default {
         if (
           this.personnelList[i].schedule_date.toString() ===
             this.dateSelected.toString() &&
-          (this.roleSelected.toString() == 'All roles' ||
+          (this.roleSelected.toString() === 'All roles' ||
             this.personnelList[i].emp_position.toString() ===
               this.roleSelected.toString()) &&
-          (this.areaSelected.toString() == 'All Rollercoaster/Game/Area' ||
+          (this.areaSelected.toString() === 'All Rollercoaster/Game/Area' ||
             this.personnelList[i].area.toString() ===
               this.areaSelected.toString())
         ) {
@@ -218,10 +222,10 @@ export default {
         }
       }
     },
-    fillInTime: function() {
+    fillInTime: function () {
       for (i = 0; i < this.filteredPersonnelList.length; i++) {
         var row = document.getElementById(
-          this.filteredPersonnelList[i].employee_id
+          this.filteredPersonnelList[i].start_time + '-' + this.filteredPersonnelList[i].end_time + '-' + this.filteredPersonnelList[i].employee_id
         )
         for (
           var x = (this.filteredPersonnelList[i].start_time - 5.5) * 2;
@@ -233,7 +237,7 @@ export default {
         }
       }
     },
-    getSelectedDate: function() {
+    getSelectedDate: function () {
       this.$root.$refs.ScheduleFilter.getSelectedDate()
     },
     info(index) {
@@ -243,7 +247,7 @@ export default {
   },
   mounted() {},
   updated() {
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       this.fillInTime()
     })
   }
