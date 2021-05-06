@@ -98,7 +98,7 @@ app.post('/del', function (req, res, next) {
             // console.log(rst);
             var id = rst.rows[0].emp_id;
             console.log(req.body.date)
-            var sql2 = `delete from schedule where employee_id = '${id} 'and schedule_date ='${req.body.date}'`;
+            var sql2 = `delete from schedule where employee_id = '${id} 'and schedule_date ='${req.body.date}' and start_time='${req.body.start_time}'and end_time='${req.body.end_time}' `;
             cenct.connectPgPool(sql2, function (isErr, rst) {
                 if (isErr) {
                     console.log('database delete fail');
