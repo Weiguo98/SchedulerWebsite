@@ -358,7 +358,9 @@ export default {
         endtime: this.subtimeEndVariants,
         emp_position: this.subdepartmentVariant,
         date: this.dateDateVariants,
-        area: this.zoneVariant
+        area: this.zoneVariant,
+        startmin: this.minuteStartVariants,
+        endmin: this.minuteEndVariants
       }
 
       serverBus.$emit('employeeAssigned', employee)
