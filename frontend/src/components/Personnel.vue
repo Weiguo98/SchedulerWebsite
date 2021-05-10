@@ -110,7 +110,9 @@ export default {
           end_time: '',
           schedule_date: '',
           emp_position: '',
-          area: ''
+          area: '',
+          start_minute: '',
+          end_minute: ''
         }
       }
     ],
@@ -123,7 +125,9 @@ export default {
           end_time: '',
           schedule_date: '',
           emp_position: '',
-          area: ''
+          area: '',
+          start_minute: '',
+          end_minute: ''
         }
       }
     ],
@@ -159,7 +163,9 @@ export default {
         schedule_date: data.date,
         start_time: data.starttime,
         end_time: data.endtime,
-        area: data.area
+        area: data.area,
+        start_minute: data.startmin,
+        end_minute: data.endmin
       }
       this.personnelList.push(object)
       this.filteredPersonnelList.push(object)
@@ -237,20 +243,23 @@ export default {
             '-' +
             this.filteredPersonnelList[i].employee_id
         )
-        for (
-          var x = (this.filteredPersonnelList[i].start_time - 5.5) * 2;
-          x < (this.filteredPersonnelList[i].end_time - 5.5) * 2;
-          x++
-        ) {
+        // 'start' means the column id of start hour
+        var start = (this.filteredPersonnelList[i].start_time - 5.5) * 2
+        var end = (this.filteredPersonnelList[i].end_time - 5.5) * 2
+        const scol1 = row.children[start]
+        const scol2 = row.children[start + 1]
+        var temp = parseInt(this.filteredPersonnelList[i].start_minute)
+        var width1 = 60 - temp
+        // console.log(this.filteredPersonnelList[i].start_minute)
+        // console.log(width)
+        var width2 = 60 - width1
+        scol1.width = width2 + 'px'
+        scol2.style = 'background-color: #C45891'
+        scol2.width = width1 + 'px'
+        console.log(width1)
+        console.log(width2)
+        for (var x = start + 2; x < end; x++) {
           const col = row.children[x]
-          if (x === (this.filteredPersonnelList[i].start_time - 5.5) * 2) {
-            // add a new column
-            const ycol = row.children[x + 1]
-            ycol.style = 'background-color: #C45800'
-            ycol.width = 20 + 'px'
-            console.log('changed the css')
-            x++
-          }
           col.style = 'background-color: #C45891'
           // through the width to change the length of column
           // col.width = 20 + 'px'

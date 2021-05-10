@@ -46,7 +46,7 @@ app.get('/allStaff', (req, response) => {
     });
 });
 
-const scheduleQuery = "SELECT schedule.start_time, schedule.end_time, schedule.area, schedule.schedule_date, schedule.employee_id, staff1.emp_name, staff1.emp_position FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE schedule.schedule_date != ''";
+const scheduleQuery = "SELECT schedule.start_time, schedule.end_time, schedule.area, schedule.schedule_date, schedule.employee_id, schedule.start_minute, schedule.end_minute, staff1.emp_name, staff1.emp_position FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE schedule.schedule_date != ''";
 app.get('/schedule', (req, response) => {
     dbclient.query(scheduleQuery, (err, res) => {
         if (err) {
