@@ -57,7 +57,7 @@
           <td id="col20"></td>
           <td id="col21" class="columns"></td>
           <td id="col22"></td>
-          <td id="col23" class="columns"></td>
+          <td id="col23" class="columns1"></td>
           <td id="col24"></td>
           <td id="col25" class="columns"></td>
           <td id="col26"></td>
@@ -245,7 +245,9 @@ export default {
         )
         // 'start' means the column id of start hour
         var start = (this.filteredPersonnelList[i].start_time - 5.5) * 2
-        var end = (this.filteredPersonnelList[i].end_time - 5.5) * 2
+        // var end = (this.filteredPersonnelList[i].end_time - 5.5) * 2
+        // console.log(start)
+        // console.log(end)
         const scol1 = row.children[start]
         const scol2 = row.children[start + 1]
         var temp = parseInt(this.filteredPersonnelList[i].start_minute)
@@ -253,17 +255,23 @@ export default {
         // console.log(this.filteredPersonnelList[i].start_minute)
         // console.log(width)
         var width2 = 60 - width1
-        scol1.width = width2 + 'px'
+        scol1.style = 'background-color: #C45800'
         scol2.style = 'background-color: #C45891'
         scol2.width = width1 + 'px'
-        console.log(width1)
-        console.log(width2)
-        for (var x = start + 2; x < end; x++) {
-          const col = row.children[x]
-          col.style = 'background-color: #C45891'
-          // through the width to change the length of column
-          // col.width = 20 + 'px'
-        }
+        scol1.width = width2 + 'px'
+        console.log(this.filteredPersonnelList[i].emp_name)
+        console.log(scol1.width)
+        console.log(scol2.width)
+
+        const scol3 = row.children[23]
+        scol3.style = 'background-color: #C40000'
+        // scol3.width = 0.7
+        // for (var x = start + 2; x < end; x++) {
+        //   const col = row.children[x]
+        //   col.style = 'background-color: #C45891'
+        //   // through the width to change the length of column
+        //   // col.width = 20 + 'px'
+        // }
       }
     },
     getSelectedDate: function() {
@@ -287,8 +295,10 @@ export default {
 .columns {
   border-right: 1px solid black;
 }
-
-#name {
+.columns1 {
+  border-right: 1px solid black;
+}
+.name {
   column-width: 60px;
   overflow: hidden;
 }
