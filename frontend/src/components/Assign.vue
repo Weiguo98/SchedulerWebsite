@@ -32,20 +32,35 @@
           <div class="space"></div>
         </b-row>
         <b-row class="mb-1">
-          <!-- TODO: try with time select or this is okay whatever -->
           <b-col cols="3">Planning work hours</b-col>
-          <b-col>
+          From
+          <b-col class="form_sel">
             <b-form-select
               v-model="timeStartVariants"
               :options="timeStVariants"
             >
+            </b-form-select> </b-col
+          >:
+          <b-col>
+            <b-form-select
+              v-model="minuteStartVariants"
+              :options="minuteStVariants"
+            >
             </b-form-select>
           </b-col>
+          To:
           <b-col>
             <b-form-select
               v-model="timeEndVariants"
               :options="timeEnVariants"
-            ></b-form-select>
+            ></b-form-select> </b-col
+          >:
+          <b-col>
+            <b-form-select
+              v-model="minuteEndVariants"
+              :options="minuteEnVariants"
+            >
+            </b-form-select>
           </b-col>
         </b-row>
         <b-row>
@@ -144,46 +159,84 @@ export default {
       // assign medal variants
       dateDateVariants: today,
       timeStVariants: [
-        { value: null, text: '--select start time--', disabled: true },
-        '7.00',
-        '8.00',
-        '9.00',
-        '10.00',
-        '11.00',
-        '12.00',
-        '13.00',
-        '14.00',
-        '15.00',
-        '16.00',
-        '17.00',
-        '18.00',
-        '19.00',
-        '20.00',
-        '21.00'
+        { value: null, text: 'select start time', disabled: true },
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20',
+        '21'
+      ],
+      minuteStVariants: [
+        { value: null, text: 'select start minute', disabled: true },
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15'
       ],
       timeEnVariants: [
         { value: null, text: '--select end time--', disabled: true },
-        '7.00',
-        '8.00',
-        '9.00',
-        '10.00',
-        '11.00',
-        '12.00',
-        '13.00',
-        '14.00',
-        '15.00',
-        '16.00',
-        '17.00',
-        '18.00',
-        '19.00',
-        '20.00',
-        '21.00'
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20',
+        '21'
+      ],
+      minuteEnVariants: [
+        { value: null, text: 'select start minute', disabled: true },
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15'
       ],
       dateVariants: null,
       subdateVariants: null,
       timeStartVariants: null,
+      minuteStartVariants: null,
       subtimeStarttVariants: null,
       timeEndVariants: null,
+      minuteEndVariants: null,
       subtimeEndVariants: null,
       deVariants: [
         { value: null, text: '--select department--', disabled: true },
@@ -387,5 +440,8 @@ export default {
 }
 .default_class {
   background-color: lightgrey;
+}
+.form_sel {
+  margin-bottom: 2px;
 }
 </style>

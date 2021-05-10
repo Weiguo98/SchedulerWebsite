@@ -243,7 +243,17 @@ export default {
           x++
         ) {
           const col = row.children[x]
+          if (x === (this.filteredPersonnelList[i].start_time - 5.5) * 2) {
+            // add a new column
+            const ycol = row.children[x + 1]
+            ycol.style = 'background-color: #C45800'
+            ycol.width = 20 + 'px'
+            console.log('changed the css')
+            x++
+          }
           col.style = 'background-color: #C45891'
+          // through the width to change the length of column
+          // col.width = 20 + 'px'
         }
       }
     },
