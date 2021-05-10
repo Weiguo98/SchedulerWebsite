@@ -22,7 +22,13 @@
       </thead>
       <b-tbody>
         <tr
-          :id="personnel.start_time + '-' + personnel.end_time + '-' + personnel.employee_id"
+          :id="
+            personnel.start_time +
+              '-' +
+              personnel.end_time +
+              '-' +
+              personnel.employee_id
+          "
           v-for="personnel in filteredPersonnelList"
           :key="personnel.page"
           @click="info(personnel)"
@@ -222,10 +228,14 @@ export default {
         }
       }
     },
-    fillInTime: function () {
+    fillInTime: function() {
       for (i = 0; i < this.filteredPersonnelList.length; i++) {
         var row = document.getElementById(
-          this.filteredPersonnelList[i].start_time + '-' + this.filteredPersonnelList[i].end_time + '-' + this.filteredPersonnelList[i].employee_id
+          this.filteredPersonnelList[i].start_time +
+            '-' +
+            this.filteredPersonnelList[i].end_time +
+            '-' +
+            this.filteredPersonnelList[i].employee_id
         )
         for (
           var x = (this.filteredPersonnelList[i].start_time - 5.5) * 2;
@@ -237,7 +247,7 @@ export default {
         }
       }
     },
-    getSelectedDate: function () {
+    getSelectedDate: function() {
       this.$root.$refs.ScheduleFilter.getSelectedDate()
     },
     info(index) {
@@ -247,7 +257,7 @@ export default {
   },
   mounted() {},
   updated() {
-    this.$nextTick(function () {
+    this.$nextTick(function() {
       this.fillInTime()
     })
   }
