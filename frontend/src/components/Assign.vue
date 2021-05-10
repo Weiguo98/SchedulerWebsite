@@ -18,22 +18,22 @@
       @ok="handleOK"
     >
       <b-container fluid>
-        <b-row class="mb-1">
+        <!-- <b-row class="mb-1">
           <b-col cols="3">Date</b-col>
           <b-col>
             {{ dateDateVariants }}
-            <!-- <b-form-select  v-model="dateVariants" :options="dateDateVariants">
-            </b-form-select> -->
+            <b-form-select  v-model="dateVariants" :options="dateDateVariants">
+            </b-form-select>
           </b-col>
           <b-col> </b-col>
-        </b-row>
+        </b-row>-->
 
         <b-row>
           <div class="space"></div>
         </b-row>
         <b-row class="mb-1">
           <b-col cols="3">Planning work hours</b-col>
-          From
+
           <b-col class="form_sel">
             <b-form-select
               v-model="timeStartVariants"
@@ -48,7 +48,8 @@
             >
             </b-form-select>
           </b-col>
-          To:
+
+          <b-col> </b-col>
           <b-col>
             <b-form-select
               v-model="timeEndVariants"
@@ -159,7 +160,7 @@ export default {
       // assign medal variants
       dateDateVariants: today,
       timeStVariants: [
-        { value: null, text: 'select start time', disabled: true },
+        { value: null, text: 'start time', disabled: true },
         '7',
         '8',
         '9',
@@ -177,7 +178,7 @@ export default {
         '21'
       ],
       minuteStVariants: [
-        { value: null, text: 'select start minute', disabled: true },
+        { value: null, text: 'start minute', disabled: true },
         '01',
         '02',
         '03',
@@ -195,7 +196,7 @@ export default {
         '15'
       ],
       timeEnVariants: [
-        { value: null, text: '--select end time--', disabled: true },
+        { value: null, text: 'end time', disabled: true },
         '7',
         '8',
         '9',
@@ -213,7 +214,7 @@ export default {
         '21'
       ],
       minuteEnVariants: [
-        { value: null, text: 'select start minute', disabled: true },
+        { value: null, text: 'end minute', disabled: true },
         '01',
         '02',
         '03',
@@ -319,6 +320,8 @@ export default {
       this.zoneVariant = null
       this.employeeVariant = null
       this.selemail = null
+      this.minuteStartVariants = null
+      this.minuteEndVariants = null
     },
     handleOK() {
       // bvModalEvt.preventDefault()
