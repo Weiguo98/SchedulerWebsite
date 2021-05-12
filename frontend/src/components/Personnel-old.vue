@@ -4,13 +4,8 @@
       <thead>
         <th></th>
         <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th class="columns" colspan="2">7:00</th>
-        <th class="columns" colspan="2">8:00</th>
+        <th colspan="2">7:00</th>
+        <th colspan="2">8:00</th>
         <th colspan="2">9:00</th>
         <th colspan="2">10:00</th>
         <th colspan="2">11:00</th>
@@ -26,7 +21,7 @@
         <th colspan="2">21:00</th>
       </thead>
       <b-tbody>
-        <!-- <tr
+        <tr
           :id="
             personnel.start_time +
               '-' +
@@ -41,8 +36,7 @@
           <td id="name" md="1">{{ personnel.emp_name }}</td>
           <td id="name" md="1">{{ personnel.emp_position }}</td>
           <td id="col1" class="columns"></td>
-          <div class="timeline"></div> -->
-        <!-- <td id="col2"></td>
+          <td id="col2"></td>
           <td id="col3" class="columns"></td>
           <td id="col4"></td>
           <td id="col5" class="columns"></td>
@@ -70,27 +64,10 @@
           <td id="col27" class="columns"></td>
           <td id="col28"></td>
           <td id="col29" class="columns"></td>
-          <td id="col30"></td>  
-        </tr>-->
+          <td id="col30"></td>
+        </tr>
       </b-tbody>
     </b-table-simple>
-    <b-row
-      :id="
-        personnel.start_time +
-          '-' +
-          personnel.end_time +
-          '-' +
-          personnel.employee_id
-      "
-      v-for="personnel in filteredPersonnelList"
-      :key="personnel.page"
-      @click="info(personnel)"
-    >
-      <b-col cols="14" class="name"> {{ personnel.emp_name }}</b-col
-      >|
-      <b-col cols="14" class="name"> {{ personnel.emp_position }}</b-col>
-      <div class="timeline"></div>
-    </b-row>
     <b-modal
       v-model="delete_e"
       title="Delete schedule"
@@ -266,57 +243,25 @@ export default {
             '-' +
             this.filteredPersonnelList[i].employee_id
         )
-        // const temp1 = row.children[0]
-        // temp1.style = 'background-color: #789000'
-
-        // get the timeline component
-        const ttl = row.children[2]
-        // ttl.style = 'background-color: #C45891; width:55px'
-
-        //stat_min means startminutes
-        var stat_min = parseInt(this.filteredPersonnelList[i].start_minute)
-        // the left space of the timeline
-        var mar_left =
-          stat_min + 10 + (this.filteredPersonnelList[i].start_time - 7) * 60
-        // width1 means the left of timeline
-        var width1 = 60 - stat_min
-        // width2 means the main timeline
-        var width2 =
-          this.filteredPersonnelList[i].end_time -
-          this.filteredPersonnelList[i].start_time -
-          1
-        var width =
-          width1 +
-          width2 * 60 +
-          this.filteredPersonnelList[i].end_minute +
-          'px;'
-        ttl.style =
-          'background-color: #C45891; width:' +
-          width.toString() +
-          'margin-left:' +
-          mar_left.toString() +
-          'px;'
-        console.log(ttl.style)
-
         // 'start' means the column id of start hour
-        // var start = (this.filteredPersonnelList[i].start_time - 5.5) * 2
-        // // var end = (this.filteredPersonnelList[i].end_time - 5.5) * 2
-        // // console.log(start)
-        // // console.log(end)
-        // const scol1 = row.children[start]
-        // const scol2 = row.children[start + 1]
-        // var temp = parseInt(this.filteredPersonnelList[i].start_minute)
-        // var width1 = 60 - temp
-        // // console.log(this.filteredPersonnelList[i].start_minute)
-        // // console.log(width)
-        // var width2 = 60 - width1
-        // scol1.style = 'background-color: #C45800'
-        // scol2.style = 'background-color: #C45891'
-        // scol2.width = width1 + 'px'
-        // scol1.width = width2 + 'px'
-        // console.log(this.filteredPersonnelList[i].emp_name)
-        // console.log(scol1.width)
-        // console.log(scol2.width)
+        var start = (this.filteredPersonnelList[i].start_time - 5.5) * 2
+        // var end = (this.filteredPersonnelList[i].end_time - 5.5) * 2
+        // console.log(start)
+        // console.log(end)
+        const scol1 = row.children[start]
+        const scol2 = row.children[start + 1]
+        var temp = parseInt(this.filteredPersonnelList[i].start_minute)
+        var width1 = 60 - temp
+        // console.log(this.filteredPersonnelList[i].start_minute)
+        // console.log(width)
+        var width2 = 60 - width1
+        scol1.style = 'background-color: #C45800'
+        scol2.style = 'background-color: #C45891'
+        scol2.width = width1 + 'px'
+        scol1.width = width2 + 'px'
+        console.log(this.filteredPersonnelList[i].emp_name)
+        console.log(scol1.width)
+        console.log(scol2.width)
 
         // const scol3 = row.children[23]
         // scol3.style = 'background-color: #C40000'
@@ -348,17 +293,16 @@ export default {
 
 <style>
 .columns {
-  border-right: 1px solid white;
-  border-left: 1px solid white;
+  border-right: 1px solid black;
+}
+.columns1 {
+  border-right: 1px solid black;
+  column-width: 30px;
+  background-color: #c40000;
 }
 .name {
-  width: 85px;
+  column-width: 60px;
   overflow: hidden;
-}
-.timeline {
-  width: 200px;
-  background-color: #c40000;
-  margin-left: 15px;
 }
 
 /* .unbreakable td {
