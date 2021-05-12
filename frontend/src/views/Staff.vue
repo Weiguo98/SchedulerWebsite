@@ -50,13 +50,22 @@
         </div>
       </div>
     </div>
-    <b-button v-on:click="showModal()">
+    <b-button v-b-modal.staffCalendar_ID>
       Show staff Calendar
     </b-button>
+    <b-modal
+      id="staffCalendar_ID"
+      size="xl"
+      title="Staff Calendar"
+      ref="staffCalendar"
+    >
+      <StaffCalendar />
+    </b-modal>
   </div>
 </template>
 <script>
 import { Api } from '@/Api'
+import StaffCalendar from './StaffCalendar.vue'
 
 export default {
   data() {
@@ -76,6 +85,9 @@ export default {
       copyEmployee: [],
       sets: [1, 2, 3, 4, 5]
     }
+  },
+  components: {
+    StaffCalendar
   },
   mounted() {
     this.getAllStaff1()
@@ -103,9 +115,6 @@ export default {
           return e.emp_position === val
         })
       }
-    },
-    showModal: function() {
-      this.$refs.StaffCalendar.show()
     }
   },
   computed: {
