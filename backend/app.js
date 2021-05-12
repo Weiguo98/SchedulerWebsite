@@ -48,7 +48,7 @@ app.get('/allStaff', (req, response) => {
 
 
 app.get('/staffCalender', (req, response) => {
-    const calenderQuery = "SELECT schedule.start_time, schedule.end_time, schedule.schedule_date, schedule.employee_id FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE staff1.emp_id =" + req.query.ID.toString(); 
+    const calenderQuery = "SELECT schedule.start_time, schedule.end_time, schedule.schedule_date, schedule.employee_id, staff1.emp_name FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE staff1.emp_id =" + req.query.ID.toString(); 
     dbclient.query(calenderQuery, (err, res) => {
         if (err) {
             console.error(err);

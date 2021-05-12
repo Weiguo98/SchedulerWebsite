@@ -1,10 +1,15 @@
 <template>
-  <div class="calendar-date-indicator">{{ selectedMonth }}</div>
+  <div class="calendar-date-indicator">{{ selectedMonth }}
+    <div>
+      Employee: {{emp_name}}
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
+    emp_name: String,
     selectedDate: {
       type: Object,
       required: true

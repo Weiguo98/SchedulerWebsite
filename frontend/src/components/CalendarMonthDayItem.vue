@@ -7,6 +7,14 @@
     }"
   >
     <span>{{ label }}</span>
+
+    <div v-for="staffCalendar in staffCalendarList"
+    :key="staffCalendar.page">
+    <div v-if="getCalendarDay(1) == label && getCalendarMonth(1) == selectedMonth">
+      {{staffCalendar.schedule_date}}
+    </div>
+    </div>
+
   </li>
 </template>
 
@@ -17,6 +25,8 @@ export default {
   name: 'CalendarMonthDayItem',
 
   props: {
+    staffCalendarList: [],
+
     day: {
       type: Object,
       required: true
@@ -30,12 +40,34 @@ export default {
     isToday: {
       type: Boolean,
       default: false
+    },
+    selectedDate: {
+      type: Object,
+      required: true
     }
+  },
+  data: {
+    schedule_date: String
   },
 
   computed: {
     label() {
       return dayjs(this.day.date).format('D')
+    },
+    selectedMonth() {
+      return this.selectedDate.format('M')
+    }
+  },
+  methods: {
+    getCalendarMonth(calendar_index) {
+      var str = this.staffCalendarList[calendar_index].schedule_date
+      var month = str.split("/")
+      return month[1]
+    },
+    getCalendarDay(calendar_index) {
+      var str = this.staffCalendarList[calendar_index].schedule_date
+      var day = str.split("/")
+      return day[0]
     }
   }
 }

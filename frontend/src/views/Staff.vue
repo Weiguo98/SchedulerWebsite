@@ -59,7 +59,7 @@
       title="Staff Calendar"
       ref="staffCalendar"
     >
-      <StaffCalendar />
+      <StaffCalendar/>
     </b-modal>
   </div>
 </template>

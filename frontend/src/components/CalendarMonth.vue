@@ -2,9 +2,11 @@
   <div class="calendar-month">
     <div class="calendar-month-header">
       <CalendarDateIndicator
+        :emp_name="staffCalendarList[1].emp_name"
         :selected-date="selectedDate"
         class="calendar-month-header-selected-month"
       />
+
 
       <CalendarDateSelector
         :current-date="today"
@@ -17,10 +19,12 @@
 
     <ol class="days-grid">
       <CalendarMonthDayItem
+        :staffCalendarList="staffCalendarList"
+        :selected-date="selectedDate"
+        :is-today="day.date === today"
         v-for="day in days"
         :key="day.date"
         :day="day"
-        :is-today="day.date === today"
       />
     </ol>
   </div>
@@ -40,6 +44,9 @@ dayjs.extend(weekOfYear)
 
 export default {
   name: 'CalendarMonth',
+  props: {
+    staffCalendarList: []
+  },
 
   components: {
     CalendarMonthDayItem,
