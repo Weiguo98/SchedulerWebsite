@@ -50,6 +50,9 @@
         </div>
       </div>
     </div>
+    <b-button v-on:click="showModal()">
+      Show staff Calendar
+    </b-button>
   </div>
 </template>
 <script>
@@ -91,15 +94,18 @@ export default {
           this.errMessage = error
         })
     },
-    filterMember: function (evt) {
+    filterMember: function(evt) {
       var val = evt.target.value
       if (val === 'all') {
         this.employees1 = this.copyEmployee
       } else {
-        this.employees1 = this.copyEmployee.filter(function (e) {
+        this.employees1 = this.copyEmployee.filter(function(e) {
           return e.emp_position === val
         })
       }
+    },
+    showModal: function() {
+      this.$refs.StaffCalendar.show()
     }
   },
   computed: {
