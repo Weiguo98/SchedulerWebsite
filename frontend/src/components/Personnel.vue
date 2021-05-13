@@ -17,98 +17,7 @@
       <div class="columns">19:00</div>
       <div class="columns">20:00</div>
       <div class="columns">21:00</div>
-      <!-- <b-col class="left"> </b-col>
-      <b-col class="left"> </b-col>
-      <b-col class="columns">9:00</b-col>
-      <b-col class="columns">10:00</b-col>
-      <b-col class="columns">9:00</b-col>
-      <b-col class="columns">10:00</b-col>
-      <b-col class="columns">9:00</b-col>
-      <b-col class="columns">10:00</b-col>
-      <b-col class="columns">9:00</b-col>
-      <b-col class="columns">10:00</b-col>
-      <b-col class="columns">9:00</b-col>
-      <b-col class="columns">10:00</b-col>
-      <b-col class="columns">9:00</b-col>
-      <b-col class="columns">10:00</b-col>
-      <b-col class="columns">10:00</b-col>
-      <b-col class="columns">9:00</b-col>
-      <b-col class="columns">10:00</b-col> -->
     </b-row>
-    <!-- <b-table-simple>
-      <thead>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th class="columns" colspan="2">7:00</th>
-        <th class="columns" colspan="2">8:00</th>
-        <th colspan="2">9:00</th>
-        <th colspan="2">10:00</th>
-        <th colspan="2">11:00</th>
-        <th colspan="2">12:00</th>
-        <th colspan="2">13:00</th>
-        <th colspan="2">14:00</th>
-        <th colspan="2">15:00</th>
-        <th colspan="2">16:00</th>
-        <th colspan="2">17:00</th>
-        <th colspan="2">18:00</th>
-        <th colspan="2">19:00</th>
-        <th colspan="2">20:00</th>
-        <th colspan="2">21:00</th>
-      </thead>
-      <b-tbody>
-         <tr
-          :id="
-            personnel.start_time +
-              '-' +
-              personnel.end_time +
-              '-' +
-              personnel.employee_id
-          "
-          v-for="personnel in filteredPersonnelList"
-          :key="personnel.page"
-          @click="info(personnel)"
-        >
-          <td id="name" md="1">{{ personnel.emp_name }}</td>
-          <td id="name" md="1">{{ personnel.emp_position }}</td>
-          <td id="col1" class="columns"></td>
-          <div class="timeline"></div> -->
-    <!-- <td id="col2"></td>
-          <td id="col3" class="columns"></td>
-          <td id="col4"></td>
-          <td id="col5" class="columns"></td>
-          <td id="col6"></td>
-          <td id="col7" class="columns"></td>
-          <td id="col8"></td>
-          <td id="col9" class="columns"></td>
-          <td id="col10"></td>
-          <td id="col11" class="columns"></td>
-          <td id="col12"></td>
-          <td id="col13" class="columns"></td>
-          <td id="col14"></td>
-          <td id="col15" class="columns"></td>
-          <td id="col16"></td>
-          <td id="col17" class="columns"></td>
-          <td id="col18"></td>
-          <td id="col19" class="columns"></td>
-          <td id="col20"></td>
-          <td id="col21" class="columns"></td>
-          <td id="col22"></td>
-          <td id="col23" class="columns1"></td>
-          <td id="col24"></td>
-          <td id="col25" class="columns"></td>
-          <td id="col26"></td>
-          <td id="col27" class="columns"></td>
-          <td id="col28"></td>
-          <td id="col29" class="columns"></td>
-          <td id="col30"></td>  
-        </tr>
-      </b-tbody>
-    </b-table-simple> -->
     <b-row
       :id="
         personnel.start_time +
@@ -320,9 +229,9 @@ export default {
         var stat_min = parseInt(this.filteredPersonnelList[i].start_minute)
         // the left space of the timeline
         var mar_left =
-          stat_min + 15 + (this.filteredPersonnelList[i].start_time - 7) * 61
+          stat_min + 15 + (this.filteredPersonnelList[i].start_time - 7) * 60
         // width1 means the left of timeline
-        var width1 = 61 - stat_min
+        var width1 = 60 - stat_min
         // width2 means the main timeline
         var width2 =
           this.filteredPersonnelList[i].end_time -
@@ -330,7 +239,7 @@ export default {
           1
         var width =
           width1 +
-          width2 * 61 +
+          width2 * 60.5 +
           this.filteredPersonnelList[i].end_minute +
           'px;'
         ttl.style =
@@ -362,6 +271,10 @@ export default {
 <style>
 .columns {
   width: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .left {
   width: 190px;
