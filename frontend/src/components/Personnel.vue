@@ -320,9 +320,9 @@ export default {
         var stat_min = parseInt(this.filteredPersonnelList[i].start_minute)
         // the left space of the timeline
         var mar_left =
-          stat_min + 15 + (this.filteredPersonnelList[i].start_time - 7) * 60
+          stat_min + 15 + (this.filteredPersonnelList[i].start_time - 7) * 61
         // width1 means the left of timeline
-        var width1 = 60 - stat_min
+        var width1 = 61 - stat_min
         // width2 means the main timeline
         var width2 =
           this.filteredPersonnelList[i].end_time -
@@ -330,7 +330,7 @@ export default {
           1
         var width =
           width1 +
-          width2 * 60 +
+          width2 * 61 +
           this.filteredPersonnelList[i].end_minute +
           'px;'
         ttl.style =
