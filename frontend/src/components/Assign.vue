@@ -322,13 +322,10 @@ export default {
         '59'
       ],
       dateVariants: null,
-      subdateVariants: null,
       timeStartVariants: null,
       minuteStartVariants: null,
-      subtimeStarttVariants: null,
       timeEndVariants: null,
       minuteEndVariants: null,
-      subtimeEndVariants: null,
       deVariants: [
         { value: null, text: '--select department--', disabled: true },
         'Cleaner',
@@ -336,10 +333,8 @@ export default {
         'Maintainer'
       ],
       departmentVariant: null,
-      subdepartmentVariant: null,
       emVariants: [],
       employeeVariant: null,
-      subemployeeVariant: null,
       zoVariants: [
         { value: null, text: '--select zone--', disabled: true },
         'Helix',
@@ -347,7 +342,6 @@ export default {
         'The Cannon'
       ],
       zoneVariant: null,
-      subzoneVariant: null,
       temp: []
     }
   },
@@ -419,42 +413,19 @@ export default {
       this.handleSubmit()
     },
     handleSubmit() {
-      /*
-      if (!this.checkSelectValidty()) {
-        return
-      }
-      */
-
-      this.subdateVariants = this.dateVariants
-      this.subtimeStarttVariants = this.timeStartVariants
-      this.subtimeEndVariants = this.timeEndVariants
-      this.subdepartmentVariant = this.departmentVariant
-      this.subemployeeVariant = this.employeeVariant
-      this.subzoneVariant = this.zoneVariant
-      // Need to add more attributes to employee. E.g. the test variable below
-      /*
-      var employee = {
-        name: this.subemployeeVariant,
-        date: this.subdateVariants,
-        starttime: this.subtimeStarttVariants,
-        endtime: this.subtimeEndVariants,
-        zone: this.zoneVariant
-      }
-      */
       var employee = {
         id: this.getEmployeeId(),
-        name: this.subemployeeVariant,
-        starttime: this.subtimeStarttVariants,
-        endtime: this.subtimeEndVariants,
-        emp_position: this.subdepartmentVariant,
+        name: this.employeeVariant,
+        starttime: this.timeStartVariants,
+        endtime: this.timeEndVariants,
+        emp_position: this.departmentVariant,
         date: this.dateDateVariants,
         area: this.zoneVariant,
         startmin: this.minuteStartVariants,
         endmin: this.minuteEndVariants
       }
-
+      console.log(employee)
       serverBus.$emit('employeeAssigned', employee)
-
       Api.post('/schedule', employee)
         .then(response => {
           this.temp.push(response.data)
@@ -474,13 +445,9 @@ export default {
     select_mail() {
       var temp = this.employeeVariant
       var selemail = null
-      // console.log('first')
-      // var selemail = [{ text: null, disabled: true }]
-      // console.log(this.employees.rowCount)
       for (var i = 0; i < this.personnelList.length; i++) {
         if (this.personnelList[i].emp_name === temp) {
           selemail = this.personnelList[i].emp_email
-          // console.log(this.employees.rows[i].employee_name)
           break
         }
       }
@@ -489,13 +456,9 @@ export default {
     select_tel() {
       var temp = this.employeeVariant
       var seletel = null
-      // console.log('first')
-      // var selemail = [{ text: null, disabled: true }]
-      // console.log(this.employees.rowCount)
       for (var i = 0; i < this.personnelList.length; i++) {
         if (this.personnelList[i].emp_name === temp) {
           seletel = this.personnelList[i].emp_phone
-          // console.log(this.employees.rows[i].employee_name)
           break
         }
       }
