@@ -1,6 +1,41 @@
 <template>
   <div>
-    <b-table-simple>
+    <b-row>
+      <div class="left"></div>
+      <div class="columns">7:00</div>
+      <div class="columns">8:00</div>
+      <div class="columns">9:00</div>
+      <div class="columns">10:00</div>
+      <div class="columns">11:00</div>
+      <div class="columns">12:00</div>
+      <div class="columns">13:00</div>
+      <div class="columns">14:00</div>
+      <div class="columns">15:00</div>
+      <div class="columns">16:00</div>
+      <div class="columns">17:00</div>
+      <div class="columns">18:00</div>
+      <div class="columns">19:00</div>
+      <div class="columns">20:00</div>
+      <div class="columns">21:00</div>
+      <!-- <b-col class="left"> </b-col>
+      <b-col class="left"> </b-col>
+      <b-col class="columns">9:00</b-col>
+      <b-col class="columns">10:00</b-col>
+      <b-col class="columns">9:00</b-col>
+      <b-col class="columns">10:00</b-col>
+      <b-col class="columns">9:00</b-col>
+      <b-col class="columns">10:00</b-col>
+      <b-col class="columns">9:00</b-col>
+      <b-col class="columns">10:00</b-col>
+      <b-col class="columns">9:00</b-col>
+      <b-col class="columns">10:00</b-col>
+      <b-col class="columns">9:00</b-col>
+      <b-col class="columns">10:00</b-col>
+      <b-col class="columns">10:00</b-col>
+      <b-col class="columns">9:00</b-col>
+      <b-col class="columns">10:00</b-col> -->
+    </b-row>
+    <!-- <b-table-simple>
       <thead>
         <th></th>
         <th></th>
@@ -26,7 +61,7 @@
         <th colspan="2">21:00</th>
       </thead>
       <b-tbody>
-        <!-- <tr
+         <tr
           :id="
             personnel.start_time +
               '-' +
@@ -42,7 +77,7 @@
           <td id="name" md="1">{{ personnel.emp_position }}</td>
           <td id="col1" class="columns"></td>
           <div class="timeline"></div> -->
-        <!-- <td id="col2"></td>
+    <!-- <td id="col2"></td>
           <td id="col3" class="columns"></td>
           <td id="col4"></td>
           <td id="col5" class="columns"></td>
@@ -71,9 +106,9 @@
           <td id="col28"></td>
           <td id="col29" class="columns"></td>
           <td id="col30"></td>  
-        </tr>-->
+        </tr>
       </b-tbody>
-    </b-table-simple>
+    </b-table-simple> -->
     <b-row
       :id="
         personnel.start_time +
@@ -89,7 +124,18 @@
       <b-col cols="14" class="name"> {{ personnel.emp_name }}</b-col
       >|
       <b-col cols="14" class="name"> {{ personnel.emp_position }}</b-col>
-      <div class="timeline"></div>
+      <div
+        class="timeline"
+        v-b-popover.hover.right="
+          personnel.start_time +
+            ':' +
+            personnel.start_minute +
+            '-' +
+            personnel.end_time +
+            ':' +
+            personnel.end_minute
+        "
+      ></div>
     </b-row>
     <b-modal
       v-model="delete_e"
@@ -266,18 +312,15 @@ export default {
             '-' +
             this.filteredPersonnelList[i].employee_id
         )
-        // const temp1 = row.children[0]
-        // temp1.style = 'background-color: #789000'
 
         // get the timeline component
         const ttl = row.children[2]
-        // ttl.style = 'background-color: #C45891; width:55px'
 
         //stat_min means startminutes
         var stat_min = parseInt(this.filteredPersonnelList[i].start_minute)
         // the left space of the timeline
         var mar_left =
-          stat_min + 10 + (this.filteredPersonnelList[i].start_time - 7) * 60
+          stat_min + 15 + (this.filteredPersonnelList[i].start_time - 7) * 60
         // width1 means the left of timeline
         var width1 = 60 - stat_min
         // width2 means the main timeline
@@ -296,37 +339,7 @@ export default {
           'margin-left:' +
           mar_left.toString() +
           'px;'
-        console.log(ttl.style)
-
-        // 'start' means the column id of start hour
-        // var start = (this.filteredPersonnelList[i].start_time - 5.5) * 2
-        // // var end = (this.filteredPersonnelList[i].end_time - 5.5) * 2
-        // // console.log(start)
-        // // console.log(end)
-        // const scol1 = row.children[start]
-        // const scol2 = row.children[start + 1]
-        // var temp = parseInt(this.filteredPersonnelList[i].start_minute)
-        // var width1 = 60 - temp
-        // // console.log(this.filteredPersonnelList[i].start_minute)
-        // // console.log(width)
-        // var width2 = 60 - width1
-        // scol1.style = 'background-color: #C45800'
-        // scol2.style = 'background-color: #C45891'
-        // scol2.width = width1 + 'px'
-        // scol1.width = width2 + 'px'
-        // console.log(this.filteredPersonnelList[i].emp_name)
-        // console.log(scol1.width)
-        // console.log(scol2.width)
-
-        // const scol3 = row.children[23]
-        // scol3.style = 'background-color: #C40000'
-        // scol3.width = 0.7
-        // for (var x = start + 2; x < end; x++) {
-        //   const col = row.children[x]
-        //   col.style = 'background-color: #C45891'
-        //   // through the width to change the length of column
-        //   // col.width = 20 + 'px'
-        // }
+        // console.log(ttl.style.width)
       }
     },
     getSelectedDate: function() {
@@ -348,8 +361,10 @@ export default {
 
 <style>
 .columns {
-  border-right: 1px solid white;
-  border-left: 1px solid white;
+  width: 60px;
+}
+.left {
+  width: 190px;
 }
 .name {
   width: 85px;
@@ -360,7 +375,6 @@ export default {
   background-color: #c40000;
   margin-left: 15px;
 }
-
 /* .unbreakable td {
   width: 100% !important;
 } */
