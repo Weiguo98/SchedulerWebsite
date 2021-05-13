@@ -221,6 +221,7 @@ export default {
             '-' +
             this.filteredPersonnelList[i].employee_id
         )
+        console.log(this.filteredPersonnelList.length)
 
         // get the timeline component
         const ttl = row.children[2]
