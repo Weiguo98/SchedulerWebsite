@@ -8,13 +8,21 @@
   >
     <span>{{ label }}</span>
 
-    <div v-for="staffCalendar in staffCalendarList"
-    :key="staffCalendar.page">
-    <div v-if="getCalendarDay(1) == label && getCalendarMonth(1) == selectedMonth">
-      {{staffCalendar.schedule_date}}
+    <div
+      v-for="staffCalendar in this.staffCalendarList"
+      :key="staffCalendar.page"
+    >
+      <div
+        v-if="
+          getCalendarDay(staffCalendar) == label &&
+          getCalendarMonth(staffCalendar) == selectedMonth &&
+          day.isCurrentMonth
+        "
+        id="dayItem"
+      >
+        {{ staffCalendar.start_time }} - {{ staffCalendar.end_time }}
+      </div>
     </div>
-    </div>
-
   </li>
 </template>
 
@@ -23,10 +31,12 @@ import dayjs from 'dayjs'
 
 export default {
   name: 'CalendarMonthDayItem',
-
+  data: () => ({
+    tempDays: [],
+    tempMonth: ''
+  }),
   props: {
     staffCalendarList: [],
-
     day: {
       type: Object,
       required: true
@@ -46,9 +56,6 @@ export default {
       required: true
     }
   },
-  data: {
-    schedule_date: String
-  },
 
   computed: {
     label() {
@@ -60,14 +67,20 @@ export default {
   },
   methods: {
     getCalendarMonth(calendar_index) {
-      var str = this.staffCalendarList[calendar_index].schedule_date
-      var month = str.split("/")
-      return month[1]
+      if (calendar_index.schedule_date != undefined) {
+        var str = calendar_index.schedule_date
+        var month = str.split('/')
+        return month[1]
+      }
     },
     getCalendarDay(calendar_index) {
-      var str = this.staffCalendarList[calendar_index].schedule_date
-      var day = str.split("/")
-      return day[0]
+      if (calendar_index.schedule_date != undefined) {
+        var str = calendar_index.schedule_date
+        console.log(str)
+        var day = str.split('/')
+        console.log(day)
+        return day[0]
+      }
     }
   }
 }
@@ -106,5 +119,10 @@ export default {
   color: #fff;
   border-radius: 9999px;
   background-color: var(--grey-800);
+}
+
+#dayItem {
+  font-size: 14px;
+  color: blue;
 }
 </style>

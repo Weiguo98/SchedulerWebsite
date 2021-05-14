@@ -7,7 +7,6 @@
         class="calendar-month-header-selected-month"
       />
 
-
       <CalendarDateSelector
         :current-date="today"
         :selected-date="selectedDate"
@@ -121,8 +120,9 @@ export default {
         (day, index) => {
           return {
             date: dayjs(
-              `${previousMonth.year()}-${previousMonth.month() +
-                1}-${previousMonthLastMondayDayOfMonth + index}`
+              `${previousMonth.year()}-${previousMonth.month() + 1}-${
+                previousMonthLastMondayDayOfMonth + index
+              }`
             ).format('YYYY-MM-DD'),
             isCurrentMonth: false
           }

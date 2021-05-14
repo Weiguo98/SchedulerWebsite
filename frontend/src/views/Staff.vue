@@ -37,6 +37,7 @@
                 lass="listid"
                 v-for="employee in filteredList"
                 :key="employee"
+                @click="info(employee)"
               >
                 <th scope="row">{{ employee.emp_id }}</th>
                 <td>{{ employee.emp_name }}</td>
@@ -50,16 +51,15 @@
         </div>
       </div>
     </div>
-    <b-button v-b-modal.staffCalendar_ID>
-      Show staff Calendar
-    </b-button>
     <b-modal
+      v-model="emp_calendar_visible"
       id="staffCalendar_ID"
       size="xl"
       title="Staff Calendar"
       ref="staffCalendar"
     >
-      <StaffCalendar/>
+      <StaffCalendar :emp_id="this.emp_calendar.content.emp_id">
+      </StaffCalendar>
     </b-modal>
   </div>
 </template>
@@ -83,7 +83,9 @@ export default {
 
       employees1: [],
       copyEmployee: [],
-      sets: [1, 2, 3, 4, 5]
+      sets: [1, 2, 3, 4, 5],
+      emp_calendar: { content: '' },
+      emp_calendar_visible: false
     }
   },
   components: {
@@ -95,31 +97,35 @@ export default {
   methods: {
     getAllStaff1() {
       Api.get('/allStaff')
-        .then(response => {
+        .then((response) => {
           this.employees1 = response.data
           this.copyEmployee = response.data
           console.log('read employee ok')
           console.log(this.employees1)
           console.log(this.employees1.length)
         })
-        .catch(error => {
+        .catch((error) => {
           this.errMessage = error
         })
     },
-    filterMember: function(evt) {
+    filterMember: function (evt) {
       var val = evt.target.value
       if (val === 'all') {
         this.employees1 = this.copyEmployee
       } else {
-        this.employees1 = this.copyEmployee.filter(function(e) {
+        this.employees1 = this.copyEmployee.filter(function (e) {
           return e.emp_position === val
         })
       }
+    },
+    info(index) {
+      this.emp_calendar.content = index
+      this.emp_calendar_visible = true
     }
   },
   computed: {
     filteredList() {
-      return this.employees1.filter(employee => {
+      return this.employees1.filter((employee) => {
         return employee.emp_name
           .toLowerCase()
           .includes(this.search.toLowerCase())

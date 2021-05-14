@@ -1,9 +1,7 @@
 <template>
-<div>
-  <CalendarMonth
-  :staffCalendarList="this.staffCalendarList"
-   />
-</div>
+  <div>
+    <CalendarMonth :staffCalendarList="this.staffCalendarList" />
+  </div>
 </template>
 
 <script>
@@ -12,6 +10,9 @@ import CalendarMonth from '../components/CalendarMonth'
 
 export default {
   name: 'StaffCalendar',
+  props: {
+    emp_id: Number
+  },
   data: () => ({
     staffCalendarList: [
       {
@@ -20,7 +21,7 @@ export default {
           employee_id: '',
           start_time: '',
           end_time: '',
-          schedule_date: '',
+          schedule_date: ''
         }
       }
     ]
@@ -28,23 +29,23 @@ export default {
   components: {
     CalendarMonth
   },
-  created () {
+  created() {
     this.getStaffCalendar()
   },
   methods: {
     getStaffCalendar() {
       Api.get('/staffCalender', {
         params: {
-          ID: 2
+          ID: this.emp_id
         }
       })
-        .then(response => {
+        .then((response) => {
           for (var i = 0; i < response.data.length; i++) {
             this.staffCalendarList.push(response.data[i])
           }
           this.staffCalendarList()
         })
-        .catch(error => {
+        .catch((error) => {
           this.errMessage = error
         })
     }
