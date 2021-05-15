@@ -53,6 +53,7 @@
     </div>
     <b-modal
       v-model="emp_calendar_visible"
+      hide-footer="True"
       id="staffCalendar_ID"
       size="xl"
       title="Staff Calendar"

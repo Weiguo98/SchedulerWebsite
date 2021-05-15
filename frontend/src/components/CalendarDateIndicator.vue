@@ -1,7 +1,15 @@
 <template>
   <div class="calendar-date-indicator">{{ selectedMonth }}
-    <div>
-      Employee: {{emp_name}}
+    <div id="calendar-header">
+      <div>
+        Employee: {{emp_name}}
+      </div>
+      <div>
+        Remaining Hours: 10 h (dummy)
+      </div>
+      <div>
+        Maximum Hours: 120 h (dummy)
+      </div>
     </div>
   </div>
 </template>
@@ -25,6 +33,11 @@ export default {
 </script>
 
 <style scoped>
+
+#calendar-header {
+  font-size: 16px;
+}
+
 .calendar-date-indicator {
   font-size: 24px;
   font-weight: 600;

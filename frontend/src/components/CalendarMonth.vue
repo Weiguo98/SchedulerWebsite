@@ -1,11 +1,13 @@
 <template>
   <div class="calendar-month">
     <div class="calendar-month-header">
-      <CalendarDateIndicator
+      <div v-if="staffCalendarList[1].emp_name != ''">
+        <CalendarDateIndicator
         :emp_name="staffCalendarList[1].emp_name"
         :selected-date="selectedDate"
         class="calendar-month-header-selected-month"
       />
+      </div>
 
       <CalendarDateSelector
         :current-date="today"
