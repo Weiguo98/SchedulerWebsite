@@ -76,9 +76,7 @@ export default {
     getCalendarDay(calendar_index) {
       if (calendar_index.schedule_date != undefined) {
         var str = calendar_index.schedule_date
-        console.log(str)
         var day = str.split('/')
-        console.log(day)
         return day[0]
       }
     }

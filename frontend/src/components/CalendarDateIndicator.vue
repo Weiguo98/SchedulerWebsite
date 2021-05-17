@@ -1,34 +1,62 @@
 <template>
-  <div class="calendar-date-indicator">{{ selectedMonth }}
+  <div class="calendar-date-indicator">
+    {{ selectedMonth }}
     <div id="calendar-header">
+      <div>Employee: {{ emp_name }}</div>
       <div>
-        Employee: {{emp_name}}
+        Remaining Hours:  {{this.totalWorkingHours != 0 ? this.emp_max - this.totalWorkingHours : ""}} h
       </div>
       <div>
-        Remaining Hours: 10 h (dummy)
-      </div>
-      <div>
-        Maximum Hours: 120 h (dummy)
+        Maximum Hours: {{this.emp_max}} h
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { Api } from '@/Api'
+
 export default {
   props: {
     emp_name: String,
+    emp_id: Number,
+    emp_max: Number,
     selectedDate: {
       type: Object,
       required: true
     }
   },
-
+  data() {
+    return {
+      totalWorkingHours: 0,
+    }
+  },
   computed: {
     selectedMonth() {
       return this.selectedDate.format('MMMM YYYY')
     }
-  }
+  },
+  methods: {
+    getRemainingHours() {
+      Api.get('/totalWorkingHours', {
+        params: {
+          ID: this.emp_id,
+          startDate: "01/05/2021",
+          endDate: "30/05/2021",
+        }
+      })
+        .then((response) => {
+          this.totalWorkingHours = response.data[0].sum
+        })
+        .catch((error) => {
+          console.log(error)
+          this.errMessage = error
+        })
+    }
+  },
+  mounted() {
+    this.getRemainingHours()
+  },
 }
 </script>
 

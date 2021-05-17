@@ -4,6 +4,8 @@
       <div v-if="staffCalendarList[1].emp_name != ''">
         <CalendarDateIndicator
         :emp_name="staffCalendarList[1].emp_name"
+        :emp_id="staffCalendarList[1].employee_id"
+        :emp_max="staffCalendarList[1].emp_working_hours"
         :selected-date="selectedDate"
         class="calendar-month-header-selected-month"
       />

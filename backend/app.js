@@ -48,7 +48,21 @@ app.get('/allStaff', (req, response) => {
 
 
 app.get('/staffCalender', (req, response) => {
-    const calenderQuery = "SELECT schedule.start_time, schedule.end_time, schedule.schedule_date, schedule.employee_id, staff1.emp_name FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE staff1.emp_id =" + req.query.ID.toString(); 
+    const calenderQuery = "SELECT schedule.start_time, schedule.end_time, schedule.schedule_date, schedule.employee_id, staff1.emp_name, staff1.emp_working_hours FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE staff1.emp_id =" + req.query.ID.toString(); 
+    dbclient.query(calenderQuery, (err, res) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        response.status(200).json(res.rows)
+        /* for (let row of res.rows) {
+            console.log(row);
+        } */
+    });
+});
+
+app.get('/totalWorkingHours', (req, response) => {
+    const calenderQuery = "SELECT SUM(schedule.end_time - schedule.start_time) FROM schedule WHERE TO_DATE(cast(schedule.schedule_date AS TEXT), 'DD/MM/YYYY') >= TO_DATE(cast(" + req.query.startDate.toString() + "AS TEXT), 'DD/MM/YYYY') AND TO_DATE(cast(schedule.schedule_date AS TEXT), 'DD/MM/YYYY') >= TO_DATE(cast(" + req.query.endDate.toString() +  "AS TEXT), 'DD/MM/YYYY') AND schedule.employee_id =" + req.query.ID.toString(); 
     dbclient.query(calenderQuery, (err, res) => {
         if (err) {
             console.error(err);

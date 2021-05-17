@@ -21,7 +21,8 @@ export default {
           employee_id: '',
           start_time: '',
           end_time: '',
-          schedule_date: ''
+          schedule_date: '',
+          emp_working_hours: '',
         }
       }
     ]

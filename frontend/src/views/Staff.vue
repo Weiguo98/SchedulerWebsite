@@ -101,9 +101,6 @@ export default {
         .then((response) => {
           this.employees1 = response.data
           this.copyEmployee = response.data
-          console.log('read employee ok')
-          console.log(this.employees1)
-          console.log(this.employees1.length)
         })
         .catch((error) => {
           this.errMessage = error
