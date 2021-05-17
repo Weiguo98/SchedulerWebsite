@@ -13,6 +13,7 @@
     "trailingComma": "none"
   },
   "dependencies": {
+    "@vue/compiler-sfc": "^3.0.11",
     "@vue/eslint-config-prettier": "^6.0.0",
     "axios": "^0.21.1",
     "backend-frontend": "file:..",
@@ -24,6 +25,7 @@
     "lint": "^0.7.0",
     "sass-loader": "^10.1.1",
     "vue": "^2.6.10",
+    "vue-fab": "^2.3.1",
     "vue-functional-calendar": "^2.9.4",
     "vue-router": "^3.1.2"
   },
