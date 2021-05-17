@@ -2,7 +2,7 @@
   <div>
     <b-row>
       <div class="left"></div>
-      <div class="columns">7:00</div>
+      <div class="columns_start">7:00</div>
       <div class="columns">8:00</div>
       <div class="columns">9:00</div>
       <div class="columns">10:00</div>
@@ -147,6 +147,10 @@ export default {
       }
       this.personnelList.push(object)
       this.filteredPersonnelList.push(object)
+      console.log('personnel length')
+      console.log(this.personnelList.length)
+      console.log('filtered length')
+      console.log(this.filteredPersonnelList.length)
     })
   },
   methods: {
@@ -213,6 +217,8 @@ export default {
       }
     },
     fillInTime: function() {
+      console.log('fill in time:')
+      console.log(this.filteredPersonnelList.length)
       for (i = 0; i < this.filteredPersonnelList.length; i++) {
         var row = document.getElementById(
           this.filteredPersonnelList[i].start_time +
@@ -221,18 +227,19 @@ export default {
             '-' +
             this.filteredPersonnelList[i].employee_id
         )
-        console.log(this.filteredPersonnelList.length)
 
         // get the timeline component
         const ttl = row.children[2]
-
+        // console.log(ttl.style)
         //stat_min means startminutes
-        var stat_min = parseInt(this.filteredPersonnelList[i].start_minute)
+        var start_min_int = parseInt(this.filteredPersonnelList[i].start_minute)
         // the left space of the timeline
         var mar_left =
-          stat_min + 15 + (this.filteredPersonnelList[i].start_time - 7) * 60
+          start_min_int +
+          15 +
+          (this.filteredPersonnelList[i].start_time - 7) * 60
         // width1 means the left of timeline
-        var width1 = 60 - stat_min
+        var width1 = 60 - start_min_int
         // width2 means the main timeline
         var width2 =
           this.filteredPersonnelList[i].end_time -
@@ -241,15 +248,17 @@ export default {
         var width =
           width1 +
           width2 * 60.5 +
-          this.filteredPersonnelList[i].end_minute +
-          'px;'
+          parseInt(this.filteredPersonnelList[i].end_minute)
         ttl.style =
           'background-color: #C45891; width:' +
           width.toString() +
-          'margin-left:' +
+          'px;margin-left:' +
           mar_left.toString() +
           'px;'
-        // console.log(ttl.style.width)
+        console.log('width1:' + width1.toString())
+        console.log('width2:' + width2.toString())
+        console.log('width:' + width.toString())
+        console.log('mar-left:' + mar_left.toString())
       }
     },
     getSelectedDate: function() {
@@ -270,6 +279,15 @@ export default {
 </script>
 
 <style>
+.columns_start {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 .columns {
   width: 60px;
   padding-left: 10px;

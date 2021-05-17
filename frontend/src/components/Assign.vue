@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!-- <b-container fluid>
-      <div class ="mt-3">
-      Assigned Endtime:{{subtimeEndVariants}}
-      Assigned Starttime:{{subtimeStarttVariants}}
-      Department:{{subdepartmentVariant}}
-      Employee: {{subemployeeVariant}}
-      Zone:{{subzoneVariant}}
-      </div>
-    </b-container> -->
     <b-modal
       v-model="this.show"
       title="Assign employees"
@@ -18,16 +9,6 @@
       @ok="handleOK"
     >
       <b-container fluid>
-        <!-- <b-row class="mb-1">
-          <b-col cols="3">Date</b-col>
-          <b-col>
-            {{ dateDateVariants }}
-            <b-form-select  v-model="dateVariants" :options="dateDateVariants">
-            </b-form-select>
-          </b-col>
-          <b-col> </b-col>
-        </b-row>-->
-
         <b-row>
           <div class="space"></div>
         </b-row>
@@ -156,8 +137,6 @@ export default {
       employees: '',
       show: false,
       delete_emp: false,
-      // variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
-      // assign medal variants
       dateDateVariants: today,
       timeStVariants: [
         { value: null, text: 'start time', disabled: true },

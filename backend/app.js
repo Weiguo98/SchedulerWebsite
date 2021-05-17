@@ -74,7 +74,7 @@ app.post('/schedule', function (req, res, next) {
         } else {
             console.log('database choose eid success');
             console.log(rst.rows[0].emp_id);
-            console.log(startmin)
+            // console.log(startmin)
             var id = rst.rows[0].emp_id;
             var sql2 = `INSERT INTO schedule (employee_id,start_time,end_time,schedule_date,area,start_minute,end_minute) values('${id}',${starttime},${endtime},'${req.body.date}','${req.body.area}',${startmin},${endmin});`;
             cenct.connectPgPool(sql2, function (isErr, rst) {
