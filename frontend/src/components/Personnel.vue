@@ -147,10 +147,10 @@ export default {
       }
       this.personnelList.push(object)
       this.filteredPersonnelList.push(object)
-      console.log('personnel length')
-      console.log(this.personnelList.length)
-      console.log('filtered length')
-      console.log(this.filteredPersonnelList.length)
+      // console.log('personnel length')
+      // console.log(this.personnelList.length)
+      // console.log('filtered length')
+      // console.log(this.filteredPersonnelList.length)
     })
   },
   methods: {
@@ -255,10 +255,10 @@ export default {
           'px;margin-left:' +
           mar_left.toString() +
           'px;'
-        console.log('width1:' + width1.toString())
-        console.log('width2:' + width2.toString())
-        console.log('width:' + width.toString())
-        console.log('mar-left:' + mar_left.toString())
+        // console.log('width1:' + width1.toString())
+        // console.log('width2:' + width2.toString())
+        // console.log('width:' + width.toString())
+        // console.log('mar-left:' + mar_left.toString())
       }
     },
     getSelectedDate: function() {
