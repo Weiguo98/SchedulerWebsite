@@ -46,7 +46,7 @@ app.get('/allStaff', (req, response) => {
     });
 });
 
-const scheduleQuery = "SELECT schedule.start_time, schedule.end_time, schedule.area, schedule.schedule_date, schedule.employee_id, staff1.emp_name, staff1.emp_position FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE schedule.schedule_date != ''";
+const scheduleQuery = "SELECT schedule.start_time, schedule.end_time, schedule.area, schedule.schedule_date, schedule.employee_id, schedule.start_minute, schedule.end_minute, staff1.emp_name, staff1.emp_position FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE schedule.schedule_date != ''";
 app.get('/schedule', (req, response) => {
     dbclient.query(scheduleQuery, (err, res) => {
         if (err) {
@@ -66,14 +66,17 @@ app.post('/schedule', function (req, res, next) {
     var sql = `SELECT emp_id from staff1 where emp_name ='${name}'`;
     let starttime = parseInt(req.body.starttime);
     let endtime = parseInt(req.body.endtime);
+    let startmin = parseInt(req.body.startmin);
+    let endmin = parseInt(req.body.endmin);
     cenct.connectPgPool(sql, function (isErr, rst) {
         if (isErr) {
             console.log('database choose eid fail');
         } else {
             console.log('database choose eid success');
             console.log(rst.rows[0].emp_id);
+            // console.log(startmin)
             var id = rst.rows[0].emp_id;
-            var sql2 = `INSERT INTO schedule (employee_id,start_time,end_time,schedule_date,area) values('${id}',${starttime},${endtime},'${req.body.date}','${req.body.area}');`;
+            var sql2 = `INSERT INTO schedule (employee_id,start_time,end_time,schedule_date,area,start_minute,end_minute) values('${id}',${starttime},${endtime},'${req.body.date}','${req.body.area}',${startmin},${endmin});`;
             cenct.connectPgPool(sql2, function (isErr, rst) {
                 if (isErr) {
                     console.log('database insert eid fail');
@@ -98,7 +101,7 @@ app.post('/del', function (req, res, next) {
             // console.log(rst);
             var id = rst.rows[0].emp_id;
             console.log(req.body.date)
-            var sql2 = `delete from schedule where employee_id = '${id} 'and schedule_date ='${req.body.date}'`;
+            var sql2 = `delete from schedule where employee_id = '${id} 'and schedule_date ='${req.body.date}' and start_time='${req.body.start_time}'and end_time='${req.body.end_time}' `;
             cenct.connectPgPool(sql2, function (isErr, rst) {
                 if (isErr) {
                     console.log('database delete fail');

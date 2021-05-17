@@ -1,14 +1,5 @@
 <template>
   <div>
-    <!-- <b-container fluid>
-      <div class ="mt-3">
-      Assigned Endtime:{{subtimeEndVariants}}
-      Assigned Starttime:{{subtimeStarttVariants}}
-      Department:{{subdepartmentVariant}}
-      Employee: {{subemployeeVariant}}
-      Zone:{{subzoneVariant}}
-      </div>
-    </b-container> -->
     <b-modal
       v-model="this.show"
       title="Assign employees"
@@ -18,34 +9,40 @@
       @ok="handleOK"
     >
       <b-container fluid>
-        <b-row class="mb-1">
-          <b-col cols="3">Date</b-col>
-          <b-col>
-            {{ dateDateVariants }}
-            <!-- <b-form-select  v-model="dateVariants" :options="dateDateVariants">
-            </b-form-select> -->
-          </b-col>
-          <b-col> </b-col>
-        </b-row>
-
         <b-row>
           <div class="space"></div>
         </b-row>
         <b-row class="mb-1">
-          <!-- TODO: try with time select or this is okay whatever -->
           <b-col cols="3">Planning work hours</b-col>
-          <b-col>
+
+          <b-col class="form_sel">
             <b-form-select
               v-model="timeStartVariants"
               :options="timeStVariants"
             >
+            </b-form-select> </b-col
+          >:
+          <b-col>
+            <b-form-select
+              v-model="minuteStartVariants"
+              :options="minuteStVariants"
+            >
             </b-form-select>
           </b-col>
+
+          <b-col> </b-col>
           <b-col>
             <b-form-select
               v-model="timeEndVariants"
               :options="timeEnVariants"
-            ></b-form-select>
+            ></b-form-select> </b-col
+          >:
+          <b-col>
+            <b-form-select
+              v-model="minuteEndVariants"
+              :options="minuteEnVariants"
+            >
+            </b-form-select>
           </b-col>
         </b-row>
         <b-row>
@@ -140,51 +137,174 @@ export default {
       employees: '',
       show: false,
       delete_emp: false,
-      // variants: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'light', 'dark'],
-      // assign medal variants
       dateDateVariants: today,
       timeStVariants: [
-        { value: null, text: '--select start time--', disabled: true },
-        '7.00',
-        '8.00',
-        '9.00',
-        '10.00',
-        '11.00',
-        '12.00',
-        '13.00',
-        '14.00',
-        '15.00',
-        '16.00',
-        '17.00',
-        '18.00',
-        '19.00',
-        '20.00',
-        '21.00'
+        { value: null, text: 'start time', disabled: true },
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20',
+        '21'
+      ],
+      minuteStVariants: [
+        { value: null, text: 'start minute', disabled: true },
+        '00',
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20',
+        '21',
+        '22',
+        '23',
+        '24',
+        '25',
+        '26',
+        '27',
+        '28',
+        '29',
+        '30',
+        '31',
+        '32',
+        '33',
+        '34',
+        '35',
+        '36',
+        '37',
+        '38',
+        '39',
+        '40',
+        '41',
+        '42',
+        '43',
+        '44',
+        '45',
+        '46',
+        '47',
+        '48',
+        '49',
+        '50',
+        '51',
+        '52',
+        '53',
+        '54',
+        '55',
+        '56',
+        '57',
+        '58',
+        '59'
       ],
       timeEnVariants: [
-        { value: null, text: '--select end time--', disabled: true },
-        '7.00',
-        '8.00',
-        '9.00',
-        '10.00',
-        '11.00',
-        '12.00',
-        '13.00',
-        '14.00',
-        '15.00',
-        '16.00',
-        '17.00',
-        '18.00',
-        '19.00',
-        '20.00',
-        '21.00'
+        { value: null, text: 'end time', disabled: true },
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20',
+        '21'
+      ],
+      minuteEnVariants: [
+        { value: null, text: 'end minute', disabled: true },
+        '00',
+        '01',
+        '02',
+        '03',
+        '04',
+        '05',
+        '06',
+        '07',
+        '08',
+        '09',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+        '15',
+        '16',
+        '17',
+        '18',
+        '19',
+        '20',
+        '21',
+        '22',
+        '23',
+        '24',
+        '25',
+        '26',
+        '27',
+        '28',
+        '29',
+        '30',
+        '31',
+        '32',
+        '33',
+        '34',
+        '35',
+        '36',
+        '37',
+        '38',
+        '39',
+        '40',
+        '41',
+        '42',
+        '43',
+        '44',
+        '45',
+        '46',
+        '47',
+        '48',
+        '49',
+        '50',
+        '51',
+        '52',
+        '53',
+        '54',
+        '55',
+        '56',
+        '57',
+        '58',
+        '59'
       ],
       dateVariants: null,
-      subdateVariants: null,
       timeStartVariants: null,
-      subtimeStarttVariants: null,
+      minuteStartVariants: null,
       timeEndVariants: null,
-      subtimeEndVariants: null,
+      minuteEndVariants: null,
       deVariants: [
         { value: null, text: '--select department--', disabled: true },
         'Cleaner',
@@ -192,10 +312,8 @@ export default {
         'Maintainer'
       ],
       departmentVariant: null,
-      subdepartmentVariant: null,
       emVariants: [],
       employeeVariant: null,
-      subemployeeVariant: null,
       zoVariants: [
         { value: null, text: '--select zone--', disabled: true },
         'Helix',
@@ -203,7 +321,6 @@ export default {
         'The Cannon'
       ],
       zoneVariant: null,
-      subzoneVariant: null,
       temp: []
     }
   },
@@ -266,6 +383,8 @@ export default {
       this.zoneVariant = null
       this.employeeVariant = null
       this.selemail = null
+      this.minuteStartVariants = null
+      this.minuteEndVariants = null
     },
     handleOK() {
       // bvModalEvt.preventDefault()
@@ -273,40 +392,19 @@ export default {
       this.handleSubmit()
     },
     handleSubmit() {
-      /*
-      if (!this.checkSelectValidty()) {
-        return
-      }
-      */
-
-      this.subdateVariants = this.dateVariants
-      this.subtimeStarttVariants = this.timeStartVariants
-      this.subtimeEndVariants = this.timeEndVariants
-      this.subdepartmentVariant = this.departmentVariant
-      this.subemployeeVariant = this.employeeVariant
-      this.subzoneVariant = this.zoneVariant
-      // Need to add more attributes to employee. E.g. the test variable below
-      /*
-      var employee = {
-        name: this.subemployeeVariant,
-        date: this.subdateVariants,
-        starttime: this.subtimeStarttVariants,
-        endtime: this.subtimeEndVariants,
-        zone: this.zoneVariant
-      }
-      */
       var employee = {
         id: this.getEmployeeId(),
-        name: this.subemployeeVariant,
-        starttime: this.subtimeStarttVariants,
-        endtime: this.subtimeEndVariants,
-        emp_position: this.subdepartmentVariant,
+        name: this.employeeVariant,
+        starttime: this.timeStartVariants,
+        endtime: this.timeEndVariants,
+        emp_position: this.departmentVariant,
         date: this.dateDateVariants,
-        area: this.zoneVariant
+        area: this.zoneVariant,
+        startmin: this.minuteStartVariants,
+        endmin: this.minuteEndVariants
       }
-
+      console.log(employee)
       serverBus.$emit('employeeAssigned', employee)
-
       Api.post('/schedule', employee)
         .then(response => {
           this.temp.push(response.data)
@@ -326,13 +424,9 @@ export default {
     select_mail() {
       var temp = this.employeeVariant
       var selemail = null
-      // console.log('first')
-      // var selemail = [{ text: null, disabled: true }]
-      // console.log(this.employees.rowCount)
       for (var i = 0; i < this.personnelList.length; i++) {
         if (this.personnelList[i].emp_name === temp) {
           selemail = this.personnelList[i].emp_email
-          // console.log(this.employees.rows[i].employee_name)
           break
         }
       }
@@ -341,13 +435,9 @@ export default {
     select_tel() {
       var temp = this.employeeVariant
       var seletel = null
-      // console.log('first')
-      // var selemail = [{ text: null, disabled: true }]
-      // console.log(this.employees.rowCount)
       for (var i = 0; i < this.personnelList.length; i++) {
         if (this.personnelList[i].emp_name === temp) {
           seletel = this.personnelList[i].emp_phone
-          // console.log(this.employees.rows[i].employee_name)
           break
         }
       }
@@ -387,5 +477,8 @@ export default {
 }
 .default_class {
   background-color: lightgrey;
+}
+.form_sel {
+  margin-bottom: 2px;
 }
 </style>
