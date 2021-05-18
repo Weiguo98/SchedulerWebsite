@@ -37,6 +37,8 @@
                 lass="listid"
                 v-for="employee in filteredList"
                 :key="employee"
+                @click="info(employee)"
+                style="cursor: pointer;"
               >
                 <th scope="row">{{ employee.emp_id }}</th>
                 <td>{{ employee.emp_name }}</td>
@@ -50,10 +52,22 @@
         </div>
       </div>
     </div>
+    <b-modal
+      v-model="emp_calendar_visible"
+      hide-footer="True"
+      id="staffCalendar_ID"
+      size="xl"
+      title="Staff Calendar"
+      ref="staffCalendar"
+    >
+      <StaffCalendar :emp_id="this.emp_calendar.content.emp_id">
+      </StaffCalendar>
+    </b-modal>
   </div>
 </template>
 <script>
 import { Api } from '@/Api'
+import StaffCalendar from './StaffCalendar.vue'
 
 export default {
   data() {
@@ -71,8 +85,13 @@ export default {
 
       employees1: [],
       copyEmployee: [],
-      sets: [1, 2, 3, 4, 5]
+      sets: [1, 2, 3, 4, 5],
+      emp_calendar: { content: '' },
+      emp_calendar_visible: false
     }
+  },
+  components: {
+    StaffCalendar
   },
   mounted() {
     this.getAllStaff1()
@@ -80,14 +99,11 @@ export default {
   methods: {
     getAllStaff1() {
       Api.get('/allStaff')
-        .then(response => {
+        .then((response) => {
           this.employees1 = response.data
           this.copyEmployee = response.data
-          console.log('read employee ok')
-          console.log(this.employees1)
-          console.log(this.employees1.length)
         })
-        .catch(error => {
+        .catch((error) => {
           this.errMessage = error
         })
     },
@@ -100,11 +116,15 @@ export default {
           return e.emp_position === val
         })
       }
+    },
+    info(index) {
+      this.emp_calendar.content = index
+      this.emp_calendar_visible = true
     }
   },
   computed: {
     filteredList() {
-      return this.employees1.filter(employee => {
+      return this.employees1.filter((employee) => {
         return employee.emp_name
           .toLowerCase()
           .includes(this.search.toLowerCase())
@@ -141,4 +161,5 @@ export default {
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #b4e79a !important;
 }
+
 </style>
