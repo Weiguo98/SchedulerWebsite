@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-row>
+    <div id = "subb">
+    <b-row class = "timehead">
       <div class="left"></div>
       <div class="columns_start">7:00</div>
       <div class="columns">8:00</div>
@@ -18,7 +19,7 @@
       <div class="columns">20:00</div>
       <div class="columns">21:00</div>
     </b-row>
-    <b-row
+    <b-row class = "rowsss"
       :id="
         personnel.start_time +
           '-' +
@@ -46,6 +47,7 @@
         "
       ></div>
     </b-row>
+    </div>
     <b-modal
       v-model="delete_e"
       title="Delete schedule"
@@ -250,7 +252,7 @@ export default {
           width2 * 60.5 +
           parseInt(this.filteredPersonnelList[i].end_minute)
         ttl.style =
-          'background-color: #C45891; width:' +
+          'background-color: #457b9d; width:' +
           width.toString() +
           'px;margin-left:' +
           mar_left.toString() +
@@ -280,7 +282,7 @@ export default {
 
 <style>
 .columns_start {
-  border-left: 1px solid black;
+  border-left: 1px solid rgb(0, 0, 0);
   border-right: 1px solid black;
   width: 60px;
   padding-left: 10px;
@@ -298,6 +300,8 @@ export default {
 .left {
   width: 190px;
 }
+
+
 .name {
   width: 85px;
   overflow: hidden;
@@ -310,4 +314,16 @@ export default {
 /* .unbreakable td {
   width: 100% !important;
 } */
+
+.rowsss {
+ background: #ffffff;
+}
+
+.rowsss:nth-of-type(odd) {
+    background: #e0e0e0 !important;
+}
+
+#subb {
+  background: #ffffff;
+}
 </style>

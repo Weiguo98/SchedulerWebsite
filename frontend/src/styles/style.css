@@ -73,13 +73,11 @@
 #layer2daily {
     background-color: #a8dadc;  
       color:#457B9D !important;
+      padding: 20px;
 }
   
-#layer2daily .table {
-    margin: 20px 0px;
-    background-color: #ffffff;  
-      color:#457B9D !important;
-}
+
+
   
 /* Staff Page */
 #Staff {

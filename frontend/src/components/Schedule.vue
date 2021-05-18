@@ -108,5 +108,13 @@ export default {
 .scheduleTable {
   margin-left: 150px;
   width: 80%;
+  background: #ffffff;
+
 }
+
+.row {
+
+}
+tr:nth-child(even) {background: #ff0000}
+tr:nth-child(odd) {background: #E2E2E2}
 </style>
