@@ -32,9 +32,8 @@
         :key="personnel.page"
         @click="info(personnel)"
       >
-        <b-col cols="14" class="name"> {{ personnel.emp_name }}</b-col
-        >|
-        <b-col cols="14" class="name"> {{ personnel.emp_position }}</b-col>
+        <div class="name">{{ personnel.emp_name }}</div>
+        <div class="name_right">{{ personnel.emp_position }}</div>
         <div
           class="timeline"
           v-b-popover.hover.right="
@@ -240,7 +239,9 @@ export default {
         var mar_left =
           (start_min_int +
             (parseInt(this.filteredPersonnelList[i].start_time) - 7) * 60) /
-          15
+            15 +
+          0.5
+        // 0.28 bcs the name width = 12vm, and the left of time is 12.5vm. However, i add '|' in the text, the width have to change to 0.28vw
         // width1 means the left of timeline
         var width1 = 60 - start_min_int
         // width2 means the main timeline
@@ -287,20 +288,30 @@ export default {
   border-left: 1px solid rgb(0, 0, 0);
   border-right: 1px solid black;
   width: 4vw;
-  /*top right bottom left */
-  padding: 0.3vw 0.6vw 0.3vw 0.6vw;
+  padding: 0.3vw 0.6vw;
+  text-align: center;
 }
 .columns {
   width: 4vw;
   padding: 0.3vw 0.6vw 0.3vw 0.6vw;
+  text-align: center;
 }
 .left {
-  width: 12vw;
+  width: 12.5vw;
 }
-
+.timehead {
+  margin-bottom: 0.5vw;
+}
 .name {
   width: 6vw;
   overflow: hidden;
+  text-align: center;
+}
+.name_right {
+  width: 6vw;
+  overflow: hidden;
+  text-align: center;
+  border-left: 0.1vw solid black;
 }
 .timeline {
   width: 200px;
@@ -312,14 +323,15 @@ export default {
 } */
 
 .rowsss {
-  background: #ffffff;
+  margin-bottom: 0.5vw;
 }
 
-.rowsss:nth-of-type(odd) {
-  background: #e0e0e0 !important;
-}
+/* .rowsss:nth-of-type(odd) {
+  background: #e0e0e0;
+} */
 
 #subb {
   background: #ffffff;
+  padding: 0.2vw;
 }
 </style>
