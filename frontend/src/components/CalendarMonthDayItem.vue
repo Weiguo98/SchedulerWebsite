@@ -20,7 +20,10 @@
         "
         id="dayItem"
       >
-        {{ staffCalendar.start_time }} - {{ staffCalendar.end_time }}
+        {{ pad(staffCalendar.start_time) }}:{{
+          pad(staffCalendar.start_minute)
+        }}
+        - {{ pad(staffCalendar.end_time) }}:{{ pad(staffCalendar.end_minute) }}
       </div>
     </div>
   </li>
@@ -79,6 +82,9 @@ export default {
         var day = str.split('/')
         return day[0]
       }
+    },
+    pad(d) {
+      return d < 10 ? '0' + d.toString() : d.toString()
     }
   }
 }

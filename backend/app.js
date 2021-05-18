@@ -48,7 +48,7 @@ app.get('/allStaff', (req, response) => {
 
 
 app.get('/staffCalender', (req, response) => {
-    const calenderQuery = "SELECT schedule.start_time, schedule.end_time, schedule.schedule_date, schedule.employee_id, staff1.emp_name, staff1.emp_working_hours FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE staff1.emp_id =" + req.query.ID.toString(); 
+    const calenderQuery = "SELECT schedule.start_time, schedule.end_time, schedule.schedule_date, schedule.employee_id, staff1.emp_name, staff1.emp_working_hours, schedule.start_minute, schedule.end_minute FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE staff1.emp_id =" + req.query.ID.toString();
     dbclient.query(calenderQuery, (err, res) => {
         if (err) {
             console.error(err);
@@ -62,8 +62,10 @@ app.get('/staffCalender', (req, response) => {
 });
 
 app.get('/totalWorkingHours', (req, response) => {
-    // const calenderQuery = "SELECT SUM(schedule.end_time - schedule.start_time) FROM schedule WHERE TO_DATE(cast(schedule.schedule_date AS TEXT), 'DD/MM/YYYY') >= TO_DATE(cast(" + req.query.startDate.toString() + "AS TEXT), 'DD/MM/YYYY') BETWEEN TO_DATE(cast(schedule.schedule_date AS TEXT), 'DD/MM/YYYY') >= TO_DATE(cast(" + req.query.endDate.toString() +  "AS TEXT), 'DD/MM/YYYY') AND schedule.employee_id =" + req.query.ID.toString(); 
-    const calenderQuery = "SELECT SUM(schedule.end_time - schedule.start_time) FROM schedule WHERE schedule.employee_id = " +  req.query.ID.toString()  + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') >=" +  "'" + req.query.startDate.toString() + "'" + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') < '" + req.query.endDate.toString() + "'"
+    //const calenderQuery = "SELECT SUM(schedule.end_time - schedule.start_time) FROM schedule WHERE schedule.employee_id = " + req.query.ID.toString() + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') >=" + "'" + req.query.startDate.toString() + "'" + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') < '" + req.query.endDate.toString() + "'"
+
+    const calenderQuery = "SELECT CASE WHEN (schedule.start_minute - schedule.end_minute) > 0 THEN SUM(schedule.end_time - schedule.start_time) - 1 WHEN (schedule.start_minute - schedule.end_minute) <=0 THEN SUM(schedule.end_time - schedule.start_time) END AS hours, CASE WHEN (schedule.start_minute - schedule.end_minute) <= 0 THEN ABS(schedule.start_minute - schedule.end_minute) WHEN (schedule.start_minute - schedule.end_minute) > 0 THEN 60 - ABS(schedule.start_minute - schedule.end_minute) END AS minutes FROM schedule WHERE schedule.employee_id = " + req.query.ID.toString() + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') >=" + "'" + req.query.startDate.toString() + "'" + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') < '" + req.query.endDate.toString() + "'" + " GROUP BY schedule.schedule_date, schedule.start_minute, schedule.end_minute, schedule.start_time, schedule.end_time"
+    
     dbclient.query(calenderQuery, (err, res) => {
         if (err) {
             console.error(err);

@@ -23,6 +23,8 @@ export default {
           end_time: '',
           schedule_date: '',
           emp_working_hours: '',
+          start_minute: '',
+          end_minute: ''
         }
       }
     ]
