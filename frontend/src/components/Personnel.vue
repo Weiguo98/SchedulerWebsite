@@ -1,51 +1,54 @@
 <template>
   <div>
-    <b-row>
-      <div class="left"></div>
-      <div class="columns_start">7:00</div>
-      <div class="columns">8:00</div>
-      <div class="columns">9:00</div>
-      <div class="columns">10:00</div>
-      <div class="columns">11:00</div>
-      <div class="columns">12:00</div>
-      <div class="columns">13:00</div>
-      <div class="columns">14:00</div>
-      <div class="columns">15:00</div>
-      <div class="columns">16:00</div>
-      <div class="columns">17:00</div>
-      <div class="columns">18:00</div>
-      <div class="columns">19:00</div>
-      <div class="columns">20:00</div>
-      <div class="columns">21:00</div>
-    </b-row>
-    <b-row
-      :id="
-        personnel.start_time +
-          '-' +
-          personnel.end_time +
-          '-' +
-          personnel.employee_id
-      "
-      v-for="personnel in filteredPersonnelList"
-      :key="personnel.page"
-      @click="info(personnel)"
-    >
-      <b-col cols="14" class="name"> {{ personnel.emp_name }}</b-col
-      >|
-      <b-col cols="14" class="name"> {{ personnel.emp_position }}</b-col>
-      <div
-        class="timeline"
-        v-b-popover.hover.right="
+    <div id="subb">
+      <b-row class="timehead">
+        <div class="left"></div>
+        <div class="columns_start">7:00</div>
+        <div class="columns">8:00</div>
+        <div class="columns">9:00</div>
+        <div class="columns">10:00</div>
+        <div class="columns">11:00</div>
+        <div class="columns">12:00</div>
+        <div class="columns">13:00</div>
+        <div class="columns">14:00</div>
+        <div class="columns">15:00</div>
+        <div class="columns">16:00</div>
+        <div class="columns">17:00</div>
+        <div class="columns">18:00</div>
+        <div class="columns">19:00</div>
+        <div class="columns">20:00</div>
+        <div class="columns">21:00</div>
+      </b-row>
+      <b-row
+        class="rowsss"
+        :id="
           personnel.start_time +
-            ':' +
-            personnel.start_minute +
             '-' +
             personnel.end_time +
-            ':' +
-            personnel.end_minute
+            '-' +
+            personnel.employee_id
         "
-      ></div>
-    </b-row>
+        v-for="personnel in filteredPersonnelList"
+        :key="personnel.page"
+        @click="info(personnel)"
+      >
+        <b-col cols="14" class="name"> {{ personnel.emp_name }}</b-col
+        >|
+        <b-col cols="14" class="name"> {{ personnel.emp_position }}</b-col>
+        <div
+          class="timeline"
+          v-b-popover.hover.right="
+            personnel.start_time +
+              ':' +
+              personnel.start_minute +
+              '-' +
+              personnel.end_time +
+              ':' +
+              personnel.end_minute
+          "
+        ></div>
+      </b-row>
+    </div>
     <b-modal
       v-model="delete_e"
       title="Delete schedule"
@@ -250,7 +253,7 @@ export default {
           width2 * 60.5 +
           parseInt(this.filteredPersonnelList[i].end_minute)
         ttl.style =
-          'background-color: #C45891; width:' +
+          'background-color: #457b9d; width:' +
           width.toString() +
           'px;margin-left:' +
           mar_left.toString() +
@@ -280,7 +283,7 @@ export default {
 
 <style>
 .columns_start {
-  border-left: 1px solid black;
+  border-left: 1px solid rgb(0, 0, 0);
   border-right: 1px solid black;
   width: 60px;
   padding-left: 10px;
@@ -298,6 +301,7 @@ export default {
 .left {
   width: 190px;
 }
+
 .name {
   width: 85px;
   overflow: hidden;
@@ -310,4 +314,16 @@ export default {
 /* .unbreakable td {
   width: 100% !important;
 } */
+
+.rowsss {
+  background: #ffffff;
+}
+
+.rowsss:nth-of-type(odd) {
+  background: #e0e0e0 !important;
+}
+
+#subb {
+  background: #ffffff;
+}
 </style>

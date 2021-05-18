@@ -3,12 +3,12 @@
     <div class="calendar-month-header">
       <div v-if="staffCalendarList[1].emp_name != ''">
         <CalendarDateIndicator
-        :emp_name="staffCalendarList[1].emp_name"
-        :emp_id="staffCalendarList[1].employee_id"
-        :emp_max="staffCalendarList[1].emp_working_hours"
-        :selected-date="selectedDate"
-        class="calendar-month-header-selected-month"
-      />
+          :emp_name="staffCalendarList[1].emp_name"
+          :emp_id="staffCalendarList[1].employee_id"
+          :emp_max="staffCalendarList[1].emp_working_hours"
+          :selected-date="selectedDate"
+          class="calendar-month-header-selected-month"
+        />
       </div>
 
       <CalendarDateSelector
@@ -124,9 +124,8 @@ export default {
         (day, index) => {
           return {
             date: dayjs(
-              `${previousMonth.year()}-${previousMonth.month() + 1}-${
-                previousMonthLastMondayDayOfMonth + index
-              }`
+              `${previousMonth.year()}-${previousMonth.month() +
+                1}-${previousMonthLastMondayDayOfMonth + index}`
             ).format('YYYY-MM-DD'),
             isCurrentMonth: false
           }

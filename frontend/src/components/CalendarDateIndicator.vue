@@ -9,7 +9,7 @@
         <div
           v-if="
             this.totalWorkingMinutes > 0 &&
-            this.emp_max - this.totalWorkingHours > 0
+              this.emp_max - this.totalWorkingHours > 0
           "
         >
           Remaining time:
@@ -27,7 +27,7 @@
         <div
           v-if="
             this.totalWorkingMinutes > 0 &&
-            this.emp_max - this.totalWorkingHours < 0
+              this.emp_max - this.totalWorkingHours < 0
           "
         >
           Remaining time:
@@ -93,7 +93,7 @@ export default {
           endDate: this.year + '/' + this.month + '/' + this.days
         }
       })
-        .then((response) => {
+        .then(response => {
           for (var i = 0; i < response.data.length; i++) {
             result_hours = result_hours + parseInt(response.data[i].hours)
             result_minutes = result_minutes + parseInt(response.data[i].minutes)
@@ -105,7 +105,7 @@ export default {
           this.totalWorkingHours = result_hours
           this.totalWorkingMinutes = result_minutes
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
           this.errMessage = error
         })
