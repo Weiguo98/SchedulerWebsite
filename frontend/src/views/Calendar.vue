@@ -1,6 +1,6 @@
 <template>
   <div id="calendar">
-    <CalendarMonth />
+    <CalendarMonth :staffCalendarList="this.event_list" />
   </div>
 </template>
 
@@ -12,42 +12,33 @@ export default {
 
   components: {
     CalendarMonth
+  },
+  data: () => ({
+    event_list: [
+      {
+        data: {
+          emp_name: '',
+          employee_id: '',
+          start_time: '',
+          end_time: '',
+          schedule_date: ''
+        }
+      }
+    ]
+  }),
+  created() {
+    var dummy = {
+      emp_name: '',
+      employee_id: '',
+      start_time: '',
+      end_time: '',
+      schedule_date: ''
+    }
+    this.event_list.push(dummy)
   }
 }
 </script>
 
 <style>
-#calendar {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #e59198;
-  margin-top: 60px;
-}
-
-body {
-  font-family: sans-serif;
-  font-weight: 100;
-  --grey-100: #d4f5d7;
-  --grey-200: #9ee27c;
-  --grey-300: #9ee27c;
-  --grey-800: #e59198;
-  --grid-gap: 1px;
-  --day-label-size: 20px;
-}
-
-ol,
-li {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.calendar-month-header {
-  display: flex;
-  justify-content: space-between;
-  background-color: #fff;
-  padding: 10px;
-}
+@import '../styles/style.css';
 </style>

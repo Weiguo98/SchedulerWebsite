@@ -1,7 +1,7 @@
 <template>
   <div class="calendar-date-selector">
     <span @click="selectPrevious">&lt;</span>
-    <span @click="selectCurrent">Today</span>
+    <span id="today" @click="selectCurrent">Today</span>
     <span @click="selectNext">></span>
   </div>
 </template>
@@ -55,4 +55,6 @@ export default {
   cursor: pointer;
   user-select: none;
 }
+
+@import '../styles/style.css';
 </style>

@@ -46,6 +46,38 @@ app.get('/allStaff', (req, response) => {
     });
 });
 
+
+app.get('/staffCalender', (req, response) => {
+    const calenderQuery = "SELECT schedule.start_time, schedule.end_time, schedule.schedule_date, schedule.employee_id, staff1.emp_name, staff1.emp_working_hours, schedule.start_minute, schedule.end_minute FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE staff1.emp_id =" + req.query.ID.toString();
+    dbclient.query(calenderQuery, (err, res) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        response.status(200).json(res.rows)
+        /* for (let row of res.rows) {
+            console.log(row);
+        } */
+    });
+});
+
+app.get('/totalWorkingHours', (req, response) => {
+    //const calenderQuery = "SELECT SUM(schedule.end_time - schedule.start_time) FROM schedule WHERE schedule.employee_id = " + req.query.ID.toString() + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') >=" + "'" + req.query.startDate.toString() + "'" + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') < '" + req.query.endDate.toString() + "'"
+
+    const calenderQuery = "SELECT CASE WHEN (schedule.start_minute - schedule.end_minute) > 0 THEN SUM(schedule.end_time - schedule.start_time) - 1 WHEN (schedule.start_minute - schedule.end_minute) <=0 THEN SUM(schedule.end_time - schedule.start_time) END AS hours, CASE WHEN (schedule.start_minute - schedule.end_minute) <= 0 THEN ABS(schedule.start_minute - schedule.end_minute) WHEN (schedule.start_minute - schedule.end_minute) > 0 THEN 60 - ABS(schedule.start_minute - schedule.end_minute) END AS minutes FROM schedule WHERE schedule.employee_id = " + req.query.ID.toString() + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') >=" + "'" + req.query.startDate.toString() + "'" + " AND TO_DATE(schedule_date, 'DD/MM/YYYY') < '" + req.query.endDate.toString() + "'" + " GROUP BY schedule.schedule_date, schedule.start_minute, schedule.end_minute, schedule.start_time, schedule.end_time"
+    
+    dbclient.query(calenderQuery, (err, res) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+        response.status(200).json(res.rows)
+        /* for (let row of res.rows) {
+            console.log(row);
+        } */
+    });
+});
+
 const scheduleQuery = "SELECT schedule.start_time, schedule.end_time, schedule.area, schedule.schedule_date, schedule.employee_id, schedule.start_minute, schedule.end_minute, staff1.emp_name, staff1.emp_position FROM schedule FULL OUTER JOIN staff1 ON schedule.employee_id=staff1.emp_id WHERE schedule.schedule_date != ''";
 app.get('/schedule', (req, response) => {
     dbclient.query(scheduleQuery, (err, res) => {
