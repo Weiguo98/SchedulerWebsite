@@ -217,8 +217,8 @@ export default {
       }
     },
     fillInTime: function() {
-      console.log('fill in time:')
-      console.log(this.filteredPersonnelList.length)
+      // console.log('fill in time:')
+      // console.log(this.filteredPersonnelList.length)
       for (i = 0; i < this.filteredPersonnelList.length; i++) {
         var row = document.getElementById(
           this.filteredPersonnelList[i].start_time +
@@ -235,30 +235,31 @@ export default {
         var start_min_int = parseInt(this.filteredPersonnelList[i].start_minute)
         // the left space of the timeline
         var mar_left =
-          start_min_int +
-          15 +
-          (this.filteredPersonnelList[i].start_time - 7) * 60
+          (start_min_int +
+            (parseInt(this.filteredPersonnelList[i].start_time) - 7) * 60) /
+          15
         // width1 means the left of timeline
         var width1 = 60 - start_min_int
         // width2 means the main timeline
         var width2 =
-          this.filteredPersonnelList[i].end_time -
-          this.filteredPersonnelList[i].start_time -
+          parseInt(this.filteredPersonnelList[i].end_time) -
+          parseInt(this.filteredPersonnelList[i].start_time) -
           1
         var width =
-          width1 +
-          width2 * 60.5 +
-          parseInt(this.filteredPersonnelList[i].end_minute)
+          (width1 +
+            width2 * 60 +
+            parseInt(this.filteredPersonnelList[i].end_minute)) /
+          15
         ttl.style =
           'background-color: #C45891; width:' +
           width.toString() +
-          'px;margin-left:' +
+          'vw;margin-left:' +
           mar_left.toString() +
-          'px;'
-        // console.log('width1:' + width1.toString())
-        // console.log('width2:' + width2.toString())
-        // console.log('width:' + width.toString())
-        // console.log('mar-left:' + mar_left.toString())
+          'vw;'
+        console.log('width1:' + width1.toString())
+        console.log('width2:' + width2.toString())
+        console.log('width:' + width.toString())
+        console.log('mar-left:' + mar_left.toString())
       }
     },
     getSelectedDate: function() {
@@ -282,30 +283,25 @@ export default {
 .columns_start {
   border-left: 1px solid black;
   border-right: 1px solid black;
-  width: 60px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  width: 4vw;
+  /*top right bottom left */
+  padding: 0.3vw 0.6vw 0.3vw 0.6vw;
 }
 .columns {
-  width: 60px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  width: 4vw;
+  padding: 0.3vw 0.6vw 0.3vw 0.6vw;
 }
 .left {
-  width: 190px;
+  width: 12vw;
 }
 .name {
-  width: 85px;
+  width: 6vw;
   overflow: hidden;
 }
 .timeline {
   width: 200px;
   background-color: #c40000;
-  margin-left: 15px;
+  margin-left: 1vw;
 }
 /* .unbreakable td {
   width: 100% !important;
