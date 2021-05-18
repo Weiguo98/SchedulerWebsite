@@ -1,8 +1,8 @@
 <template>
-  <div id = "mainpagedaily">
+  <div id="mainpagedaily">
     <Assign />
-    <div id = "layer1daily"><ScheduleFilter /></div>
-    <div id = "layer2daily"><Schedule /></div>
+    <div id="layer1daily"><ScheduleFilter /></div>
+    <div id="layer2daily"><Schedule /></div>
   </div>
 </template>
 

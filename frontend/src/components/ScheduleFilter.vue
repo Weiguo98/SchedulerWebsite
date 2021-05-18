@@ -27,7 +27,7 @@
       pill
       variant="success"
       v-on:click="showModal()"
-    >Assign Employee
+      >Assign Employee
     </b-button>
   </div>
 </template>

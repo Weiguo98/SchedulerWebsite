@@ -1,6 +1,6 @@
 <template>
   <div id="calendar">
-    <CalendarMonth :staffCalendarList="this.event_list"/>
+    <CalendarMonth :staffCalendarList="this.event_list" />
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
       }
     ]
   }),
-  created () {
+  created() {
     var dummy = {
       emp_name: '',
       employee_id: '',
