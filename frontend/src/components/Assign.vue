@@ -115,8 +115,6 @@ today = dd + '/' + mm + '/' + yyyy
 
 export default {
   name: 'assign',
-  // TODO: time start variants need to be smaller than time end variants
-  // TODO: Six options must have values, other wise a warning will pop up.
   data() {
     return {
       personnelList: [

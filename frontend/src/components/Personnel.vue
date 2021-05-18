@@ -1,53 +1,56 @@
 <template>
   <div>
-    <div id="subb">
-      <b-row class="timehead">
-        <div class="left"></div>
-        <div class="columns_start">7:00</div>
-        <div class="columns">8:00</div>
-        <div class="columns">9:00</div>
-        <div class="columns">10:00</div>
-        <div class="columns">11:00</div>
-        <div class="columns">12:00</div>
-        <div class="columns">13:00</div>
-        <div class="columns">14:00</div>
-        <div class="columns">15:00</div>
-        <div class="columns">16:00</div>
-        <div class="columns">17:00</div>
-        <div class="columns">18:00</div>
-        <div class="columns">19:00</div>
-        <div class="columns">20:00</div>
-        <div class="columns">21:00</div>
-      </b-row>
-      <b-row
-        class="rowsss"
-        :id="
-          personnel.start_time +
-            '-' +
-            personnel.end_time +
-            '-' +
-            personnel.employee_id
-        "
-        v-for="personnel in filteredPersonnelList"
-        :key="personnel.page"
-        @click="info(personnel)"
-      >
-        <div class="name">{{ personnel.emp_name }}</div>
-        <div class="name_right">{{ personnel.emp_position }}</div>
-        <div
-          class="timeline"
-          v-b-popover.hover.right="
+    <b-container fluid>
+      <div id="subb">
+        <b-row class="timehead">
+          <div class="left"></div>
+          <div class="columns_start">7:00</div>
+          <div class="columns">8:00</div>
+          <div class="columns">9:00</div>
+          <div class="columns">10:00</div>
+          <div class="columns">11:00</div>
+          <div class="columns">12:00</div>
+          <div class="columns">13:00</div>
+          <div class="columns">14:00</div>
+          <div class="columns">15:00</div>
+          <div class="columns">16:00</div>
+          <div class="columns">17:00</div>
+          <div class="columns">18:00</div>
+          <div class="columns">19:00</div>
+          <div class="columns">20:00</div>
+          <div class="columns">21:00</div>
+        </b-row>
+        <b-row class="table_space"> </b-row>
+        <b-row
+          class="rowsss"
+          :id="
             personnel.start_time +
-              ':' +
-              personnel.start_minute +
               '-' +
               personnel.end_time +
-              ':' +
-              personnel.end_minute
+              '-' +
+              personnel.employee_id
           "
-        ></div>
-      </b-row>
-    </div>
+          v-for="personnel in filteredPersonnelList"
+          :key="personnel.page"
+          @click="info(personnel)"
+        >
+          <div class="name">{{ personnel.emp_name }}</div>
+          <div class="name_right">{{ personnel.emp_position }}</div>
+          <div
+            class="timeline"
+            v-b-popover.hover.right="
+              personnel.start_time +
+                ':' +
+                personnel.start_minute +
+                '-' +
+                personnel.end_time +
+                ':' +
+                personnel.end_minute
+            "
+          ></div>
+        </b-row>
+      </div>
+    </b-container>
     <b-modal
       v-model="delete_e"
       title="Delete schedule"
@@ -241,7 +244,6 @@ export default {
             (parseInt(this.filteredPersonnelList[i].start_time) - 7) * 60) /
             15 +
           0.5
-        // 0.28 bcs the name width = 12vm, and the left of time is 12.5vm. However, i add '|' in the text, the width have to change to 0.28vw
         // width1 means the left of timeline
         var width1 = 60 - start_min_int
         // width2 means the main timeline
@@ -260,10 +262,10 @@ export default {
           'vw;margin-left:' +
           mar_left.toString() +
           'vw;'
-        console.log('width1:' + width1.toString())
-        console.log('width2:' + width2.toString())
-        console.log('width:' + width.toString())
-        console.log('mar-left:' + mar_left.toString())
+        // console.log('width1:' + width1.toString())
+        // console.log('width2:' + width2.toString())
+        // console.log('width:' + width.toString())
+        // console.log('mar-left:' + mar_left.toString())
       }
     },
     getSelectedDate: function() {
@@ -285,8 +287,8 @@ export default {
 
 <style>
 .columns_start {
-  border-left: 1px solid rgb(0, 0, 0);
-  border-right: 1px solid black;
+  border-left: 1px solid #457b9d;
+  border-right: 1px solid #457b9d;
   width: 4vw;
   padding: 0.3vw 0.6vw;
   text-align: center;
@@ -295,6 +297,7 @@ export default {
   width: 4vw;
   padding: 0.3vw 0.6vw 0.3vw 0.6vw;
   text-align: center;
+  border-right: 1px solid #457b9d !important;
 }
 .left {
   width: 12.5vw;
@@ -311,16 +314,13 @@ export default {
   width: 6vw;
   overflow: hidden;
   text-align: center;
-  border-left: 0.1vw solid black;
+  border-left: 0.1vw solid #457b9d;
 }
 .timeline {
   width: 200px;
   background-color: #c40000;
   margin-left: 1vw;
 }
-/* .unbreakable td {
-  width: 100% !important;
-} */
 
 .rowsss {
   margin-bottom: 0.5vw;
@@ -330,8 +330,15 @@ export default {
   background: #e0e0e0;
 } */
 
+.table_space {
+  height: 0.1vw;
+  background-color: #e0e0e0;
+  margin-bottom: 0.5vw;
+}
+
 #subb {
   background: #ffffff;
-  padding: 0.2vw;
+  padding-top: 0.2vw;
+  padding-bottom: 0.2vw;
 }
 </style>
