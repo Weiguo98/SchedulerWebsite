@@ -27,11 +27,8 @@
       pill
       variant="success"
       v-on:click="showModal()"
-    >
-      Assign Employee
+      >Assign Employee
     </b-button>
-
-    <span> Selected: {{ calendarData.selectedDate }}</span>
   </div>
 </template>
 
@@ -73,23 +70,23 @@ export default {
     subtitle: String
   },
   methods: {
-    showModal: function () {
+    showModal: function() {
       this.$root.$refs.assign.showModal()
     },
-    addRow: function () {
+    addRow: function() {
       this.$root.$refs.personnel.addRow()
     },
-    dateSelected: function () {
+    dateSelected: function() {
       serverBus.$emit('dateSelected', this.calendarData.selectedDate)
     },
-    roleSelected: function () {
+    roleSelected: function() {
       serverBus.$emit('roleSelected', this.roleSelected_var)
     },
     onClickRoleButton(value) {
       this.roleSelected_var = value
       this.roleSelected()
     },
-    areaSelected: function () {
+    areaSelected: function() {
       serverBus.$emit('areaSelected', this.areaSelected_var)
     },
     onClickAreaButton(value) {
@@ -103,21 +100,23 @@ export default {
 <style>
 .filterBar {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  margin-left: 10%;
-  height: 70px;
+  margin: 0 auto;
+  height: 10%;
   border-style: solid;
-  border-color: palevioletred;
+  border-color: rgb(17, 0, 255);
   border-width: 1px;
   border-right: 0px;
   border-left: 0px;
-  margin-bottom: 20px;
+  max-width: 90%;
+  padding: 10px 0;
 }
 
 .assignbtn {
   margin-left: 70px;
+  margin-right: 10px;
 }
 </style>
 

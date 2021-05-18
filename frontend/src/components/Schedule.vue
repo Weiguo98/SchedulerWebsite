@@ -1,24 +1,5 @@
 <template>
   <table class="scheduleTable">
-    <!-- <thead>
-      <th></th>
-      <th></th>
-      <th colspan="2">7:00</th>
-      <th colspan="2">8:00</th>
-      <th colspan="2">9:00</th>
-      <th colspan="2">10:00</th>
-      <th colspan="2">11:00</th>
-      <th colspan="2">12:00</th>
-      <th colspan="2">13:00</th>
-      <th colspan="2">14:00</th>
-      <th colspan="2">15:00</th>
-      <th colspan="2">16:00</th>
-      <th colspan="2">17:00</th>
-      <th colspan="2">18:00</th>
-      <th colspan="2">19:00</th>
-      <th colspan="2">20:00</th>
-      <th colspan="2">21:00</th>
-    </thead> -->
     <Personnel> </Personnel>
   </table>
 </template>
@@ -35,8 +16,8 @@ export default {
 
 <style>
 * {
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   font-family: sans-serif;
   box-sizing: border-box;
 }
@@ -45,7 +26,7 @@ export default {
   width: 55px;
 }
 
-.schedule {
+/* .schedule {
   display: grid;
   grid-template-areas: 'empty planes' 'time contents';
   grid-template-columns: 100px;
@@ -55,21 +36,21 @@ export default {
   margin: 0 auto;
   box-shadow: 0 2px 10px;
   margin-left: 10%;
-}
+} */
 
-.empty {
+/* .empty {
   display: grid;
   grid-area: empty;
   border-bottom: 1px solid;
   border-right: 1px solid;
-}
+} */
 
-.times {
+/* .times {
   display: grid;
   text-transform: uppercase;
   grid-area: planes;
   font-size: 12px;
-  background-color: #ebf1de;
+  background-color: #aeff00;
   grid-template-columns: repeat(8, 1fr);
   border-bottom: 1px solid;
 }
@@ -78,21 +59,20 @@ export default {
   display: grid;
   align-items: center;
   border-right: 1px solid;
-}
+} */
 
-.Personnel {
+/* .Personnel {
   grid-area: time;
   display: grid;
-}
+} */
 
 .Personnel > div {
-  display: grid;
   border-bottom: 1px solid;
   align-items: center;
   border-right: 1px solid;
 }
 
-.content {
+/* .content {
   grid-area: contents;
   display: grid;
   grid-template-rows: repeat(5, 1fr);
@@ -103,10 +83,17 @@ export default {
 
 .content > div {
   border-right: 1px solid;
-}
+} */
 
 .scheduleTable {
-  margin-left: 150px;
+  margin-left: 10vw;
   width: 80%;
+  background: #ffffff;
 }
+/* tr:nth-child(even) {
+  background: #ff0000;
+}
+tr:nth-child(odd) {
+  background: #e2e2e2;
+} */
 </style>
