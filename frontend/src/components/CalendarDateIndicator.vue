@@ -1,6 +1,8 @@
 <template>
   <div class="calendar-date-indicator">
     {{ selectedMonth }}
+    {{selectedDateMonth}}
+    {{selectedDateYear}}
     <div id="calendar-header">
       <div>Employee: {{ emp_name }}</div>
       <div>
@@ -21,19 +23,28 @@ export default {
     emp_name: String,
     emp_id: Number,
     emp_max: Number,
+    number_days: Number,
     selectedDate: {
       type: Object,
       required: true
-    }
+    },
   },
   data() {
     return {
       totalWorkingHours: 0,
+      month: '',
+      year : ''
     }
   },
   computed: {
     selectedMonth() {
       return this.selectedDate.format('MMMM YYYY')
+    },
+    selectedDateMonth() {
+      this.month = this.selectedDate.format('MM')
+    },
+    selectedDateYear() {
+      this.year = this.selectedDate.format('YYYY')
     }
   },
   methods: {
@@ -41,8 +52,8 @@ export default {
       Api.get('/totalWorkingHours', {
         params: {
           ID: this.emp_id,
-          startDate: "01/05/2021",
-          endDate: "30/05/2021",
+          startDate: this.year + '/' + this.month + '/01',
+          endDate: this.year + '/' + this.month + "/" + this.number_days.toString(),
         }
       })
         .then((response) => {
@@ -52,11 +63,14 @@ export default {
           console.log(error)
           this.errMessage = error
         })
-    }
+    },
   },
-  mounted() {
+  created() {
     this.getRemainingHours()
   },
+  updated() {
+    this.getRemainingHours()
+  }
 }
 </script>
 
