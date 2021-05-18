@@ -3,6 +3,7 @@
     {{ selectedMonth }}
     {{selectedDateMonth}}
     {{selectedDateYear}}
+    {{selectedDateDay}}
     <div id="calendar-header">
       <div>Employee: {{ emp_name }}</div>
       <div>
@@ -17,13 +18,13 @@
 
 <script>
 import { Api } from '@/Api'
+import dayjs from 'dayjs'
 
 export default {
   props: {
     emp_name: String,
     emp_id: Number,
     emp_max: Number,
-    number_days: Number,
     selectedDate: {
       type: Object,
       required: true
@@ -33,7 +34,8 @@ export default {
     return {
       totalWorkingHours: 0,
       month: '',
-      year : ''
+      year : '',
+      days: ''
     }
   },
   computed: {
@@ -45,6 +47,9 @@ export default {
     },
     selectedDateYear() {
       this.year = this.selectedDate.format('YYYY')
+    },
+    selectedDateDay () {
+      this.days = dayjs(this.selectedDate).daysInMonth()
     }
   },
   methods: {
@@ -53,7 +58,7 @@ export default {
         params: {
           ID: this.emp_id,
           startDate: this.year + '/' + this.month + '/01',
-          endDate: this.year + '/' + this.month + "/" + this.number_days.toString(),
+          endDate: this.year + '/' + this.month + "/" + this.days,
         }
       })
         .then((response) => {
@@ -65,7 +70,7 @@ export default {
         })
     },
   },
-  created() {
+  mounted() {
     this.getRemainingHours()
   },
   updated() {

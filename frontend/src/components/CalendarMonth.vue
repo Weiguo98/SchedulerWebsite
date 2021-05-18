@@ -6,7 +6,6 @@
         :emp_name="staffCalendarList[1].emp_name"
         :emp_id="staffCalendarList[1].employee_id"
         :emp_max="staffCalendarList[1].emp_working_hours"
-        :number_days="numberOfDays"
         :selected-date="selectedDate"
         class="calendar-month-header-selected-month"
       />
@@ -61,8 +60,7 @@ export default {
 
   data() {
     return {
-      selectedDate: dayjs(),
-      numberOfDays: Number
+      selectedDate: dayjs()
     }
   },
 
@@ -88,7 +86,6 @@ export default {
     },
 
     numberOfDaysInMonth() {
-      this.numberOfDays = dayjs(this.selectedDate).daysInMonth()
       return dayjs(this.selectedDate).daysInMonth()
     },
 
