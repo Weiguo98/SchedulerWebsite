@@ -1,24 +1,24 @@
 <template>
-  <div class="Staff">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col search">
-          <input v-model="search" placeholder="Search for a name..." />
-        </div>
+  <div id="Staff">
+    <div id="layer1staff">
+        <li id = "search"> <input v-model="search" placeholder="Search for a name..." /> </li>
 
-        <div class="col filter">
+        <li id = "filter">
           <select v-on:change="filterMember">
             <option value="all">All</option>
             <option value="Cleaner">Cleaner</option>
             <option value="Operator">Operator</option>
             <option value="Maintainer">Maintainer</option>
           </select>
-        </div>
+        </li>
+      </div>
 
-        <div class="col-12 staffheader">
-          <h1>Staff List</h1>
-        </div>
+      <div id = "layer2staff">
+        <h1>Staff List</h1>
+      </div>
 
+
+    <div id = "layer3staff">
         <div class="col-12">
           <table class="table table-striped">
             <thead>
@@ -28,7 +28,7 @@
                 <th scope="col">Position</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th scope="col">Working Hours</th>
+                <th scope="col">Max Working Hours</th>
               </tr>
             </thead>
 
@@ -50,7 +50,6 @@
             </tbody>
           </table>
         </div>
-      </div>
     </div>
     <b-modal
       v-model="emp_calendar_visible"
@@ -134,32 +133,5 @@ export default {
 }
 </script>
 <style>
-.search {
-  text-align: left;
-}
-.filter {
-  text-align: right;
-  margin-bottom: 5px;
-}
-
-.row {
-  margin-top: 10px;
-}
-
-.filterbutton {
-  background: #e59198 !important;
-}
-
-.staffheader {
-  color: #e59198 !important;
-  display: inline-block;
-}
-.table {
-  color: #e59198 !important;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #b4e79a !important;
-}
-
+@import '../styles/style.css';
 </style>

@@ -69,7 +69,7 @@ export default {
   text-transform: uppercase;
   grid-area: planes;
   font-size: 12px;
-  background-color: #ebf1de;
+  background-color: #aeff00;
   grid-template-columns: repeat(8, 1fr);
   border-bottom: 1px solid;
 }

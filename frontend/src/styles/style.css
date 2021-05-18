@@ -1,0 +1,174 @@
+/* Theme colors */
+:root {
+    --myred: #E63946;
+    --mybeige: #F1FAEE;
+    --mylightcyan: #A8DADC;
+    --myblue: #457B9D;
+  }
+
+
+/* Navigation bar */
+
+#nav1{
+    width: 100%;
+    background-color: white;
+    z-index: 99;
+    position: fixed;
+    padding: 20px 0;
+    text-align: center;
+    padding-right: 60px;
+
+}
+
+#nav1 a {
+    font-weight: bold;
+    color: var(--myblue);
+    margin: 0px 50px;
+    font-size: 20px;
+}
+
+#nav1 li {
+      display: inline;
+}
+
+#listitem{
+    margin-top: 10px;
+}
+
+#nav1 a.router-link-exact-active {
+    color: var(--myred);
+}
+  
+#Logo {
+    float: left;
+    position: relative;
+    padding-left: 10px;
+    width: 150px;
+}
+
+#menuplaceholder {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--mybeige);
+    z-index: 99;
+}
+
+
+/* Daily Schedule Page */
+
+#mainpagedaily {
+    height: 100vh;
+    margin-top: 50px;
+    background-image: url("../assets/bg.png");
+    background-repeat: repeat;
+    background-color: #f1faee;
+    background-size: 10%;
+}
+
+#layer1daily {
+    margin-top: 55px;
+    background-color: #e63946;  
+}
+  
+#layer2daily {
+    background-color: #a8dadc;  
+      color:#457B9D !important;
+}
+  
+#layer2daily .table {
+    margin: 20px 0px;
+    background-color: #ffffff;  
+      color:#457B9D !important;
+}
+  
+/* Staff Page */
+#Staff {
+    height: 100vh;
+    margin-top: 50px;
+    background-image: url("../assets/bg.png");
+    background-repeat: repeat;
+    background-color: #f1faee;
+    background-size: 10%;
+}
+
+#layer1staff li {
+    display: inline;
+
+}
+
+#layer1staff {
+    background-color: var(--myred);
+    padding: 20px 0;
+}
+
+#search {
+    margin-left: 30px;
+}
+
+#filter {
+    float: right;
+    margin-right: 30px;
+}
+    
+.filterbutton {
+    background: #e59198 !important;
+}
+  
+#layer2staff{
+    text-align: center;
+    background-color: var(--myblue);
+    padding: 5px;
+    color: white !important;
+}
+
+#layer3staff{
+    background-color: white;
+    padding-bottom: 10px;
+
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--mylightcyan) !important;
+}
+
+
+
+
+/* Calendar Page */
+#calendar {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: var(--mybeige);
+    margin-top: 50px;
+    height: 100vh;
+}
+
+#today{
+    color: var(--mybeige);
+}
+  
+body {
+    font-family: sans-serif;
+    font-weight: 100;
+    --grey-100: #c2c2c2;
+    --grey-200: var(--myblue);
+    --grey-300: var(--myblue);
+    --grey-800: var(--myblue);
+    --grid-gap: 1px;
+    --day-label-size: 20px;
+}
+  
+ol, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+  
+.calendar-month-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--myred);
+    padding: 16px;
+}

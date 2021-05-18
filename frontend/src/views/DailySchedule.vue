@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div id = "mainpagedaily">
     <Assign />
-    <ScheduleFilter />
-    <Schedule />
+    <div id = "layer1daily"><ScheduleFilter /></div>
+    <div id = "layer2daily"><Schedule /></div>
   </div>
 </template>
 
@@ -66,8 +66,5 @@ export default {
 </script>
 
 <style>
-.container2 {
-  background-color: green;
-  float: left;
-}
+@import '../styles/style.css';
 </style>

@@ -472,9 +472,7 @@ export default {
   column-width: 60px;
   overflow: hidden;
 }
-.table {
-  background-color: pink;
-}
+
 .default_class {
   background-color: lightgrey;
 }
