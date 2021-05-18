@@ -38,6 +38,7 @@
                 v-for="employee in filteredList"
                 :key="employee"
                 @click="info(employee)"
+                style="cursor: pointer;"
               >
                 <th scope="row">{{ employee.emp_id }}</th>
                 <td>{{ employee.emp_name }}</td>
@@ -160,4 +161,5 @@ export default {
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #b4e79a !important;
 }
+
 </style>

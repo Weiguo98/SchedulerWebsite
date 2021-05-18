@@ -1,7 +1,9 @@
 <template>
   <div class="calendar-date-indicator">
     <div id="calendar-header">
-      {{this.selectedDate.format('MMMM YYYY')}}
+        <div style="font-size: 28px"> 
+          {{this.selectedDate.format('MMMM YYYY')}}
+        </div>
       <div>Employee: {{ emp_name }}</div>
       <div>
         Remaining Hours:  {{this.totalWorkingHours != 0 ? this.emp_max - this.totalWorkingHours : ""}} h
