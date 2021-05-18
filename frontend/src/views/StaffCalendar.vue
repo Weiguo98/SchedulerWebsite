@@ -42,13 +42,13 @@ export default {
           ID: this.emp_id
         }
       })
-        .then((response) => {
+        .then(response => {
           for (var i = 0; i < response.data.length; i++) {
             this.staffCalendarList.push(response.data[i])
           }
           this.staffCalendarList()
         })
-        .catch((error) => {
+        .catch(error => {
           this.errMessage = error
         })
     }

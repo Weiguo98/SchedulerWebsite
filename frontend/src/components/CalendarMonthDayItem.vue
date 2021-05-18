@@ -15,8 +15,8 @@
       <div
         v-if="
           getCalendarDay(staffCalendar) == label &&
-          getCalendarMonth(staffCalendar) == selectedMonth &&
-          day.isCurrentMonth
+            getCalendarMonth(staffCalendar) == selectedMonth &&
+            day.isCurrentMonth
         "
         id="dayItem"
       >
