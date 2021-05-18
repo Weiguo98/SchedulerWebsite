@@ -1,10 +1,7 @@
 <template>
   <div class="calendar-date-indicator">
-    {{ selectedMonth }}
-    {{selectedDateMonth}}
-    {{selectedDateYear}}
-    {{selectedDateDay}}
     <div id="calendar-header">
+      {{this.selectedDate.format('MMMM YYYY')}}
       <div>Employee: {{ emp_name }}</div>
       <div>
         Remaining Hours:  {{this.totalWorkingHours != 0 ? this.emp_max - this.totalWorkingHours : ""}} h
@@ -38,22 +35,11 @@ export default {
       days: ''
     }
   },
-  computed: {
-    selectedMonth() {
-      return this.selectedDate.format('MMMM YYYY')
-    },
-    selectedDateMonth() {
-      this.month = this.selectedDate.format('MM')
-    },
-    selectedDateYear() {
-      this.year = this.selectedDate.format('YYYY')
-    },
-    selectedDateDay () {
-      this.days = dayjs(this.selectedDate).daysInMonth()
-    }
-  },
   methods: {
     getRemainingHours() {
+      this.month = this.selectedDate.format('MM')
+      this.year = this.selectedDate.format('YYYY')
+      this.days = dayjs(this.selectedDate).daysInMonth()
       Api.get('/totalWorkingHours', {
         params: {
           ID: this.emp_id,
@@ -68,6 +54,7 @@ export default {
           console.log(error)
           this.errMessage = error
         })
+        
     },
   },
   mounted() {
