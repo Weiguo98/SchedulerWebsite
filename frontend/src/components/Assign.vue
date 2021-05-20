@@ -410,6 +410,7 @@ export default {
         .catch(error => {
           console.log(error)
         })
+      return true
     },
     getEmployeeId() {
       var i

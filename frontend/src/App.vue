@@ -28,7 +28,7 @@ Text Color: #C45891
         <li
           id="listitens"
           style="font-weight: bold;color: red;"
-        @click="openDialog"
+          @click="openDialog"
         >
           Alert
         </li>
@@ -49,11 +49,12 @@ Text Color: #C45891
 </template>
 <script>
 import fab from 'vue-fab'
+import { serverBus } from './main'
 //import assign from './components/Assign.vue'
 
 export default {
   components: {
-    fab//,
+    fab //,
     //assign
   },
   data: () => ({
@@ -61,36 +62,55 @@ export default {
     position: 'bottom-right',
     fabActions: [
       {
-        name: '',
+        name: 'cache',
         icon: ''
       }
     ],
     roles: ['cleaner', 'operator', 'maintainer'],
     locations: ['Helix', 'The Cannon', 'Atmosphere'],
     role: 'cleaner',
-    location: 'Helix'
+    location: 'Helix',
+    employ_assigned: []
   }),
   computed: {},
   created() {
     let self = this
     console.log(self.$refs)
     console.log(this.assign)
+    this.bgColor = 'green'
+    serverBus.$on('employeeAssigned', data => {
+      var object = {
+        emp_name: data.name,
+        employee_id: data.id,
+        emp_position: data.emp_position,
+        schedule_date: data.date,
+        start_time: data.starttime,
+        end_time: data.endtime,
+        area: data.area,
+        start_minute: data.startmin,
+        end_minute: data.endmin
+      }
+      this.employ_assigned = object
+      this.refreshDialog()
+      // console.log(this.employ_assigned)
+    })
   },
 
   methods: {
-    alert() { 
+    alert() {
+      console.log('run alert')
       this.$router.push('./')
       console.log(this.$root.$refs)
       console.log(this.$root.$refs.assign.$refs)
       this.$root.$refs.assign.show = true
-      this.$root.$refs.assign.showModal()
       this.closeDialog()
     },
-  
+
     closeDialog() {
       this.$bvModal.hide('dialog')
     },
     openDialog() {
+      this.bgColor = 'red'
       this.randomRole()
       this.randomLocation()
       this.fabActions.push({
@@ -98,6 +118,30 @@ export default {
         icon: this.role + ' at ' + this.location
       })
       this.$bvModal.show('dialog')
+      // console.log(this.fabActions)
+      this.refreshDialog()
+    },
+    refreshDialog: function() {
+      var alertToDelete = 0
+      for (var i = 1; i < this.fabActions.length; i++) {
+        var assign_message =
+          this.employ_assigned.emp_position.toLowerCase() +
+          ' at ' +
+          this.employ_assigned.area
+        // console.log('assign_message' + assign_message)
+        // console.log('fabaction_name' + this.fabActions[i].icon)
+        if (assign_message === this.fabActions[i].icon) {
+          alertToDelete = i
+        }
+      }
+      if (alertToDelete != 0) {
+        this.fabActions.splice(alertToDelete, 1)
+      }
+      if (this.fabActions.length === 1) {
+        this.bgColor = 'green'
+      }
+      // console.log(this.fabActions.length)
+      // console.log(alertToDelete)
     },
     randomRole: function() {
       this.role = this.roles[Math.floor(Math.random() * 2)]
