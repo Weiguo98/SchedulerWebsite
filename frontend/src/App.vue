@@ -74,9 +74,9 @@ export default {
   }),
   computed: {},
   created() {
-    let self = this
-    console.log(self.$refs)
-    console.log(this.assign)
+    // let self = this
+    // console.log(self.$refs)
+    // console.log(this.assign)
     this.bgColor = 'green'
     serverBus.$on('employeeAssigned', data => {
       var object = {
@@ -98,11 +98,11 @@ export default {
 
   methods: {
     alert() {
-      console.log('run alert')
+      // console.log('run alert')
       this.$router.push('./')
-      console.log(this.$root.$refs)
-      console.log(this.$root.$refs.assign.$refs)
-      this.$root.$refs.assign.show = true
+      // console.log(this.$root.$refs)
+      // console.log(this.$root.$refs.assign.$refs)
+      this.$root.$refs.assign.showModal()
       this.closeDialog()
     },
 
@@ -119,7 +119,6 @@ export default {
       })
       this.$bvModal.show('dialog')
       // console.log(this.fabActions)
-      this.refreshDialog()
     },
     refreshDialog: function() {
       var alertToDelete = 0
