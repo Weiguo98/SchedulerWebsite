@@ -402,6 +402,10 @@ export default {
         endmin: this.minuteEndVariants
       }
       console.log(employee)
+      if(parseInt(employee.starttime) >= parseInt(employee.endtime)) {
+        alert('Start hour of the shift have to be less than or equal to the end hour')
+        this.showModal()
+      } else {
       serverBus.$emit('employeeAssigned', employee)
       Api.post('/schedule', employee)
         .then(response => {
@@ -410,6 +414,7 @@ export default {
         .catch(error => {
           console.log(error)
         })
+      }
       // return true
     },
     getEmployeeId() {
