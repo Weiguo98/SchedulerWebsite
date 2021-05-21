@@ -1,0 +1,46 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "eslint src/**/*.vue"
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.0.11",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "axios": "^0.21.1",
+    "backend-frontend": "file:..",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.28",
+    "dayjs": "^1.10.4",
+    "eslint-config-prettier": "^8.2.0",
+    "jQuery": "^1.7.4",
+    "lint": "^0.7.0",
+    "sass-loader": "^10.1.1",
+    "vue": "^2.6.10",
+    "vue-fab": "^2.3.1",
+    "vue-functional-calendar": "^2.9.4",
+    "vue-router": "^3.1.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "^1.0.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "node-sass": "^5.0.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "none"
+  }
+}
