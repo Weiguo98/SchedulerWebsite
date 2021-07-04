@@ -2,11 +2,11 @@
 const pg = require('pg');
 function connectPgPool(sqlStr,callback){
     const pgConfig = {
-        user:'postgres',
-        datebase:'database-2.c6ztee9rpkco.us-east-2.rds.amazonaws.com',
-        password:'Qwerty123',
-        host:'database-2.c6ztee9rpkco.us-east-2.rds.amazonaws.com',
-        port: '5432',
+        user: 'postgres',
+        host: 'localhost',
+        database: '',
+        password: '0000',//add the password provided
+        port: 5432,
         poolSize:5,
         poolIdleTimeout: 30000,
         reapIntervalMillis: 10000
